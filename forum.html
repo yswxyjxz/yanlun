@@ -1,0 +1,1470 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>严论博客｜严论官网</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --color-ink: #1a1a1a;
+            --color-paper: #f8f5f0;
+            --color-paper-light: #fefcf8;
+            --color-paper-dark: #f0ece3;
+            --color-accent: #5c4b37;
+            --color-accent-light: #8b7355;
+            --color-meta: #7a7a7a;
+            --border-width: 1.2px;
+            --glass-bg-light: rgba(248, 245, 240, 0.85);
+            --glass-border-light: rgba(92, 75, 55, 0.1);
+            --transition-smooth: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            --shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.04);
+            --shadow-elevated: 0 10px 40px rgba(0, 0, 0, 0.06);
+            --shadow-deep: 0 15px 50px rgba(0, 0, 0, 0.08);
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            font-size: 18px;
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Noto Serif SC', serif;
+            font-weight: 400;
+            line-height: 1.8;
+            color: var(--color-ink);
+            background-color: var(--color-paper);
+            overflow-x: hidden;
+        }
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: var(--transition-smooth);
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ========== 1. 液态玻璃导航栏 ========== */
+        .site-header {
+            position: fixed;
+            top: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 92%;
+            max-width: 1160px;
+            z-index: 1000;
+            padding: 0.9rem 1.8rem;
+            background: var(--glass-bg-light);
+            backdrop-filter: blur(12px) saturate(180%);
+            -webkit-backdrop-filter: blur(12px) saturate(180%);
+            border: 1px solid var(--glass-border-light);
+            border-radius: 14px;
+            box-shadow: var(--shadow-subtle);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition-smooth);
+        }
+        .site-header.scrolled {
+            top: 0.8rem;
+            width: 100%;
+            max-width: 100%;
+            border-radius: 0;
+            border-left: none;
+            border-right: none;
+            background: rgba(248, 245, 240, 0.92);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+        .brand {
+            font-weight: 400;
+            font-size: 1.3rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--color-accent);
+            z-index: 1001;
+        }
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.8rem;
+        }
+        .main-nav a {
+            font-size: 0.92rem;
+            font-weight: 400;
+            letter-spacing: 0.08em;
+            color: var(--color-ink);
+            position: relative;
+            padding: 0.4rem 0;
+        }
+        .main-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--color-accent);
+            transition: width 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .main-nav a:hover::after,
+        .main-nav a.active::after {
+            width: 100%;
+        }
+        .main-nav a:hover {
+            color: var(--color-accent);
+        }
+
+        /* 移动端汉堡按钮 */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            width: 30px;
+            height: 20px;
+            position: relative;
+            z-index: 1001;
+            padding: 0;
+        }
+        .menu-toggle span {
+            display: block;
+            position: absolute;
+            height: 2px;
+            width: 100%;
+            background: var(--color-accent);
+            border-radius: 1px;
+            left: 0;
+            transition: var(--transition-smooth);
+        }
+        .menu-toggle span:nth-child(1) { top: 0; }
+        .menu-toggle span:nth-child(2) { top: 9px; }
+        .menu-toggle span:nth-child(3) { top: 18px; }
+        body.menu-open .menu-toggle span:nth-child(1) {
+            top: 9px;
+            transform: rotate(45deg);
+        }
+        body.menu-open .menu-toggle span:nth-child(2) {
+            opacity: 0;
+            width: 0;
+        }
+        body.menu-open .menu-toggle span:nth-child(3) {
+            top: 9px;
+            transform: rotate(-45deg);
+        }
+
+        /* 移动端全屏导航菜单 */
+        .mobile-nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: var(--color-paper-light);
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        body.menu-open .mobile-nav-overlay {
+            opacity: 1;
+            visibility: visible;
+        }
+        .mobile-nav-links {
+            list-style: none;
+            text-align: center;
+        }
+        .mobile-nav-links li {
+            margin-bottom: 2.5rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        body.menu-open .mobile-nav-links li {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        body.menu-open .mobile-nav-links li:nth-child(1) { transition-delay: 0.1s; }
+        body.menu-open .mobile-nav-links li:nth-child(2) { transition-delay: 0.2s; }
+        body.menu-open .mobile-nav-links li:nth-child(3) { transition-delay: 0.3s; }
+        body.menu-open .mobile-nav-links li:nth-child(4) { transition-delay: 0.4s; }
+        .mobile-nav-links a {
+            font-size: 1.8rem;
+            font-weight: 300;
+            color: var(--color-ink);
+            letter-spacing: 0.15em;
+            padding: 0.5rem 1.5rem;
+            display: inline-block;
+            position: relative;
+        }
+        .mobile-nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 15%;
+            width: 0;
+            height: 1px;
+            background-color: var(--color-accent);
+            transition: width 0.5s ease;
+        }
+        .mobile-nav-links a:hover::after,
+        .mobile-nav-links a.active::after {
+            width: 70%;
+        }
+
+        /* ========== 2. 博客英雄区 ========== */
+        .blog-hero-section {
+            min-height: 80vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding: 12rem 0 6rem;
+            background: linear-gradient(to bottom, 
+                rgba(248, 245, 240, 0.7) 0%,
+                rgba(248, 245, 240, 0.9) 30%,
+                var(--color-paper-light) 100%);
+            border-bottom: 1px solid rgba(92, 75, 55, 0.08);
+            margin-bottom: 0;
+        }
+        .blog-hero-content {
+            position: relative;
+            z-index: 2;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUpIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        @keyframes fadeUpIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .blog-hero-title {
+            font-size: clamp(2.5rem, 7vw, 4rem);
+            font-weight: 600;
+            line-height: 1.3;
+            margin-bottom: 1.5rem;
+            color: var(--color-ink);
+        }
+        .blog-hero-title .highlight {
+            font-weight: 600;
+            color: var(--color-accent);
+            position: relative;
+            display: inline-block;
+        }
+        .blog-hero-title .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: -0.12em;
+            left: 0;
+            width: 100%;
+            height: 0.35em;
+            background-color: rgba(92, 75, 55, 0.15);
+            z-index: -1;
+            transition: height 0.5s ease;
+        }
+        .blog-hero-title .highlight:hover::after {
+            height: 0.5em;
+        }
+        .blog-hero-subtitle {
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: var(--color-meta);
+            max-width: 60ch;
+            margin: 0 auto 3rem;
+            opacity: 0.9;
+            line-height: 1.8;
+        }
+        .platform-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-bottom: 4rem;
+            flex-wrap: wrap;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--color-accent);
+            margin-bottom: 0.5rem;
+        }
+        .stat-label {
+            font-size: 0.95rem;
+            color: var(--color-meta);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        
+        /* 英雄区域按钮容器 */
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .blog-entry-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.2rem 2.5rem;
+            background-color: var(--color-accent);
+            color: var(--color-paper-light);
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition-smooth);
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .blog-entry-btn:hover {
+            background-color: var(--color-accent-light);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(92, 75, 55, 0.2);
+            gap: 1.5rem;
+        }
+        .blog-entry-btn i {
+            font-size: 1.2rem;
+            transition: transform 0.4s ease;
+        }
+        .blog-entry-btn:hover i {
+            transform: translateX(5px);
+        }
+        
+        /* 客户端下载按钮 */
+        .client-download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.2rem 2.5rem;
+            background-color: transparent;
+            color: var(--color-accent);
+            border: 2px solid var(--color-accent);
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition-smooth);
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .client-download-btn:hover {
+            background-color: var(--color-accent);
+            color: var(--color-paper-light);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(92, 75, 55, 0.2);
+            gap: 1.5rem;
+        }
+        .client-download-btn i {
+            font-size: 1.2rem;
+            transition: transform 0.4s ease;
+        }
+        .client-download-btn:hover i {
+            transform: translateY(3px);
+        }
+
+        /* ========== 3. 核心板块介绍 ========== */
+        .sections-section {
+            padding: 8rem 0;
+            background-color: var(--color-paper-light);
+            position: relative;
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+            color: var(--color-ink);
+        }
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--color-meta);
+            max-width: 60ch;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+        .sections-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-bottom: 6rem;
+        }
+        .section-card {
+            background-color: var(--color-paper-light);
+            border-radius: 16px;
+            padding: 3.5rem 2.5rem;
+            border: 1px solid rgba(92, 75, 55, 0.1);
+            box-shadow: var(--shadow-subtle);
+            transition: var(--transition-smooth);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .section-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-accent), var(--color-accent-light));
+            opacity: 0.8;
+        }
+        .section-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-elevated);
+            border-color: rgba(92, 75, 55, 0.2);
+        }
+        .section-icon {
+            font-size: 3.5rem;
+            margin-bottom: 2rem;
+            color: var(--color-accent);
+        }
+        .section-card h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--color-ink);
+        }
+        .section-description {
+            font-size: 1.05rem;
+            color: var(--color-meta);
+            margin-bottom: 2.5rem;
+            line-height: 1.7;
+        }
+        .section-features {
+            text-align: left;
+            margin-top: 2rem;
+        }
+        .section-features h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--color-accent);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .feature-list {
+            list-style: none;
+        }
+        .feature-list li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--color-meta);
+            font-size: 0.95rem;
+        }
+        .feature-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--color-accent);
+            font-weight: bold;
+        }
+
+        /* ========== 4. 客户端下载区域 ========== */
+        .download-section {
+            padding: 8rem 0;
+            background-color: var(--color-paper-dark);
+            border-top: 1px solid rgba(92, 75, 55, 0.05);
+            border-bottom: 1px solid rgba(92, 75, 55, 0.05);
+        }
+        
+        .download-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 900px;
+            margin: 0 auto 4rem;
+        }
+        
+        .download-card {
+            background-color: var(--color-paper-light);
+            border-radius: 12px;
+            padding: 2.5rem 2rem;
+            border: 1px solid rgba(92, 75, 55, 0.1);
+            box-shadow: var(--shadow-subtle);
+            transition: var(--transition-smooth);
+            text-align: center;
+        }
+        
+        .download-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-elevated);
+            border-color: rgba(92, 75, 55, 0.2);
+        }
+        
+        .download-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .download-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--color-ink);
+        }
+        
+        .download-card p {
+            color: var(--color-meta);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+        
+        .download-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+        
+        .download-btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background-color: var(--color-accent);
+            color: var(--color-paper-light);
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition-smooth);
+            border: none;
+            cursor: pointer;
+        }
+        
+        .download-btn:hover {
+            background-color: var(--color-accent-light);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(92, 75, 55, 0.2);
+        }
+        
+        .download-btn-alt {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background-color: transparent;
+            color: var(--color-accent);
+            border: 1px solid var(--color-accent);
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition-smooth);
+        }
+        
+        .download-btn-alt:hover {
+            background-color: var(--color-accent);
+            color: var(--color-paper-light);
+        }
+        
+        .download-note {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            color: var(--color-meta);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            padding: 2rem;
+            background-color: var(--color-paper-light);
+            border-radius: 12px;
+            border-left: 4px solid var(--color-accent-light);
+        }
+        
+        .download-note a {
+            color: var(--color-accent);
+            text-decoration: underline;
+        }
+        
+        .download-note a:hover {
+            color: var(--color-accent-light);
+        }
+
+        /* ========== 5. 平台特色区域 ========== */
+        .features-section {
+            padding: 8rem 0;
+            background-color: var(--color-paper-light);
+            position: relative;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3.5rem;
+        }
+        .feature-card {
+            background-color: var(--color-paper-light);
+            border-radius: 16px;
+            padding: 3rem 2.5rem;
+            border: 1px solid rgba(92, 75, 55, 0.08);
+            box-shadow: var(--shadow-subtle);
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-elevated);
+            border-color: rgba(92, 75, 55, 0.15);
+        }
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, transparent 50%, rgba(92, 75, 55, 0.03) 50%);
+            border-radius: 0 16px 0 0;
+        }
+        .feature-icon {
+            font-size: 2.8rem;
+            color: var(--color-accent);
+            margin-bottom: 1.8rem;
+        }
+        .feature-title {
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 1.2rem;
+            color: var(--color-ink);
+        }
+        .feature-description {
+            color: var(--color-meta);
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        /* ========== 6. 完全重构的页脚区域 ========== */
+        .site-footer {
+            padding: 8rem 0 4rem;
+            background-color: var(--color-paper);
+            position: relative;
+            border-top: 1px solid rgba(92, 75, 55, 0.1);
+            overflow: hidden;
+        }
+
+        /* 页脚背景装饰元素 */
+        .site-footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                var(--color-accent-light) 20%, 
+                var(--color-accent-light) 80%, 
+                transparent);
+        }
+
+        /* 页脚主要内容容器 */
+        .footer-main {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        /* 品牌介绍区域 */
+        .footer-brand {
+            max-width: 400px;
+        }
+
+        .footer-brand .brand-logo {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--color-accent);
+            letter-spacing: 0.2em;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .footer-brand p {
+            color: var(--color-meta);
+            line-height: 1.7;
+            margin-bottom: 2rem;
+            font-size: 1.05rem;
+        }
+
+        /* 社交链接 */
+        .social-section h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--color-ink);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--color-paper-light);
+            border: 1px solid rgba(92, 75, 55, 0.12);
+            font-size: 1.1rem;
+            color: var(--color-meta);
+            transition: var(--transition-smooth);
+        }
+
+        .social-links a:hover {
+            color: var(--color-paper-light);
+            background: var(--color-accent);
+            border-color: var(--color-accent);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(92, 75, 55, 0.15);
+        }
+
+        /* 链接列表区域 */
+        .footer-links-section h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--color-ink);
+            margin-bottom: 1.8rem;
+            position: relative;
+            padding-bottom: 0.8rem;
+        }
+
+        .footer-links-section h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--color-accent-light);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 1.2rem;
+        }
+
+        .footer-links a {
+            color: var(--color-meta);
+            font-size: 1rem;
+            position: relative;
+            padding-left: 0;
+            transition: var(--transition-smooth);
+            display: inline-block;
+        }
+
+        .footer-links a::before {
+            content: '→';
+            position: absolute;
+            left: -1.5rem;
+            opacity: 0;
+            transition: all 0.3s ease;
+            color: var(--color-accent);
+        }
+
+        .footer-links a:hover {
+            color: var(--color-accent);
+            padding-left: 1.5rem;
+        }
+
+        .footer-links a:hover::before {
+            opacity: 1;
+            left: 0;
+        }
+
+        /* 版权和底部区域 */
+        .footer-bottom {
+            padding-top: 3rem;
+            border-top: 1px solid rgba(92, 75, 55, 0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            color: var(--color-meta);
+        }
+
+        .copyright p:first-child {
+            margin-bottom: 0.5rem;
+        }
+
+        .copyright p:last-child {
+            font-style: italic;
+            font-size: 0.95rem;
+            color: var(--color-accent-light);
+            line-height: 1.6;
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-legal a {
+            color: var(--color-meta);
+            font-size: 0.9rem;
+            border-bottom: 1px solid transparent;
+            padding-bottom: 2px;
+            transition: var(--transition-smooth);
+        }
+
+        .footer-legal a:hover {
+            color: var(--color-accent);
+            border-color: var(--color-accent);
+        }
+
+        /* 装饰性元素 */
+        .footer-decoration {
+            position: absolute;
+            bottom: 0;
+            right: 5%;
+            font-size: 12rem;
+            color: rgba(92, 75, 55, 0.03);
+            font-weight: 700;
+            line-height: 1;
+            pointer-events: none;
+            user-select: none;
+            z-index: 0;
+            opacity: 0.8;
+        }
+
+        /* ========== 7. 响应式调整 ========== */
+        @media (max-width: 1080px) {
+            .container {
+                width: 92%;
+            }
+            .footer-main {
+                grid-template-columns: 1fr 1fr;
+                gap: 3rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            html { font-size: 16px; }
+            .site-header {
+                top: 1rem;
+                width: 94%;
+                padding: 0.8rem 1.5rem;
+            }
+            .site-header.scrolled {
+                top: 0;
+            }
+            .main-nav {
+                display: none;
+            }
+            .menu-toggle {
+                display: block;
+            }
+            .blog-hero-section {
+                padding: 8rem 0 4rem;
+                min-height: 70vh;
+            }
+            .blog-hero-title {
+                font-size: clamp(2.2rem, 6vw, 3rem);
+                line-height: 1.4;
+                margin-bottom: 1.2rem;
+            }
+            .blog-hero-subtitle {
+                font-size: 1.2rem;
+                line-height: 1.7;
+            }
+            .platform-stats {
+                gap: 2rem;
+            }
+            .stat-number {
+                font-size: 2rem;
+            }
+            .hero-buttons {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            .blog-entry-btn, .client-download-btn {
+                width: 100%;
+                max-width: 300px;
+                margin: 0 auto;
+            }
+            .sections-grid {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+            .section-card {
+                padding: 2.5rem 2rem;
+            }
+            .download-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+            }
+            .download-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            .download-btn, .download-btn-alt {
+                width: 100%;
+                max-width: 200px;
+            }
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+            .feature-card {
+                padding: 2.5rem 2rem;
+            }
+            .mobile-nav-links a {
+                font-size: 1.6rem;
+            }
+            .site-footer {
+                padding: 6rem 0 3rem;
+            }
+            .footer-main {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            .footer-brand {
+                max-width: 100%;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+                gap: 1.5rem;
+            }
+            .footer-legal {
+                justify-content: center;
+            }
+            .footer-decoration {
+                font-size: 8rem;
+                right: 0;
+                bottom: 10%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container { width: 94%; padding: 0 15px; }
+            .blog-hero-title {
+                font-size: 2rem;
+                line-height: 1.5;
+                margin-bottom: 1rem;
+            }
+            .blog-hero-subtitle {
+                font-size: 1.1rem;
+                line-height: 1.8;
+            }
+            .brand {
+                font-size: 1.1rem;
+                letter-spacing: 0.2em;
+            }
+            .blog-entry-btn, .client-download-btn {
+                padding: 1rem 2rem;
+                font-size: 1rem;
+            }
+            .section-card {
+                padding: 2rem 1.8rem;
+            }
+            .download-card {
+                padding: 2rem 1.5rem;
+            }
+            .feature-card {
+                padding: 2rem 1.8rem;
+            }
+            .footer-decoration {
+                font-size: 6rem;
+            }
+        }
+        
+        @media (max-height: 500px) and (orientation: landscape) {
+            .mobile-nav-links a {
+                font-size: 1.4rem;
+            }
+            .mobile-nav-links li {
+                margin-bottom: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 1. 液态玻璃导航栏 -->
+    <header class="site-header" id="siteHeader">
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+            <a href="index.html" class="brand">严论</a>
+            
+            <!-- 桌面端导航 -->
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="app.html">客户端</a></li>
+                    <li><a href="forum.html" class="active">文学论坛</a></li>
+                    <li><a href="creative.html">文创</a></li>
+                </ul>
+            </nav>
+
+            <!-- 移动端汉堡按钮 -->
+            <button class="menu-toggle" id="menuToggle" aria-label="打开菜单">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- 2. 移动端全屏导航菜单 -->
+    <div class="mobile-nav-overlay" id="mobileNav">
+        <ul class="mobile-nav-links">
+            <li><a href="index.html">首页</a></li>
+            <li><a href="app.html">严论客户端</a></li>
+            <li><a href="forum.html" class="active">文学论坛</a></li>
+            <li><a href="creative.html">严论文创</a></li>
+        </ul>
+    </div>
+
+    <!-- 3. 主内容 -->
+    <main>
+        <!-- 博客英雄区 -->
+        <section class="blog-hero-section" id="blogHero">
+            <div class="container blog-hero-content">
+                <h1 class="blog-hero-title">
+                    严论<span class="highlight">博客</span>
+                </h1>
+                <p class="blog-hero-subtitle">
+                    深度严肃文学内容平台，设有名著解读、创作征集、作家专栏和读者书评四大核心板块，为严肃文学爱好者提供高质量的阅读与创作空间。
+                </p>
+                
+                <div class="platform-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">6000+</div>
+                        <div class="stat-label">累计访问量</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">4</div>
+                        <div class="stat-label">核心板块</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">签约作者</div>
+                    </div>
+                </div>
+                
+                <!-- 新增：两个按钮并排 -->
+                <div class="hero-buttons">
+                    <a href="https://www.yswxstudy.top/" class="blog-entry-btn" target="_blank">
+                        进入严论博客 <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="#downloads" class="client-download-btn">
+                        客户端下载 <i class="fas fa-download"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 核心板块介绍 -->
+        <section class="sections-section" id="sections">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">四大核心板块</h2>
+                    <p class="section-subtitle">
+                        严论博客围绕严肃文学的核心需求，精心设计了四大板块，为读者和作者提供全方位的文学体验。
+                    </p>
+                </div>
+                
+                <div class="sections-grid">
+                    <div class="section-card">
+                        <div class="section-icon">
+                            <i class="fas fa-book-open"></i>
+                        </div>
+                        <h3>名著解读</h3>
+                        <p class="section-description">
+                            深度解析经典文学作品，提供背景知识、主题分析和阅读指导，帮助读者理解复杂文本，降低严肃文学的认知门槛。
+                        </p>
+                        <div class="section-features">
+                            <h4>主要特色</h4>
+                            <ul class="feature-list">
+                                <li>经典作品深度导读</li>
+                                <li>作者与时代背景分析</li>
+                                <li>关键概念与主题解读</li>
+                                <li>阅读方法与技巧分享</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="section-card">
+                        <div class="section-icon">
+                            <i class="fas fa-pen-nib"></i>
+                        </div>
+                        <h3>创作征集</h3>
+                        <p class="section-description">
+                            面向写作者的作品征集平台，提供创作指导、编辑反馈和发表机会，鼓励严肃文学创作，发掘优秀文学新人。
+                        </p>
+                        <div class="section-features">
+                            <h4>主要特色</h4>
+                            <ul class="feature-list">
+                                <li>定期主题创作征集</li>
+                                <li>专业编辑审稿反馈</li>
+                                <li>优秀作品发表机会</li>
+                                <li>创作经验交流分享</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="section-card">
+                        <div class="section-icon">
+                            <i class="fas fa-user-edit"></i>
+                        </div>
+                        <h3>作家专栏</h3>
+                        <p class="section-description">
+                            特邀作家和文学研究者开设专栏，分享创作心得、文学研究和行业观察，建立作者与读者的深度对话桥梁。
+                        </p>
+                        <div class="section-features">
+                            <h4>主要特色</h4>
+                            <ul class="feature-list">
+                                <li>知名作家特邀专栏</li>
+                                <li>创作过程深度揭秘</li>
+                                <li>文学研究前沿分享</li>
+                                <li>读者作者直接互动</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="section-card">
+                        <div class="section-icon">
+                            <i class="fas fa-comment-alt"></i>
+                        </div>
+                        <h3>读者书评</h3>
+                        <p class="section-description">
+                            读者分享阅读感受和评论的空间，鼓励深度思考与真诚表达，构建读者之间的交流网络，丰富作品的多维度解读。
+                        </p>
+                        <div class="section-features">
+                            <h4>主要特色</h4>
+                            <ul class="feature-list">
+                                <li>读者原创书评分享</li>
+                                <li>作品多角度解读</li>
+                                <li>阅读社群交流互动</li>
+                                <li>优秀书评推荐展示</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 客户端下载区域 -->
+        <section class="download-section" id="downloads">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">客户端下载</h2>
+                    <p class="section-subtitle">
+                        除了直接访问网站，你也可以下载严论博客客户端，获得更好的阅读和创作体验。支持 Windows、macOS 和 Linux 系统。
+                    </p>
+                </div>
+                
+                <div class="download-grid">
+                    <!-- Windows 下载项 -->
+                    <div class="download-card">
+                        <div class="download-icon" style="color: #0078d7;">
+                            <i class="fab fa-windows"></i>
+                        </div>
+                        <h3>Windows</h3>
+                        <p>支持 Windows 10/11 (64位)</p>
+                        <div class="download-buttons">
+                            <a href="https://1815012422.v.123pan.cn/1815012422/%E4%B8%A5%E8%AE%BA%E5%AE%98%E7%BD%91/yswxstudy-win-x64-1.0.0.zip" class="download-btn">
+                                下载 64位版
+                            </a>
+                            <a href="https://1815012422.v.123pan.cn/1815012422/%E4%B8%A5%E8%AE%BA%E5%AE%98%E7%BD%91/yswxstudy-win-arm64-1.0.0.zip" class="download-btn-alt">
+                                ARM64版
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- macOS 下载项 -->
+                    <div class="download-card">
+                        <div class="download-icon" style="color: #000000;">
+                            <i class="fab fa-apple"></i>
+                        </div>
+                        <h3>macOS</h3>
+                        <p>支持 Apple Silicon (M系列芯片)</p>
+                        <a href="https://1815012422.v.123pan.cn/1815012422/%E4%B8%A5%E8%AE%BA%E5%AE%98%E7%BD%91/yswxstudy-macos-aarch64-1.0.0.zip" class="download-btn">
+                            下载 macOS 版
+                        </a>
+                    </div>
+                    
+                    <!-- Linux 下载项 -->
+                    <div class="download-card">
+                        <div class="download-icon" style="color: #fcc624;">
+                            <i class="fab fa-linux"></i>
+                        </div>
+                        <h3>Linux</h3>
+                        <p>支持 Debian/Ubuntu 及通用 Linux 发行版</p>
+                        <div class="download-buttons">
+                            <a href="https://1815012422.v.123pan.cn/1815012422/%E4%B8%A5%E8%AE%BA%E5%AE%98%E7%BD%91/yswxstudy-linux-amd64-1.0.0.zip" class="download-btn">
+                                .deb 包
+                            </a>
+                            <a href="https://1815012422.v.123pan.cn/1815012422/%E4%B8%A5%E8%AE%BA%E5%AE%98%E7%BD%91/yswxstudy-linux-amd64-1.0.0%281%29.zip" class="download-btn-alt">
+                                AppImage
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="download-note">
+                    <p style="margin-bottom: 1rem;"><i class="fas fa-info-circle" style="color: var(--color-accent); margin-right: 0.5rem;"></i> 
+                        <strong>下载说明：</strong>Windows ARM64 版适用于使用 ARM 架构处理器的 Windows 设备（如 Surface Pro X）。macOS 版适用于 Apple Silicon (M1/M2/M3) 芯片的 Mac。Linux .deb 包适用于 Debian/Ubuntu 等基于 Debian 的系统，AppImage 适用于大多数 Linux 发行版。
+                    </p>
+                    <p>
+                        <i class="fas fa-desktop" style="color: var(--color-accent); margin-right: 0.5rem;"></i> 
+                        你也可以 <a href="https://www.yswxstudy.top/" target="_blank">直接访问严论博客网站</a>，无需下载安装即可使用全部功能。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 平台特色区域 -->
+        <section class="features-section" id="features">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">平台特色</h2>
+                    <p class="section-subtitle">
+                        严论博客致力于构建一个专注于严肃文学的高质量内容平台，为读者和作者提供独特的价值体验。
+                    </p>
+                </div>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-gem"></i>
+                        </div>
+                        <h3 class="feature-title">内容质量优先</h3>
+                        <p class="feature-description">
+                            所有内容都经过严格筛选和编辑审核，确保文学价值和思想深度。我们拒绝流量导向的内容策略，坚持质量优先的原则。
+                        </p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3 class="feature-title">社群互动交流</h3>
+                        <p class="feature-description">
+                            构建作者、读者、研究者之间的深度对话平台。每篇文章都设有讨论区，鼓励理性、深入的文学交流与思想碰撞。
+                        </p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-seedling"></i>
+                        </div>
+                        <h3 class="feature-title">新人培育计划</h3>
+                        <p class="feature-description">
+                            通过创作征集和编辑指导，发掘和培育文学新人。为有潜力的写作者提供发表平台和专业支持，助力严肃文学创作生态。
+                        </p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-layer-group"></i>
+                        </div>
+                        <h3 class="feature-title">系统性知识建构</h3>
+                        <p class="feature-description">
+                            内容按主题和作品系统组织，形成完整的知识结构。读者可以按图索骥，建立对严肃文学的系统性理解。
+                        </p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-balance-scale"></i>
+                        </div>
+                        <h3 class="feature-title">平衡专业与普及</h3>
+                        <p class="feature-description">
+                            在保持专业深度的同时，注重内容的可读性和普及性。通过导读、解读等形式，让严肃文学更接近普通读者。
+                        </p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-infinity"></i>
+                        </div>
+                        <h3 class="feature-title">可持续内容生态</h3>
+                        <p class="feature-description">
+                            建立从内容创作、编辑审核到读者反馈的完整生态链。确保平台内容的持续更新和质量稳定，形成良性循环。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 7. 重构的页脚 -->
+    <footer class="site-footer">
+        <div class="footer-decoration">严论</div>
+        <div class="container">
+            <div class="footer-main">
+                <div class="footer-brand">
+                    <a href="index.html" class="brand-logo">严论</a>
+                    <p>
+                        文学是照进现实的一束光
+                    </p>
+                    <div class="social-section">
+                        <h4>关注我们</h4>
+                        <div class="social-links">
+                            <a href="social.html" title="微信公众号"><i class="fab fa-weixin"></i></a>
+                            <a href="social.html" title="微博"><i class="fab fa-weibo"></i></a>
+                            <a href="social.html" title="抖音"><i class="fab fa-tiktok"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-links-section">
+                    <h4>探索</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">首页</a></li>
+                        <li><a href="app.html">严论客户端</a></li>
+                        <li><a href="forum.html">严论博客</a></li>
+                        <li><a href="creative.html">严论文创</a></li>
+                        <li><a href="#blogHero">返回顶部</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links-section">
+                    <h4>支持</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://www.yswxstudy.top/" target="_blank">进入博客</a></li>
+                        <li><a href="agreement.html" target="_blank">服务协议</a></li>
+                        <li><a href="privacy.html" target="_blank">隐私政策</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="copyright">
+                    <p>© 2023 严肃文学研究小组。保留所有权利。</p>
+                    <p>文学不能改变世界，但文学可以改变人，而人可以改变世界。</p>
+                </div>
+                <div class="footer-legal">
+                    <a href="" target="_blank">服务协议</a>
+                    <a href="privacy.html" target="_blank">隐私政策</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 1. 导航栏滚动效果
+        const siteHeader = document.getElementById('siteHeader');
+        const blogHero = document.getElementById('blogHero');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 60) {
+                siteHeader.classList.add('scrolled');
+            } else {
+                siteHeader.classList.remove('scrolled');
+            }
+        });
+
+        // 2. 移动端菜单控制
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileNav = document.getElementById('mobileNav');
+        const body = document.body;
+        menuToggle.addEventListener('click', () => {
+            body.classList.toggle('menu-open');
+            const isExpanded = body.classList.contains('menu-open');
+            menuToggle.setAttribute('aria-expanded', isExpanded);
+            menuToggle.setAttribute('aria-label', isExpanded ? '关闭菜单' : '打开菜单');
+        });
+        document.querySelectorAll('.mobile-nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                body.classList.remove('menu-open');
+                menuToggle.setAttribute('aria-expanded', 'false');
+                menuToggle.setAttribute('aria-label', '打开菜单');
+            });
+        });
+
+        // 3. 平滑滚动到下载区域
+        document.querySelector('.client-download-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            }
+        });
+
+        // 4. 卡片滚动浮现效果
+        const sectionCards = document.querySelectorAll('.section-card');
+        const featureCards = document.querySelectorAll('.feature-card');
+        const downloadCards = document.querySelectorAll('.download-card');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        });
+        
+        // 为所有卡片添加动画
+        sectionCards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(40px)';
+            card.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            observer.observe(card);
+        });
+        
+        downloadCards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(40px)';
+            card.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            observer.observe(card);
+        });
+        
+        featureCards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(40px)';
+            card.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            observer.observe(card);
+        });
+
+        // 5. 为卡片添加交错延迟效果
+        window.addEventListener('load', () => {
+            sectionCards.forEach((card, index) => {
+                card.style.transitionDelay = `${index * 0.1}s`;
+            });
+            
+            downloadCards.forEach((card, index) => {
+                card.style.transitionDelay = `${index * 0.1}s`;
+            });
+            
+            featureCards.forEach((card, index) => {
+                card.style.transitionDelay = `${index * 0.15}s`;
+            });
+        });
+    </script>
+</body>
+</html>

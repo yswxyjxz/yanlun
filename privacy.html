@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>严论隐私政策｜严论官网</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --color-ink: #1a1a1a;
+            --color-paper: #f8f5f0;
+            --color-paper-light: #fefcf8;
+            --color-paper-dark: #f0ece3;
+            --color-accent: #5c4b37;
+            --color-accent-light: #8b7355;
+            --color-meta: #7a7a7a;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            font-size: 18px;
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Noto Serif SC', serif;
+            font-weight: 400;
+            line-height: 1.8;
+            color: var(--color-ink);
+            background-color: var(--color-paper);
+            overflow-x: hidden;
+        }
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* 导航栏 */
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 0;
+            background-color: var(--color-paper);
+            border-bottom: 1px solid rgba(92, 75, 55, 0.1);
+        }
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .brand {
+            font-weight: 400;
+            font-size: 1.3rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--color-accent);
+        }
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        .main-nav a {
+            font-size: 0.92rem;
+            font-weight: 400;
+            letter-spacing: 0.08em;
+            color: var(--color-ink);
+            position: relative;
+            padding: 0.4rem 0;
+        }
+        .main-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--color-accent);
+            transition: width 0.6s ease;
+        }
+        .main-nav a:hover::after,
+        .main-nav a.active::after {
+            width: 100%;
+        }
+        .main-nav a:hover {
+            color: var(--color-accent);
+        }
+
+        /* 隐私政策内容区域 */
+        .privacy-section {
+            padding: 10rem 0 6rem;
+            background-color: var(--color-paper-light);
+        }
+        .privacy-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            border-bottom: 1px solid rgba(92, 75, 55, 0.1);
+            padding-bottom: 2rem;
+        }
+        .privacy-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--color-accent);
+            text-align: center;
+        }
+        .privacy-subtitle {
+            font-size: 1.2rem;
+            color: var(--color-meta);
+            font-weight: 300;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+        }
+        .privacy-meta {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            color: var(--color-meta);
+            flex-wrap: wrap;
+        }
+        .privacy-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .privacy-section h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin: 3rem 0 1.5rem;
+            color: var(--color-accent);
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(92, 75, 55, 0.1);
+        }
+        .privacy-section h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin: 2.5rem 0 1rem;
+            color: var(--color-ink);
+        }
+        .privacy-section p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+        .privacy-section ul, .privacy-section ol {
+            margin: 1.5rem 0 1.5rem 2rem;
+        }
+        .privacy-section li {
+            margin-bottom: 0.8rem;
+            text-align: justify;
+        }
+        .privacy-section strong {
+            color: var(--color-accent);
+            font-weight: 600;
+        }
+        .privacy-highlight {
+            background-color: rgba(92, 75, 55, 0.05);
+            border-left: 4px solid var(--color-accent);
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
+            border-radius: 4px;
+        }
+        .privacy-highlight p {
+            margin-bottom: 0;
+            font-style: italic;
+            text-align: left;
+        }
+        .privacy-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+        }
+        .privacy-table th,
+        .privacy-table td {
+            border: 1px solid rgba(92, 75, 55, 0.2);
+            padding: 1rem;
+            text-align: left;
+        }
+        .privacy-table th {
+            background-color: rgba(92, 75, 55, 0.05);
+            font-weight: 600;
+            color: var(--color-accent);
+        }
+
+        /* 页脚 */
+        .site-footer {
+            padding: 4rem 0 3rem;
+            background-color: var(--color-paper);
+            position: relative;
+            border-top: 1px solid rgba(92, 75, 55, 0.1);
+        }
+        .footer-container {
+            text-align: center;
+        }
+        .copyright {
+            font-size: 0.9rem;
+            color: var(--color-meta);
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: var(--color-meta);
+            font-size: 0.9rem;
+            border-bottom: 1px solid transparent;
+            padding-bottom: 2px;
+            transition: all 0.3s ease;
+        }
+        .footer-links a:hover {
+            color: var(--color-accent);
+            border-color: var(--color-accent);
+        }
+        .footer-quote {
+            font-style: italic;
+            color: var(--color-accent-light);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            html { font-size: 16px; }
+            .privacy-section {
+                padding: 8rem 0 4rem;
+            }
+            .privacy-title {
+                font-size: 2rem;
+            }
+            .privacy-subtitle {
+                font-size: 1.1rem;
+                padding: 0 1rem;
+            }
+            .main-nav ul {
+                gap: 1.5rem;
+            }
+            .privacy-section h2 {
+                font-size: 1.6rem;
+            }
+            .privacy-section h3 {
+                font-size: 1.3rem;
+            }
+            .footer-links {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+            .privacy-highlight {
+                padding: 1.5rem;
+                margin: 1.5rem 0;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container { width: 94%; padding: 0 15px; }
+            .privacy-title {
+                font-size: 1.8rem;
+                margin-bottom: 1rem;
+            }
+            .brand {
+                font-size: 1.1rem;
+                letter-spacing: 0.2em;
+            }
+            .main-nav a {
+                font-size: 0.85rem;
+            }
+            .privacy-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            .privacy-section h2 {
+                font-size: 1.5rem;
+            }
+            .privacy-section h3 {
+                font-size: 1.2rem;
+            }
+            .privacy-table th,
+            .privacy-table td {
+                padding: 0.8rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header class="site-header">
+        <div class="container header-container">
+            <a href="index.html" class="brand">严论</a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="app.html">客户端</a></li>
+                    <li><a href="forum.html">文学论坛</a></li>
+                    <li><a href="creative.html">文创</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 隐私政策内容 -->
+    <main>
+        <section class="privacy-section">
+            <div class="container">
+                <div class="privacy-header">
+                    <h1 class="privacy-title">严论品牌隐私政策</h1>
+                    <p class="privacy-subtitle">我们非常重视用户的隐私保护，本政策阐述了严论品牌如何收集、使用、存储和保护您的个人信息</p>
+                    <div class="privacy-meta">
+                        <span>版本号：V2.0</span>
+                        <span>发布日期：2025年12月1日</span>
+                        <span>生效日期：2025年12月1日</span>
+                    </div>
+                </div>
+
+                <div class="privacy-content">
+                    <div class="privacy-highlight">
+                        <p><strong>重要提示：</strong>请您在使用严论品牌任何产品与服务之前，仔细阅读本《严论品牌隐私政策》（以下简称"本政策"）的全部条款。本政策适用于严论品牌提供的所有产品与服务，包括严论博客、严论客户端、严论文创等。如您不同意本政策的任何内容，请不要使用严论品牌的任何产品与服务。当您访问、浏览、下载或使用严论品牌的任何产品与服务时，即表示您已阅读、理解并同意接受本政策的全部内容。</p>
+                    </div>
+
+                    <h2>一、引言</h2>
+                    <p>1.1 严肃文学研究小组（以下称"我们"）深知个人信息对您的重要性，我们将按照法律法规的规定，保护您的个人信息及隐私安全。我们制定本政策并特别提示：希望您在使用严论品牌产品与服务（以下统称"严论服务"）前仔细阅读并理解本政策，以便做出适当的选择。</p>
+                    <p>1.2 本政策将帮助您了解以下内容：</p>
+                    <ul>
+                        <li>我们如何收集和使用您的个人信息</li>
+                        <li>我们如何使用Cookie和同类技术</li>
+                        <li>我们如何共享、转让、公开披露您的个人信息</li>
+                        <li>我们如何保护您的个人信息</li>
+                        <li>您的权利</li>
+                        <li>我们如何处理未成年人的个人信息</li>
+                        <li>本政策如何更新</li>
+                        <li>如何联系我们</li>
+                    </ul>
+                    <p>1.3 本政策是《严论品牌总服务协议》的重要组成部分，如本政策与《严论品牌总服务协议》存在不一致之处，以本政策为准。</p>
+
+                    <h2>二、我们如何收集和使用您的个人信息</h2>
+                    <p>2.1 严论品牌当前提供无需账户注册的服务，我们收集的个人信息非常有限，主要包括：</p>
+                    
+                    <h3>2.1.1 您直接提供的信息</h3>
+                    <ul>
+                        <li><strong>联系方式：</strong>当您通过邮件或其他方式联系我们时，可能会提供您的电子邮件地址、姓名等联系方式。</li>
+                        <li><strong>反馈信息：</strong>当您提交意见反馈、建议或报告问题时，可能会提供相关的内容信息。</li>
+                        <li><strong>内容提交：</strong>当您通过严论博客参与创作征集、发表评论时，可能会提交相关的内容信息。</li>
+                    </ul>
+
+                    <h3>2.1.2 我们自动收集的信息</h3>
+                    <ul>
+                        <li><strong>设备信息：</strong>为保障服务的安全运行，我们会收集您的设备型号、操作系统版本、唯一设备标识符等信息。</li>
+                        <li><strong>日志信息：</strong>当您使用严论服务时，我们的服务器会自动记录一些信息，如您对我们服务的访问时间、访问时长、访问页面、IP地址、浏览器类型等。</li>
+                        <li><strong>位置信息：</strong>当您使用严论客户端时，我们可能会收集您的大致位置信息（基于IP地址），用于统计分析用户地域分布。</li>
+                    </ul>
+
+                    <h3>2.2 我们如何使用您的个人信息</h3>
+                    <p>2.2.1 我们严格遵守法律法规的规定及与用户的约定，将收集的信息用于以下用途：</p>
+                    <table class="privacy-table">
+                        <thead>
+                            <tr>
+                                <th>信息类型</th>
+                                <th>使用目的</th>
+                                <th>法律依据</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>设备与日志信息</td>
+                                <td>保障服务的安全运行、排查故障、统计分析</td>
+                                <td>履行合同义务，维护服务安全</td>
+                            </tr>
+                            <tr>
+                                <td>联系方式</td>
+                                <td>响应您的咨询、反馈和建议</td>
+                                <td>您的同意</td>
+                            </tr>
+                            <tr>
+                                <td>内容信息</td>
+                                <td>展示用户提交的内容、进行内容审核</td>
+                                <td>您的同意，履行合同义务</td>
+                            </tr>
+                            <tr>
+                                <td>位置信息</td>
+                                <td>统计分析用户地域分布，优化服务</td>
+                                <td>履行合同义务，优化服务质量</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h2>三、我们如何使用Cookie和同类技术</h2>
+                    <p>3.1 为确保网站正常运转，我们会在您的计算机或移动设备上存储名为Cookie的小数据文件。Cookie通常包含标识符、站点名称以及一些号码和字符。借助于Cookie，网站能够存储您的偏好等数据。</p>
+                    <p>3.2 我们使用Cookie的目的包括：</p>
+                    <ul>
+                        <li>记住您的偏好设置，如语言偏好、显示设置等</li>
+                        <li>统计和分析网站流量，了解网站的使用情况</li>
+                        <li>提高网站安全性，防范恶意攻击</li>
+                    </ul>
+                    <p>3.3 您有权接受或拒绝Cookie。大多数浏览器会自动接受Cookie，但您通常可以根据自己的需要来修改浏览器的设置以拒绝Cookie。如果选择拒绝Cookie，那么您可能无法完全体验严论网站提供的服务。</p>
+
+                    <h2>四、我们如何共享、转让、公开披露您的个人信息</h2>
+                    <p>4.1 <strong>共享</strong>：我们不会与任何公司、组织和个人共享您的个人信息，但以下情况除外：</p>
+                    <ul>
+                        <li>在获取明确同意的情况下共享：获得您的明确同意后，我们会与其他方共享您的个人信息。</li>
+                        <li>在法定情形下的共享：我们可能会根据法律法规规定、诉讼争议解决需要，或按行政、司法机关依法提出的要求，对外共享您的个人信息。</li>
+                        <li>与授权合作伙伴共享：仅为实现本政策中声明的目的，我们的某些服务将由授权合作伙伴提供。我们可能会与合作伙伴共享您的某些个人信息，以提供更好的客户服务和用户体验。</li>
+                    </ul>
+
+                    <p>4.2 <strong>转让</strong>：我们不会将您的个人信息转让给任何公司、组织和个人，但以下情况除外：</p>
+                    <ul>
+                        <li>在获取明确同意的情况下转让：获得您的明确同意后，我们会向其他方转让您的个人信息。</li>
+                        <li>在涉及合并、收购或破产清算时，如涉及到个人信息转让，我们会要求新的持有您个人信息的公司、组织继续受本政策的约束，否则我们将要求该公司、组织重新向您征求授权同意。</li>
+                    </ul>
+
+                    <p>4.3 <strong>公开披露</strong>：我们仅会在以下情况下，公开披露您的个人信息：</p>
+                    <ul>
+                        <li>获得您明确同意后；</li>
+                        <li>基于法律的披露：在法律、法律程序、诉讼或政府主管部门强制性要求的情况下，我们可能会公开披露您的个人信息。</li>
+                    </ul>
+
+                    <h2>五、我们如何保护您的个人信息</h2>
+                    <p>5.1 我们已使用符合业界标准的安全防护措施保护您提供的个人信息，防止数据遭到未经授权访问、公开披露、使用、修改、损坏或丢失。我们会采取一切合理可行的措施，保护您的个人信息。</p>
+                    <p>5.2 我们的安全措施包括：</p>
+                    <ul>
+                        <li>数据加密传输：我们会在您的浏览器与服务器之间交换数据时受SSL协议加密保护。</li>
+                        <li>数据加密存储：我们对个人信息进行加密存储，并使用受信赖的保护机制防止数据遭到恶意攻击。</li>
+                        <li>访问控制：我们对可能接触到个人信息的工作人员采取最小够用授权原则，并对其接触个人信息的操作进行记录，避免违法复制、下载个人信息。</li>
+                        <li>安全审计：我们定期进行安全审计，评估和改进个人信息保护措施的有效性。</li>
+                    </ul>
+                    <p>5.3 尽管有前述安全措施，但请注意在互联网上不存在"完善的安全措施"，我们将尽力确保您的个人信息安全。</p>
+
+                    <h2>六、您的权利</h2>
+                    <p>按照中国相关的法律、法规、标准，以及其他国家、地区的通行做法，我们保障您对自己的个人信息行使以下权利：</p>
+                    
+                    <h3>6.1 访问您的个人信息</h3>
+                    <p>您有权访问您的个人信息，法律法规规定的例外情况除外。</p>
+                    
+                    <h3>6.2 更正您的个人信息</h3>
+                    <p>当您发现我们处理的关于您的个人信息有错误时，您有权要求我们做出更正。</p>
+                    
+                    <h3>6.3 删除您的个人信息</h3>
+                    <p>在以下情形中，您可以向我们提出删除个人信息的请求：</p>
+                    <ul>
+                        <li>如果我们处理个人信息的行为违反法律法规；</li>
+                        <li>如果我们收集、使用您的个人信息，却未征得您的同意；</li>
+                        <li>如果我们处理个人信息的行为违反了与您的约定；</li>
+                        <li>如果您不再使用我们的产品或服务，或您注销了账号；</li>
+                        <li>如果我们不再为您提供产品或服务。</li>
+                    </ul>
+                    
+                    <h3>6.4 改变您授权同意的范围</h3>
+                    <p>每个业务功能需要一些基本的个人信息才能得以完成。对于额外收集的个人信息的收集和使用，您可以随时给予或收回您的授权同意。</p>
+                    
+                    <h3>6.5 响应您的上述请求</h3>
+                    <p>为保障安全，您可能需要提供书面请求，或以其他方式证明您的身份。我们可能会先要求您验证自己的身份，然后再处理您的请求。我们将在15个工作日内做出答复。</p>
+
+                    <h2>七、我们如何处理未成年人的个人信息</h2>
+                    <p>7.1 我们的产品、网站和服务主要面向成人。如果没有父母或监护人的同意，未成年人不得创建自己的用户账户。</p>
+                    <p>7.2 对于经父母同意而收集未成年人个人信息的情况，我们只会在受到法律允许、父母或监护人明确同意或者保护未成年人所必要的情况下使用或公开披露此信息。</p>
+                    <p>7.3 如果我们发现自己在未事先获得可证实的父母同意的情况下收集了未成年人的个人信息，则会设法尽快删除相关数据。</p>
+
+                    <h2>八、本政策如何更新</h2>
+                    <p>8.1 我们的隐私政策可能变更。未经您明确同意，我们不会削减您按照本隐私政策所应享有的权利。</p>
+                    <p>8.2 我们会在本页面上发布对本政策所做的任何变更。对于重大变更，我们还会提供更为显著的通知（包括我们会通过网站公示的方式进行通知甚至向您提供弹窗提示）。</p>
+                    <p>8.3 本政策所指的重大变更包括但不限于：</p>
+                    <ul>
+                        <li>我们的服务模式发生重大变化。如处理个人信息的目的、处理的个人信息类型、个人信息的使用方式等；</li>
+                        <li>我们在所有权结构、组织架构等方面发生重大变化。如业务调整、破产并购等引起的所有者变更等；</li>
+                        <li>个人信息共享、转让或公开披露的主要对象发生变化；</li>
+                        <li>您参与个人信息处理方面的权利及其行使方式发生重大变化；</li>
+                        <li>我们负责处理个人信息安全的责任部门、联络方式及投诉渠道发生变化时；</li>
+                        <li>个人信息安全影响评估报告表明存在高风险时。</li>
+                    </ul>
+
+                    <h2>九、如何联系我们</h2>
+                    <p>9.1 如果您对本隐私政策有任何疑问、意见或建议，或者想要行使您的个人信息相关权利，可以通过以下方式与我们联系：</p>
+                    <p>电子邮箱：<a href="mailto:yswxyjxz@163.com">yswxyjxz@163.com</a></p>
+                    <p>9.2 一般情况下，我们将在15个工作日内回复您的请求。如果您对我们的回复不满意，特别是认为我们的个人信息处理行为损害了您的合法权益，您还可以向网信、公安、工商等监管部门进行投诉或举报。</p>
+
+                    <div class="privacy-highlight">
+                        <p><strong>感谢您花时间了解我们的隐私政策。我们承诺将尽全力保护您的个人信息安全，为您提供安全、可靠的严肃文学服务。</strong></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="site-footer">
+        <div class="container footer-container">
+            <div class="copyright">
+                <p>© 2025 严肃文学研究小组。保留所有权利。</p>
+            </div>
+            <ul class="footer-links">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="forum.html">文学论坛</a></li>
+                <li><a href="creative.html">文创产品</a></li>
+                <li><a href="agreement.html">服务协议</a></li>
+                <li><a href="privacy.html" class="active">隐私政策</a></li>
+            </ul>
+            <p class="footer-quote">文学不能改变世界，但文学可以改变人，而人可以改变世界。</p>
+        </div>
+    </footer>
+
+    <script>
+        // 简单的高亮当前阅读段落
+        const sections = document.querySelectorAll('.privacy-content h2, .privacy-content h3');
+        const observerOptions = {
+            root: null,
+            rootMargin: '-20% 0px -70% 0px',
+            threshold: 0
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // 移除其他标题的高亮
+                    sections.forEach(section => {
+                        section.style.color = '';
+                        section.style.borderBottomColor = '';
+                    });
+                    // 高亮当前标题
+                    entry.target.style.color = 'var(--color-accent-light)';
+                    entry.target.style.borderBottomColor = 'var(--color-accent-light)';
+                }
+            });
+        }, observerOptions);
+        
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+        // 打印版本
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.key === 'p') {
+                e.preventDefault();
+                alert('建议使用浏览器的打印功能获取本政策的PDF版本。');
+            }
+        });
+    </script>
+</body>
+</html>

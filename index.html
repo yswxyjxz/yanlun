@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>严论官网</title>
+    
+    <!-- ========== 网站图标设置 ========== -->
+    <!-- 主要favicon -->
+    <link rel="icon" href="icon.jpg" type="image/jpeg">
+    <link rel="shortcut icon" href="media/icon.jpg" type="image/jpeg">
+    
+    <!-- Apple设备专用图标 -->
+    <link rel="apple-touch-icon" href="icon.jpg">
+    
+    <!-- 站点主题颜色 -->
+    <meta name="theme-color" content="#5c4b37">
+    
+    <!-- 其他head内容 -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --color-ink: #1a1a1a;
+            --color-paper: #f8f5f0;
+            --color-paper-light: #fefcf8;
+            --color-paper-dark: #f0ece3;
+            --color-accent: #5c4b37;
+            --color-accent-light: #8b7355;
+            --color-meta: #7a7a7a;
+            --border-width: 1.2px;
+            --glass-bg-light: rgba(248, 245, 240, 0.85);
+            --glass-border-light: rgba(92, 75, 55, 0.1);
+            --transition-smooth: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            --shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.04);
+            --shadow-elevated: 0 10px 40px rgba(0, 0, 0, 0.06);
+            --festival-red: #c62828;
+            --festival-gold: #ffd700;
+            --festival-bg: rgba(198, 40, 40, 0.05);
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            font-size: 18px;
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Noto Serif SC', serif;
+            font-weight: 400;
+            line-height: 1.8;
+            color: var(--color-ink);
+            background-color: var(--color-paper);
+            overflow-x: hidden;
+        }
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: var(--transition-smooth);
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ========== 1. 液态玻璃导航栏 ========== */
+        .site-header {
+            position: fixed;
+            top: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 92%;
+            max-width: 1160px;
+            z-index: 1000;
+            padding: 0.9rem 1.8rem;
+            background: var(--glass-bg-light);
+            backdrop-filter: blur(12px) saturate(180%);
+            -webkit-backdrop-filter: blur(12px) saturate(180%);
+            border: 1px solid var(--glass-border-light);
+            border-radius: 14px;
+            box-shadow: var(--shadow-subtle);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition-smooth);
+        }
+        .site-header.scrolled {
+            top: 0.8rem;
+            width: 100%;
+            max-width: 100%;
+            border-radius: 0;
+            border-left: none;
+            border-right: none;
+            background: rgba(248, 245, 240, 0.92);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+        .brand {
+            font-weight: 400;
+            font-size: 1.3rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--color-accent);
+            z-index: 1001;
+        }
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.8rem;
+        }
+        .main-nav a {
+            font-size: 0.92rem;
+            font-weight: 400;
+            letter-spacing: 0.08em;
+            color: var(--color-ink);
+            position: relative;
+            padding: 0.4rem 0;
+        }
+        .main-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--color-accent);
+            transition: width 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .main-nav a:hover::after,
+        .main-nav a.active::after {
+            width: 100%;
+        }
+        .main-nav a:hover {
+            color: var(--color-accent);
+        }
+
+        /* 移动端汉堡按钮 */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            width: 30px;
+            height: 20px;
+            position: relative;
+            z-index: 1001;
+            padding: 0;
+        }
+        .menu-toggle span {
+            display: block;
+            position: absolute;
+            height: 2px;
+            width: 100%;
+            background: var(--color-accent);
+            border-radius: 1px;
+            left: 0;
+            transition: var(--transition-smooth);
+        }
+        .menu-toggle span:nth-child(1) { top: 0; }
+        .menu-toggle span:nth-child(2) { top: 9px; }
+        .menu-toggle span:nth-child(3) { top: 18px; }
+        body.menu-open .menu-toggle span:nth-child(1) {
+            top: 9px;
+            transform: rotate(45deg);
+        }
+        body.menu-open .menu-toggle span:nth-child(2) {
+            opacity: 0;
+            width: 0;
+        }
+        body.menu-open .menu-toggle span:nth-child(3) {
+            top: 9px;
+            transform: rotate(-45deg);
+        }
+
+        /* 移动端全屏导航菜单 */
+        .mobile-nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: var(--color-paper-light);
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        body.menu-open .mobile-nav-overlay {
+            opacity: 1;
+            visibility: visible;
+        }
+        .mobile-nav-links {
+            list-style: none;
+            text-align: center;
+        }
+        .mobile-nav-links li {
+            margin-bottom: 2.5rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        body.menu-open .mobile-nav-links li {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        body.menu-open .mobile-nav-links li:nth-child(1) { transition-delay: 0.1s; }
+        body.menu-open .mobile-nav-links li:nth-child(2) { transition-delay: 0.2s; }
+        body.menu-open .mobile-nav-links li:nth-child(3) { transition-delay: 0.3s; }
+        body.menu-open .mobile-nav-links li:nth-child(4) { transition-delay: 0.4s; }
+        .mobile-nav-links a {
+            font-size: 1.8rem;
+            font-weight: 300;
+            color: var(--color-ink);
+            letter-spacing: 0.15em;
+            padding: 0.5rem 1.5rem;
+            display: inline-block;
+            position: relative;
+        }
+        .mobile-nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 15%;
+            width: 0;
+            height: 1px;
+            background-color: var(--color-accent);
+            transition: width 0.5s ease;
+        }
+        .mobile-nav-links a:hover::after,
+        .mobile-nav-links a.active::after {
+            width: 70%;
+        }
+
+        /* ========== 2. 英雄区 - 作为第一个独立版块 ========== */
+        .hero-section {
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding: 10rem 0 6rem;
+            /* 增强版块边界：使用一个非常微妙的顶部渐变和底部边框 */
+            background: linear-gradient(to bottom, 
+                rgba(248, 245, 240, 0.7) 0%,
+                rgba(248, 245, 240, 0.9) 30%,
+                var(--color-paper-light) 100%);
+            border-bottom: 1px solid rgba(92, 75, 55, 0.08);
+            margin-bottom: 0;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUpIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+        }
+        @keyframes fadeUpIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .hero-title {
+            font-size: clamp(2.8rem, 8vw, 6rem);
+            font-weight: 300;
+            line-height: 1.3; /* 增加行高，使行间距更大 */
+            margin-bottom: 3.5rem; /* 增加下边距，与副标题的间距更大 */
+            max-width: 22ch; /* 稍微增加最大宽度 */
+            letter-spacing: 0.01em; /* 稍微增加字母间距 */
+        }
+        .hero-title .highlight {
+            font-weight: 600;
+            color: var(--color-accent);
+            position: relative;
+            display: inline-block;
+        }
+        .hero-title .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: -0.12em;
+            left: 0;
+            width: 100%;
+            height: 0.35em;
+            background-color: rgba(92, 75, 55, 0.15);
+            z-index: -1;
+            transition: height 0.5s ease;
+        }
+        .hero-title .highlight:hover::after {
+            height: 0.5em;
+        }
+        .hero-subtitle {
+            font-size: 1.3rem;
+            font-weight: 300;
+            color: var(--color-meta);
+            max-width: 42ch;
+            margin-bottom: 3.5rem;
+            opacity: 0.9;
+            line-height: 1.9; /* 增加副标题的行高 */
+        }
+        .chapter-number {
+            position: absolute;
+            bottom: 2rem;
+            right: 0;
+            font-size: 0.8rem;
+            letter-spacing: 0.3em;
+            color: var(--color-meta);
+            transform: rotate(-90deg) translateX(100%);
+            transform-origin: right top;
+            opacity: 0.5;
+        }
+
+        /* ========== 元旦限时板块 ========== */
+        .festival-section {
+            display: none; /* 默认隐藏 */
+            padding: 6rem 0;
+            background: linear-gradient(135deg, var(--festival-bg) 0%, rgba(255, 215, 0, 0.05) 100%);
+            position: relative;
+            border-top: 1px solid rgba(198, 40, 40, 0.1);
+            border-bottom: 1px solid rgba(198, 40, 40, 0.1);
+            margin-bottom: 0;
+        }
+
+        .festival-section.active {
+            display: block;
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .festival-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding: 0.7rem 1.5rem;
+            background: linear-gradient(90deg, 
+                rgba(198, 40, 40, 0.1) 0%,
+                rgba(255, 215, 0, 0.1) 100%);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            color: var(--festival-red);
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .festival-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3.5rem;
+            background-color: var(--color-paper-light);
+            border-radius: 20px;
+            border: 2px solid rgba(198, 40, 40, 0.15);
+            box-shadow: 0 8px 40px rgba(198, 40, 40, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .festival-content::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.05) 0%, transparent 70%);
+            z-index: 0;
+        }
+
+        .festival-title {
+            font-size: 2.8rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--festival-red);
+            position: relative;
+            z-index: 1;
+            line-height: 1.2;
+        }
+
+        .festival-subtitle {
+            font-size: 1.4rem;
+            font-weight: 300;
+            color: var(--color-meta);
+            margin-bottom: 2.5rem;
+            position: relative;
+            z-index: 1;
+            line-height: 1.7;
+        }
+
+        .festival-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.2rem 2.5rem;
+            background: linear-gradient(135deg, var(--festival-red) 0%, #b71c1c 100%);
+            color: white;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 1;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(198, 40, 40, 0.3);
+        }
+
+        .festival-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.7s ease;
+        }
+
+        .festival-link:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(198, 40, 40, 0.4);
+        }
+
+        .festival-link:hover::before {
+            left: 100%;
+        }
+
+        .festival-link i {
+            transition: transform 0.4s ease;
+        }
+
+        .festival-link:hover i {
+            transform: translateX(8px);
+        }
+
+        .festival-decoration {
+            position: absolute;
+            font-size: 8rem;
+            color: rgba(198, 40, 40, 0.05);
+            font-weight: 700;
+            line-height: 1;
+            pointer-events: none;
+            user-select: none;
+            z-index: 0;
+        }
+
+        .festival-decoration.left {
+            top: 20%;
+            left: 5%;
+        }
+
+        .festival-decoration.right {
+            bottom: 20%;
+            right: 5%;
+        }
+
+        /* ========== 3. 产品目录区 - 第三个独立版块 ========== */
+        .catalog-section {
+            padding: 8rem 0;
+            /* 增强版块边界：使用不同的背景色和内部阴影 */
+            background-color: var(--color-paper-dark);
+            position: relative;
+            border-top: 1px solid rgba(92, 75, 55, 0.05);
+            border-bottom: 1px solid rgba(92, 75, 55, 0.05);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8),
+                        inset 0 -1px 0 rgba(255, 255, 255, 0.8);
+        }
+        .section-label {
+            font-size: 0.85rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--color-meta);
+            margin-bottom: 4rem;
+            display: block;
+            opacity: 0;
+            transform: translateY(10px);
+            animation: fadeUpIn 0.8s ease 0.8s forwards;
+        }
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 3rem;
+        }
+        .catalog-item {
+            counter-increment: catalog;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: var(--transition-smooth);
+            padding: 3rem 2.5rem;
+            border-radius: 12px;
+            background-color: var(--color-paper-light);
+            border: 1px solid rgba(92, 75, 55, 0.08);
+            box-shadow: var(--shadow-subtle);
+            position: relative;
+            overflow: hidden;
+        }
+        /* 添加一个微妙的角标装饰 */
+        .catalog-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, transparent 50%, rgba(92, 75, 55, 0.03) 50%);
+            border-radius: 0 12px 0 0;
+        }
+        .catalog-item.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .catalog-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-elevated);
+            border-color: rgba(92, 75, 55, 0.15);
+        }
+        .item-number {
+            font-size: 0.9rem;
+            color: var(--color-accent-light);
+            margin-bottom: 1.8rem;
+            display: block;
+            font-variant-numeric: tabular-nums;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .catalog-item h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 1.2rem;
+            line-height: 1.3;
+            color: var(--color-ink);
+        }
+        .catalog-item p {
+            color: var(--color-meta);
+            margin-bottom: 2.2rem;
+            font-size: 1.05rem;
+            line-height: 1.8; /* 增加段落行高 */
+        }
+        .catalog-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--color-accent);
+            border-bottom: var(--border-width) solid transparent;
+            padding-bottom: 0.3rem;
+        }
+        .catalog-link:hover {
+            border-color: currentColor;
+            gap: 1.2rem;
+        }
+        .catalog-link i {
+            font-size: 0.8em;
+            transition: transform 0.4s ease;
+        }
+        .catalog-link:hover i {
+            transform: translateX(4px);
+        }
+
+        /* ========== 4. 完全重构的页脚区域 ========== */
+        .site-footer {
+            padding: 8rem 0 4rem;
+            background-color: var(--color-paper);
+            position: relative;
+            border-top: 1px solid rgba(92, 75, 55, 0.1);
+            overflow: hidden;
+        }
+
+        /* 页脚背景装饰元素 */
+        .site-footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                var(--color-accent-light) 20%, 
+                var(--color-accent-light) 80%, 
+                transparent);
+        }
+
+        /* 页脚主要内容容器 */
+        .footer-main {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        /* 品牌介绍区域 */
+        .footer-brand {
+            max-width: 400px;
+        }
+
+        .footer-brand .brand-logo {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--color-accent);
+            letter-spacing: 0.2em;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .footer-brand p {
+            color: var(--color-meta);
+            line-height: 1.7;
+            margin-bottom: 2rem;
+            font-size: 1.05rem;
+        }
+
+        /* 社交链接 */
+        .social-section h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--color-ink);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--color-paper-light);
+            border: 1px solid rgba(92, 75, 55, 0.12);
+            font-size: 1.1rem;
+            color: var(--color-meta);
+            transition: var(--transition-smooth);
+        }
+
+        .social-links a:hover {
+            color: var(--color-paper-light);
+            background: var(--color-accent);
+            border-color: var(--color-accent);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(92, 75, 55, 0.15);
+        }
+
+        /* 链接列表区域 */
+        .footer-links-section h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--color-ink);
+            margin-bottom: 1.8rem;
+            position: relative;
+            padding-bottom: 0.8rem;
+        }
+
+        .footer-links-section h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--color-accent-light);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 1.2rem;
+        }
+
+        .footer-links a {
+            color: var(--color-meta);
+            font-size: 1rem;
+            position: relative;
+            padding-left: 0;
+            transition: var(--transition-smooth);
+            display: inline-block;
+        }
+
+        .footer-links a::before {
+            content: '→';
+            position: absolute;
+            left: -1.5rem;
+            opacity: 0;
+            transition: all 0.3s ease;
+            color: var(--color-accent);
+        }
+
+        .footer-links a:hover {
+            color: var(--color-accent);
+            padding-left: 1.5rem;
+        }
+
+        .footer-links a:hover::before {
+            opacity: 1;
+            left: 0;
+        }
+
+        /* 版权和底部区域 */
+        .footer-bottom {
+            padding-top: 3rem;
+            border-top: 1px solid rgba(92, 75, 55, 0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            color: var(--color-meta);
+        }
+
+        .copyright p:first-child {
+            margin-bottom: 0.5rem;
+        }
+
+        .copyright p:last-child {
+            font-style: italic;
+            font-size: 0.95rem;
+            color: var(--color-accent-light);
+            line-height: 1.6; /* 增加版权信息行高 */
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-legal a {
+            color: var(--color-meta);
+            font-size: 0.9rem;
+            border-bottom: 1px solid transparent;
+            padding-bottom: 2px;
+            transition: var(--transition-smooth);
+        }
+
+        .footer-legal a:hover {
+            color: var(--color-accent);
+            border-color: var(--color-accent);
+        }
+
+        /* 装饰性元素 */
+        .footer-decoration {
+            position: absolute;
+            bottom: 0;
+            right: 5%;
+            font-size: 12rem;
+            color: rgba(92, 75, 55, 0.03);
+            font-weight: 700;
+            line-height: 1;
+            pointer-events: none;
+            user-select: none;
+            z-index: 0;
+            opacity: 0.8;
+        }
+
+        /* ========== 5. 响应式调整 ========== */
+        @media (max-width: 1080px) {
+            .container {
+                width: 92%;
+            }
+            .footer-main {
+                grid-template-columns: 1fr 1fr;
+                gap: 3rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            html { font-size: 16px; }
+            .site-header {
+                top: 1rem;
+                width: 94%;
+                padding: 0.8rem 1.5rem;
+            }
+            .site-header.scrolled {
+                top: 0;
+            }
+            .main-nav {
+                display: none;
+            }
+            .menu-toggle {
+                display: block;
+            }
+            .hero-section {
+                padding: 8rem 0 4rem;
+            }
+            .hero-title {
+                font-size: clamp(2.4rem, 7vw, 3.5rem);
+                line-height: 1.4; /* 移动端增加行高 */
+                margin-bottom: 2.5rem; /* 移动端增加下边距 */
+                letter-spacing: 0.005em; /* 移动端稍微调整字母间距 */
+            }
+            .hero-subtitle {
+                font-size: 1.1rem;
+                line-height: 1.7; /* 移动端副标题行高 */
+            }
+            /* 元旦板块响应式 */
+            .festival-section {
+                padding: 4rem 0;
+            }
+            .festival-content {
+                padding: 2.5rem 1.5rem;
+            }
+            .festival-title {
+                font-size: 2.2rem;
+            }
+            .festival-subtitle {
+                font-size: 1.2rem;
+            }
+            .festival-decoration {
+                font-size: 5rem;
+            }
+            .festival-decoration.left {
+                top: 10%;
+                left: 2%;
+            }
+            .festival-decoration.right {
+                bottom: 10%;
+                right: 2%;
+            }
+            .catalog-section {
+                padding: 6rem 0;
+            }
+            .catalog-grid {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+            .catalog-item {
+                padding: 2.5rem 2rem;
+            }
+            .mobile-nav-links a {
+                font-size: 1.6rem;
+            }
+            .site-footer {
+                padding: 6rem 0 3rem;
+            }
+            .footer-main {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            .footer-brand {
+                max-width: 100%;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+                gap: 1.5rem;
+            }
+            .footer-legal {
+                justify-content: center;
+            }
+            .footer-decoration {
+                font-size: 8rem;
+                right: 0;
+                bottom: 10%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container { width: 94%; padding: 0 15px; }
+            .hero-title {
+                font-size: 2.4rem;
+                line-height: 1.5; /* 小屏幕进一步增加行高 */
+                margin-bottom: 2.2rem;
+            }
+            .hero-subtitle {
+                font-size: 1.1rem;
+                line-height: 1.8; /* 小屏幕增加行高 */
+            }
+            .festival-title {
+                font-size: 1.8rem;
+            }
+            .festival-subtitle {
+                font-size: 1.1rem;
+            }
+            .festival-link {
+                padding: 1rem 2rem;
+                font-size: 1rem;
+            }
+            .festival-decoration {
+                display: none; /* 小屏幕隐藏装饰文字 */
+            }
+            .brand {
+                font-size: 1.1rem;
+                letter-spacing: 0.2em;
+            }
+            .catalog-item {
+                padding: 2rem 1.8rem;
+            }
+            .footer-decoration {
+                font-size: 6rem;
+            }
+        }
+        
+        @media (max-height: 500px) and (orientation: landscape) {
+            .mobile-nav-links a {
+                font-size: 1.4rem;
+            }
+            .mobile-nav-links li {
+                margin-bottom: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 1. 液态玻璃导航栏 -->
+    <header class="site-header" id="siteHeader">
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+            <a href="index.html" class="brand">严论</a>
+            
+            <!-- 桌面端导航 -->
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html" class="active">首页</a></li>
+                    <li><a href="app.html">客户端</a></li>
+                    <li><a href="forum.html">文学论坛</a></li>
+                    <li><a href="creative.html">文创</a></li>
+                </ul>
+            </nav>
+
+            <!-- 移动端汉堡按钮 -->
+            <button class="menu-toggle" id="menuToggle" aria-label="打开菜单">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- 2. 移动端全屏导航菜单 -->
+    <div class="mobile-nav-overlay" id="mobileNav">
+        <ul class="mobile-nav-links">
+            <li><a href="index.html" class="active">首页</a></li>
+            <li><a href="app.html">严论客户端</a></li>
+            <li><a href="forum.html">文学论坛</a></li>
+            <li><a href="creative.html">严论文创</a></li>
+        </ul>
+    </div>
+
+    <!-- 3. 主内容 -->
+    <main>
+        <!-- 英雄区 - 第一个独立版块 -->
+        <section class="hero-section" id="pageHero">
+            <div class="container hero-content">
+                <h1 class="hero-title">
+                    文学不能改变世界，但文学可以<span class="highlight">改变人</span>，而人可以<span class="highlight">改变世界</span>。
+                </h1>
+                <p class="hero-subtitle">
+                    文脉新生：打造中国严肃文学的数字化“诺亚方舟”
+                </p>
+                <div class="chapter-number">Volume I</div>
+            </div>
+        </section>
+
+        <!-- 元旦限时板块 - 第二个独立版块（仅在指定日期显示） -->
+        <section class="festival-section" id="festivalSection">
+            <div class="festival-decoration left">元</div>
+            <div class="festival-decoration right">旦</div>
+            <div class="container">
+                <div class="festival-content">
+                    <div class="festival-badge">
+                        <i class="fas fa-calendar-star"></i>
+                        元旦限定 · 限时开启
+                    </div>
+                    <h2 class="festival-title">文学新章，启于元始</h2>
+                    <p class="festival-subtitle">
+                        2026元旦特辑，探索新年第一缕文学之光。严论与您共迎新年，开启文学新篇章。
+                    </p>
+                    <a href="https://yuandan.yswxstudy.top/yuandan.html" target="_blank" class="festival-link">
+                        开启元旦文学之旅 <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 产品目录区 - 第三个独立版块 -->
+        <section class="catalog-section">
+            <div class="container">
+                <span class="section-label">核心构成</span>
+                <div class="catalog-grid">
+                    <article class="catalog-item">
+                        <span class="item-number">01</span>
+                        <h3>严论客户端</h3>
+                        <p>
+                            严论客户端是一个集深度导读、沉浸式体验和社群共创于一体的严肃文学数字化平台。我们致力于降低严肃文学的认知门槛，为拒绝浮浅的阅读者提供纯净的阅读环境、精准的内容推荐和深度的文本解读，让每一次阅读都成为向思想深处的掘进。
+                        </p>
+                        <a href="app.html" class="catalog-link">
+                            探索此项目 <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </article>
+                    <article class="catalog-item">
+                        <span class="item-number">02</span>
+                        <h3>严肃文学交流论坛</h3>
+                        <p>
+                            深度严肃文学内容平台，设有名著解读、创作征集、作家专栏和读者书评四大核心板块，为严肃文学爱好者提供高质量的阅读与创作空间。
+                        </p>
+                        <a href="forum.html" class="catalog-link">
+                            进入论坛 <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </article>
+                    <article class="catalog-item">
+                        <span class="item-number">03</span>
+                        <h3>严论文创</h3>
+                        <p>
+                            严论文创是严论品牌体系下专注文化产品创作的旗舰产品品牌。我们以严肃文学为精神内核，通过精心设计的文创产品，将文学精神物化为日常之器，让思想的回响在合上书本后依然延续。
+                        </p>
+                        <a href="creative.html" class="catalog-link">
+                            发现文创 <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 4. 重构的页脚 - 第四个独立版块 -->
+    <footer class="site-footer">
+        <div class="footer-decoration">严论</div>
+        <div class="container">
+            <div class="footer-main">
+                <div class="footer-brand">
+                    <a href="index.html" class="brand-logo">严论</a>
+                    <p>
+                        文学是照进现实的一束光
+                    </p>
+                    <div class="social-section">
+                        <h4>关注我们</h4>
+                        <div class="social-links">
+                            <a href="social.html" title="微信公众号"><i class="fab fa-weixin"></i></a>
+                            <a href="social.html" title="微博"><i class="fab fa-weibo"></i></a>
+                            <a href="social.html" title="抖音"><i class="fab fa-tiktok"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-links-section">
+                    <h4>探索</h4>
+                    <ul class="footer-links">
+                        <li><a href="app.html">严论客户端</a></li>
+                        <li><a href="forum.html">文学论坛</a></li>
+                        <li><a href="creative.html">严论文创</a></li>
+                        <li><a href="https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzYzMzAyMDcwMg==&action=getalbum&album_id=4224274281255108623&scene=126#wechat_redirect">每周书评</a></li>
+                        <li><a href="about.html">关于我们</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links-section">
+                    <h4>支持</h4>
+                    <ul class="footer-links">
+                        <li><a href="#pageHero">返回顶部</a></li>
+                        <li><a href="agreement.html" target="_blank">服务协议</a></li>
+                        <li><a href="privacy.html" target="_blank">隐私政策</a></li>
+                        <li><a href="partner.html" target="_blank">合作伙伴</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="copyright">
+                    <p>© 2023 严肃文学研究小组。保留所有权利。</p>
+                    <p>文学不能改变世界，但文学可以改变人，而人可以改变世界。</p>
+                </div>
+                <div class="footer-legal">
+                    <a href="agreement.html" target="_blank">服务协议</a>
+                    <a href="privacy.html" target="_blank">隐私政策</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 1. 导航栏滚动效果
+        const siteHeader = document.getElementById('siteHeader');
+        const pageHero = document.getElementById('pageHero');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 60) {
+                siteHeader.classList.add('scrolled');
+            } else {
+                siteHeader.classList.remove('scrolled');
+            }
+        });
+
+        // 2. 移动端菜单控制
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileNav = document.getElementById('mobileNav');
+        const body = document.body;
+        menuToggle.addEventListener('click', () => {
+            body.classList.toggle('menu-open');
+            const isExpanded = body.classList.contains('menu-open');
+            menuToggle.setAttribute('aria-expanded', isExpanded);
+            menuToggle.setAttribute('aria-label', isExpanded ? '关闭菜单' : '打开菜单');
+        });
+        document.querySelectorAll('.mobile-nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                body.classList.remove('menu-open');
+                menuToggle.setAttribute('aria-expanded', 'false');
+                menuToggle.setAttribute('aria-label', '打开菜单');
+            });
+        });
+
+        // 3. 产品卡片滚动浮现效果
+        const catalogItems = document.querySelectorAll('.catalog-item');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                }
+            });
+        }, {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        });
+        catalogItems.forEach(item => {
+            observer.observe(item);
+        });
+
+        // 4. 为卡片添加交错延迟效果
+        window.addEventListener('load', () => {
+            catalogItems.forEach((item, index) => {
+                item.style.transitionDelay = `${index * 0.1}s`;
+            });
+        });
+
+        // 5. 元旦限时板块显示控制
+        function checkFestivalDate() {
+            const festivalSection = document.getElementById('festivalSection');
+            if (!festivalSection) return;
+            
+            const today = new Date();
+            const startDate = new Date('2025-12-24');
+            const endDate = new Date('2026-01-03');
+            
+            // 设置结束时间为当天的23:59:59
+            endDate.setHours(23, 59, 59, 999);
+            
+            // 检查当前日期是否在指定范围内
+            if (today >= startDate && today <= endDate) {
+                festivalSection.classList.add('active');
+                console.log('元旦限时板块已显示');
+            } else {
+                festivalSection.classList.remove('active');
+                console.log('当前不在元旦活动期间');
+            }
+        }
+        
+        // 页面加载时检查日期
+        document.addEventListener('DOMContentLoaded', checkFestivalDate);
+    </script>
+</body>
+</html>

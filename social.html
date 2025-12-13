@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>严论社交媒体矩阵｜严论官网</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --color-ink: #1a1a1a;
+            --color-paper: #f8f5f0;
+            --color-paper-light: #fefcf8;
+            --color-paper-dark: #f0ece3;
+            --color-accent: #5c4b37;
+            --color-accent-light: #8b7355;
+            --color-meta: #7a7a7a;
+            --color-douyin: #010101;
+            --color-weibo: #e6162d;
+            --color-weixin: #07c160;
+            --transition-smooth: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            --shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.04);
+            --shadow-elevated: 0 10px 40px rgba(0, 0, 0, 0.06);
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            font-size: 18px;
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Noto Serif SC', serif;
+            font-weight: 400;
+            line-height: 1.8;
+            color: var(--color-ink);
+            background-color: var(--color-paper);
+            overflow-x: hidden;
+        }
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: var(--transition-smooth);
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ========== 1. 导航栏 ========== */
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 0;
+            background-color: var(--color-paper);
+            border-bottom: 1px solid rgba(92, 75, 55, 0.1);
+        }
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .brand {
+            font-weight: 400;
+            font-size: 1.3rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--color-accent);
+        }
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        .main-nav a {
+            font-size: 0.92rem;
+            font-weight: 400;
+            letter-spacing: 0.08em;
+            color: var(--color-ink);
+            position: relative;
+            padding: 0.4rem 0;
+        }
+        .main-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--color-accent);
+            transition: width 0.6s ease;
+        }
+        .main-nav a:hover::after,
+        .main-nav a.active::after {
+            width: 100%;
+        }
+        .main-nav a:hover {
+            color: var(--color-accent);
+        }
+
+        /* ========== 2. 社交媒体矩阵英雄区 ========== */
+        .social-hero-section {
+            padding: 12rem 0 6rem;
+            background: linear-gradient(to bottom, 
+                rgba(248, 245, 240, 0.7) 0%,
+                rgba(248, 245, 240, 0.9) 30%,
+                var(--color-paper-light) 100%);
+            border-bottom: 1px solid rgba(92, 75, 55, 0.08);
+            text-align: center;
+        }
+        .social-hero-content {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUpIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        @keyframes fadeUpIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .social-hero-title {
+            font-size: 3rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--color-ink);
+        }
+        .social-hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--color-meta);
+            margin-bottom: 3rem;
+            line-height: 1.7;
+        }
+        .social-stats {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            flex-wrap: wrap;
+            margin-bottom: 4rem;
+        }
+        .social-stat-item {
+            text-align: center;
+        }
+        .social-stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .social-stat-label {
+            font-size: 0.95rem;
+            color: var(--color-meta);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* ========== 3. 社交媒体平台卡片 ========== */
+        .social-platforms-section {
+            padding: 8rem 0;
+            background-color: var(--color-paper-light);
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+            color: var(--color-ink);
+        }
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--color-meta);
+            max-width: 60ch;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .social-card {
+            background-color: var(--color-paper-light);
+            border-radius: 16px;
+            padding: 3rem 2.5rem;
+            border: 1px solid rgba(92, 75, 55, 0.1);
+            box-shadow: var(--shadow-subtle);
+            transition: var(--transition-smooth);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .social-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-elevated);
+            border-color: rgba(92, 75, 55, 0.2);
+        }
+        .social-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            opacity: 0.8;
+        }
+        .social-card.douyin::before {
+            background: linear-gradient(90deg, #010101, #69C9D0);
+        }
+        .social-card.weibo::before {
+            background: linear-gradient(90deg, #e6162d, #ff8140);
+        }
+        .social-card.weixin::before {
+            background: linear-gradient(90deg, #07c160, #2bde85);
+        }
+        .social-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+        }
+        .social-card.douyin .social-icon {
+            color: var(--color-douyin);
+        }
+        .social-card.weibo .social-icon {
+            color: var(--color-weibo);
+        }
+        .social-card.weixin .social-icon {
+            color: var(--color-weixin);
+        }
+        .social-card h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--color-ink);
+        }
+        .social-description {
+            font-size: 1.05rem;
+            color: var(--color-meta);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+        .social-qrcode {
+            max-width: 200px;
+            height: auto;
+            margin: 0 auto 2rem;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(92, 75, 55, 0.1);
+        }
+        .social-qrcode img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .social-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: var(--transition-smooth);
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            width: 100%;
+            justify-content: center;
+        }
+        .social-button.douyin {
+            background-color: var(--color-douyin);
+            color: white;
+        }
+        .social-button.weibo {
+            background-color: var(--color-weibo);
+            color: white;
+        }
+        .social-button.weixin {
+            background-color: var(--color-weixin);
+            color: white;
+        }
+        .social-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            gap: 1.2rem;
+        }
+        .social-button i {
+            font-size: 1.2rem;
+            transition: transform 0.4s ease;
+        }
+        .social-button:hover i {
+            transform: translateX(5px);
+        }
+        .social-qrcode-note {
+            font-size: 0.9rem;
+            color: var(--color-meta);
+            margin-top: 1rem;
+            font-style: italic;
+        }
+
+        /* ========== 4. 内容差异区 ========== */
+        .content-differences-section {
+            padding: 8rem 0;
+            background-color: var(--color-paper-dark);
+            border-top: 1px solid rgba(92, 75, 55, 0.05);
+            border-bottom: 1px solid rgba(92, 75, 55, 0.05);
+        }
+        .differences-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .difference-card {
+            background-color: var(--color-paper-light);
+            border-radius: 16px;
+            padding: 2.5rem 2rem;
+            border: 1px solid rgba(92, 75, 55, 0.08);
+            box-shadow: var(--shadow-subtle);
+            transition: var(--transition-smooth);
+            text-align: center;
+        }
+        .difference-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-elevated);
+            border-color: rgba(92, 75, 55, 0.15);
+        }
+        .difference-icon {
+            font-size: 2.8rem;
+            color: var(--color-accent);
+            margin-bottom: 1.5rem;
+        }
+        .difference-title {
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 1.2rem;
+            color: var(--color-ink);
+        }
+        .difference-description {
+            color: var(--color-meta);
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        /* ========== 5. 页脚 ========== */
+        .site-footer {
+            padding: 6rem 0 4rem;
+            background-color: var(--color-paper);
+            position: relative;
+            border-top: 1px solid rgba(92, 75, 55, 0.1);
+            overflow: hidden;
+        }
+        .footer-container {
+            text-align: center;
+        }
+        .copyright {
+            font-size: 0.9rem;
+            color: var(--color-meta);
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: var(--color-meta);
+            font-size: 0.9rem;
+            border-bottom: 1px solid transparent;
+            padding-bottom: 2px;
+            transition: var(--transition-smooth);
+        }
+        .footer-links a:hover {
+            color: var(--color-accent);
+            border-color: var(--color-accent);
+        }
+        .footer-quote {
+            font-style: italic;
+            color: var(--color-accent-light);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ========== 6. 响应式设计 ========== */
+        @media (max-width: 1080px) {
+            .container {
+                width: 92%;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            html { font-size: 16px; }
+            .site-header {
+                padding: 0.8rem 0;
+            }
+            .main-nav ul {
+                gap: 1.5rem;
+            }
+            .social-hero-section {
+                padding: 8rem 0 4rem;
+            }
+            .social-hero-title {
+                font-size: 2.2rem;
+                line-height: 1.4;
+            }
+            .social-hero-subtitle {
+                font-size: 1.1rem;
+                line-height: 1.7;
+            }
+            .social-stats {
+                gap: 2.5rem;
+            }
+            .social-stat-number {
+                font-size: 2rem;
+            }
+            .social-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+            }
+            .social-card {
+                padding: 2.5rem 2rem;
+            }
+            .differences-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+            }
+            .difference-card {
+                padding: 2.5rem 2rem;
+            }
+            .footer-links {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container { width: 94%; padding: 0 15px; }
+            .social-hero-title {
+                font-size: 1.8rem;
+                margin-bottom: 1rem;
+            }
+            .brand {
+                font-size: 1.1rem;
+                letter-spacing: 0.2em;
+            }
+            .main-nav a {
+                font-size: 0.85rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .social-card {
+                padding: 2rem 1.5rem;
+            }
+            .social-icon {
+                font-size: 3.5rem;
+            }
+            .social-button {
+                padding: 0.9rem 1.5rem;
+                font-size: 1rem;
+            }
+            .difference-card {
+                padding: 2rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 1. 导航栏 -->
+    <header class="site-header">
+        <div class="container header-container">
+            <a href="index.html" class="brand">严论</a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="app.html">客户端</a></li>
+                    <li><a href="forum.html">文学论坛</a></li>
+                    <li><a href="creative.html">文创</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 2. 社交媒体矩阵英雄区 -->
+    <section class="social-hero-section" id="socialHero">
+        <div class="container social-hero-content">
+            <h1 class="social-hero-title">严论社交媒体矩阵</h1>
+            <p class="social-hero-subtitle">
+                严论在多个社交媒体平台建立了官方账号，为严肃文学爱好者提供多样化的内容体验。每个平台都有其独特的定位和内容特色，满足不同阅读习惯的读者需求。
+            </p>
+            
+            <div class="social-stats">
+                <div class="social-stat-item">
+                    <div class="social-stat-number">3</div>
+                    <div class="social-stat-label">主要平台</div>
+                </div>
+                <div class="social-stat-item">
+                    <div class="social-stat-number">100%</div>
+                    <div class="social-stat-label">官方运营</div>
+                </div>
+                <div class="social-stat-item">
+                    <div class="social-stat-number">经常</div>
+                    <div class="social-stat-label">内容更新</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. 社交媒体平台卡片 -->
+    <section class="social-platforms-section" id="platforms">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">官方社交媒体平台</h2>
+                <p class="section-subtitle">
+                    严论在以下三个主要社交媒体平台建立了官方账号，每个平台都有不同的内容定位和互动方式。
+                </p>
+            </div>
+            
+            <div class="social-grid">
+                <!-- 抖音卡片 -->
+                <div class="social-card douyin">
+                    <div class="social-icon">
+                        <i class="fab fa-tiktok"></i>
+                    </div>
+                    <h3>严论抖音</h3>
+                    <p class="social-description">
+                        短视频形式呈现经典文学片段解读、作家生平故事、文学知识科普等。用现代媒介传播严肃文学，吸引年轻读者群体。
+                    </p>
+                    <a href="https://v.douyin.com/STyQWIiXaio/" target="_blank" class="social-button douyin">
+                        前往严论抖音 <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+                
+                <!-- 微博卡片 -->
+                <div class="social-card weibo">
+                    <div class="social-icon">
+                        <i class="fab fa-weibo"></i>
+                    </div>
+                    <h3>严论微博</h3>
+                    <p class="social-description">
+                        实时发布文学资讯、作家动态、书单推荐等内容。与读者深度互动，开展线上读书分享会，建立严肃文学社交圈。
+                    </p>
+                    <a href="https://weibo.com/u/8240731689" target="_blank" class="social-button weibo">
+                        前往严论微博 <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+                
+                <!-- 微信公众号卡片 -->
+                <div class="social-card weixin">
+                    <div class="social-icon">
+                        <i class="fab fa-weixin"></i>
+                    </div>
+                    <h3>严论微信公众号</h3>
+                    <p class="social-description">
+                        深度文章首发平台，发布原创严肃文学评论、作家专访、专题研究等长内容。提供高质量阅读体验，服务核心读者群体。
+                    </p>
+                    
+                    <div class="social-qrcode">
+                        <img src="weixin.jpg" alt="严论微信公众号二维码">
+                    </div>
+                    <p class="social-qrcode-note">扫码关注严论微信公众号</p>
+                    
+                    <div class="social-button weixin">
+                        扫码关注 <i class="fas fa-qrcode"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. 内容差异区 -->
+    <section class="content-differences-section" id="differences">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">平台内容特色</h2>
+                <p class="section-subtitle">
+                    不同社交媒体平台适合不同形式的内容传播，严论根据各平台特性制定了差异化的内容策略。
+                </p>
+            </div>
+            
+            <div class="differences-grid">
+                <div class="difference-card">
+                    <div class="difference-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3 class="difference-title">抖音：视觉化传播</h3>
+                    <p class="difference-description">
+                        60秒短视频呈现文学经典场景，动画解读复杂概念，作家故事微纪录片。适应碎片化阅读习惯，降低严肃文学入门门槛。
+                    </p>
+                </div>
+                
+                <div class="difference-card">
+                    <div class="difference-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3 class="difference-title">微博：社交化互动</h3>
+                    <p class="difference-description">
+                        实时文学热点讨论，作家在线问答，读者书评分享。建立#严论读书会#等话题标签，形成严肃文学爱好者社群。
+                    </p>
+                </div>
+                
+                <div class="difference-card">
+                    <div class="difference-icon">
+                        <i class="fas fa-newspaper"></i>
+                    </div>
+                    <h3 class="difference-title">微信：深度化阅读</h3>
+                    <p class="difference-description">
+                        每周2-3篇深度长文，涵盖文学研究、作品解析、创作心得等。提供系统性的严肃文学知识，服务深度阅读需求。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. 页脚 -->
+    <footer class="site-footer">
+        <div class="container footer-container">
+            <div class="copyright">
+                <p>© 2025 严肃文学研究小组。保留所有权利。</p>
+            </div>
+            <ul class="footer-links">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="forum.html">文学论坛</a></li>
+                <li><a href="creative.html">文创产品</a></li>
+                <li><a href="social.html">社交媒体</a></li>
+                <li><a href="agreement.html">服务协议</a></li>
+                <li><a href="privacy.html">隐私政策</a></li>
+            </ul>
+            <p class="footer-quote">文学不能改变世界，但文学可以改变人，而人可以改变世界。</p>
+        </div>
+    </footer>
+
+    <script>
+        // 1. 卡片滚动浮现效果
+        const socialCards = document.querySelectorAll('.social-card');
+        const differenceCards = document.querySelectorAll('.difference-card');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        });
+        
+        // 为所有卡片添加动画
+        socialCards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(40px)';
+            card.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            observer.observe(card);
+        });
+        
+        differenceCards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(40px)';
+            card.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            observer.observe(card);
+        });
+
+        // 2. 为卡片添加交错延迟效果
+        window.addEventListener('load', () => {
+            socialCards.forEach((card, index) => {
+                card.style.transitionDelay = `${index * 0.15}s`;
+            });
+            
+            differenceCards.forEach((card, index) => {
+                card.style.transitionDelay = `${index * 0.1}s`;
+            });
+        });
+
+        // 3. 微信公众号按钮点击提示
+        document.querySelector('.social-card.weixin .social-button').addEventListener('click', function(e) {
+            e.preventDefault();
+            const qrcodeElement = this.parentElement.querySelector('.social-qrcode');
+            
+            // 添加轻微动画效果
+            qrcodeElement.style.transform = 'scale(1.05)';
+            qrcodeElement.style.transition = 'transform 0.3s ease';
+            
+            setTimeout(() => {
+                qrcodeElement.style.transform = 'scale(1)';
+            }, 300);
+            
+            // 提示信息
+            alert('请使用微信扫描二维码关注严论公众号。如需保存二维码图片，可在二维码上右键选择"图片另存为"。');
+        });
+
+        // 4. 平台品牌色效果
+        const platformButtons = document.querySelectorAll('.social-button');
+        platformButtons.forEach(button => {
+            button.addEventListener('mouseenter', function() {
+                const card = this.closest('.social-card');
+                if (card) {
+                    card.style.boxShadow = '0 15px 50px rgba(0, 0, 0, 0.12)';
+                }
+            });
+            
+            button.addEventListener('mouseleave', function() {
+                const card = this.closest('.social-card');
+                if (card) {
+                    card.style.boxShadow = 'var(--shadow-elevated)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

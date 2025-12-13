@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>严论文创｜严论官网</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --color-ink: #1a1a1a;
+            --color-paper: #f8f5f0;
+            --color-paper-light: #fefcf8;
+            --color-paper-dark: #f0ece3;
+            --color-accent: #5c4b37;
+            --color-accent-light: #8b7355;
+            --color-meta: #7a7a7a;
+            --border-width: 1.2px;
+            --glass-bg-light: rgba(248, 245, 240, 0.85);
+            --glass-border-light: rgba(92, 75, 55, 0.1);
+            --transition-smooth: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            --shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.04);
+            --shadow-elevated: 0 10px 40px rgba(0, 0, 0, 0.06);
+            --shadow-deep: 0 15px 50px rgba(0, 0, 0, 0.08);
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            font-size: 18px;
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Noto Serif SC', serif;
+            font-weight: 400;
+            line-height: 1.8;
+            color: var(--color-ink);
+            background-color: var(--color-paper);
+            overflow-x: hidden;
+        }
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: var(--transition-smooth);
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ========== 1. 液态玻璃导航栏 ========== */
+        .site-header {
+            position: fixed;
+            top: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 92%;
+            max-width: 1160px;
+            z-index: 1000;
+            padding: 0.9rem 1.8rem;
+            background: var(--glass-bg-light);
+            backdrop-filter: blur(12px) saturate(180%);
+            -webkit-backdrop-filter: blur(12px) saturate(180%);
+            border: 1px solid var(--glass-border-light);
+            border-radius: 14px;
+            box-shadow: var(--shadow-subtle);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition-smooth);
+        }
+        .site-header.scrolled {
+            top: 0.8rem;
+            width: 100%;
+            max-width: 100%;
+            border-radius: 0;
+            border-left: none;
+            border-right: none;
+            background: rgba(248, 245, 240, 0.92);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+        .brand {
+            font-weight: 400;
+            font-size: 1.3rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--color-accent);
+            z-index: 1001;
+        }
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.8rem;
+        }
+        .main-nav a {
+            font-size: 0.92rem;
+            font-weight: 400;
+            letter-spacing: 0.08em;
+            color: var(--color-ink);
+            position: relative;
+            padding: 0.4rem 0;
+        }
+        .main-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--color-accent);
+            transition: width 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .main-nav a:hover::after,
+        .main-nav a.active::after {
+            width: 100%;
+        }
+        .main-nav a:hover {
+            color: var(--color-accent);
+        }
+
+        /* 移动端汉堡按钮 */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            width: 30px;
+            height: 20px;
+            position: relative;
+            z-index: 1001;
+            padding: 0;
+        }
+        .menu-toggle span {
+            display: block;
+            position: absolute;
+            height: 2px;
+            width: 100%;
+            background: var(--color-accent);
+            border-radius: 1px;
+            left: 0;
+            transition: var(--transition-smooth);
+        }
+        .menu-toggle span:nth-child(1) { top: 0; }
+        .menu-toggle span:nth-child(2) { top: 9px; }
+        .menu-toggle span:nth-child(3) { top: 18px; }
+        body.menu-open .menu-toggle span:nth-child(1) {
+            top: 9px;
+            transform: rotate(45deg);
+        }
+        body.menu-open .menu-toggle span:nth-child(2) {
+            opacity: 0;
+            width: 0;
+        }
+        body.menu-open .menu-toggle span:nth-child(3) {
+            top: 9px;
+            transform: rotate(-45deg);
+        }
+
+        /* 移动端全屏导航菜单 */
+        .mobile-nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: var(--color-paper-light);
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        body.menu-open .mobile-nav-overlay {
+            opacity: 1;
+            visibility: visible;
+        }
+        .mobile-nav-links {
+            list-style: none;
+            text-align: center;
+        }
+        .mobile-nav-links li {
+            margin-bottom: 2.5rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        body.menu-open .mobile-nav-links li {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        body.menu-open .mobile-nav-links li:nth-child(1) { transition-delay: 0.1s; }
+        body.menu-open .mobile-nav-links li:nth-child(2) { transition-delay: 0.2s; }
+        body.menu-open .mobile-nav-links li:nth-child(3) { transition-delay: 0.3s; }
+        body.menu-open .mobile-nav-links li:nth-child(4) { transition-delay: 0.4s; }
+        .mobile-nav-links a {
+            font-size: 1.8rem;
+            font-weight: 300;
+            color: var(--color-ink);
+            letter-spacing: 0.15em;
+            padding: 0.5rem 1.5rem;
+            display: inline-block;
+            position: relative;
+        }
+        .mobile-nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 15%;
+            width: 0;
+            height: 1px;
+            background-color: var(--color-accent);
+            transition: width 0.5s ease;
+        }
+        .mobile-nav-links a:hover::after,
+        .mobile-nav-links a.active::after {
+            width: 70%;
+        }
+
+        /* ========== 2. 文创英雄区 ========== */
+        .creative-hero-section {
+            min-height: 90vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding: 12rem 0 6rem;
+            background: linear-gradient(to bottom, 
+                rgba(248, 245, 240, 0.7) 0%,
+                rgba(248, 245, 240, 0.9) 30%,
+                var(--color-paper-light) 100%);
+            border-bottom: 1px solid rgba(92, 75, 55, 0.08);
+            margin-bottom: 0;
+        }
+        .creative-hero-content {
+            position: relative;
+            z-index: 2;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUpIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        @keyframes fadeUpIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .creative-hero-title {
+            font-size: clamp(2.5rem, 7vw, 4rem);
+            font-weight: 600;
+            line-height: 1.3;
+            margin-bottom: 1.5rem;
+            color: var(--color-ink);
+        }
+        .creative-hero-title .highlight {
+            font-weight: 600;
+            color: var(--color-accent);
+            position: relative;
+            display: inline-block;
+        }
+        .creative-hero-title .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: -0.12em;
+            left: 0;
+            width: 100%;
+            height: 0.35em;
+            background-color: rgba(92, 75, 55, 0.15);
+            z-index: -1;
+            transition: height 0.5s ease;
+        }
+        .creative-hero-title .highlight:hover::after {
+            height: 0.5em;
+        }
+        .creative-hero-subtitle {
+            font-size: 1.8rem;
+            font-weight: 300;
+            color: var(--color-meta);
+            max-width: 70ch;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+            line-height: 1.8;
+        }
+        .creative-hero-description {
+            font-size: 1.2rem;
+            color: var(--color-meta);
+            max-width: 80ch;
+            margin-bottom: 4rem;
+            line-height: 1.8;
+        }
+        .creative-entry-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.2rem 2.5rem;
+            background-color: var(--color-accent);
+            color: var(--color-paper-light);
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition-smooth);
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .creative-entry-btn:hover {
+            background-color: var(--color-accent-light);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(92, 75, 55, 0.2);
+            gap: 1.5rem;
+        }
+        .creative-entry-btn i {
+            font-size: 1.2rem;
+            transition: transform 0.4s ease;
+        }
+        .creative-entry-btn:hover i {
+            transform: translateX(5px);
+        }
+
+        /* ========== 3. 品牌理念区域 ========== */
+        .philosophy-section {
+            padding: 8rem 0;
+            background-color: var(--color-paper-light);
+            position: relative;
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+            color: var(--color-ink);
+        }
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--color-meta);
+            max-width: 60ch;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+        .philosophy-content {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            line-height: 1.9;
+            color: var(--color-ink);
+        }
+        .philosophy-content p {
+            margin-bottom: 2rem;
+        }
+        .philosophy-quote {
+            border-left: 4px solid var(--color-accent);
+            padding-left: 2rem;
+            margin: 3rem 0;
+            font-style: italic;
+            color: var(--color-meta);
+            font-size: 1.3rem;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+        .philosophy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+        .philosophy-card {
+            background-color: var(--color-paper-light);
+            border-radius: 16px;
+            padding: 3rem 2.5rem;
+            border: 1px solid rgba(92, 75, 55, 0.1);
+            box-shadow: var(--shadow-subtle);
+            transition: var(--transition-smooth);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .philosophy-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-accent), var(--color-accent-light));
+            opacity: 0.8;
+        }
+        .philosophy-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-elevated);
+            border-color: rgba(92, 75, 55, 0.2);
+        }
+        .philosophy-icon {
+            font-size: 3.5rem;
+            margin-bottom: 2rem;
+            color: var(--color-accent);
+        }
+        .philosophy-card h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--color-ink);
+        }
+        .philosophy-card p {
+            font-size: 1.05rem;
+            color: var(--color-meta);
+            line-height: 1.7;
+        }
+
+        /* ========== 4. 种子书签产品区域 ========== */
+        .product-section {
+            padding: 8rem 0;
+            background-color: var(--color-paper-dark);
+            position: relative;
+            border-top: 1px solid rgba(92, 75, 55, 0.05);
+            border-bottom: 1px solid rgba(92, 75, 55, 0.05);
+        }
+        .product-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .product-intro {
+            font-size: 1.3rem;
+            line-height: 1.9;
+            color: var(--color-ink);
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+        .product-intro .highlight {
+            font-weight: 600;
+            color: var(--color-accent);
+        }
+        .product-principles {
+            margin-top: 5rem;
+        }
+        .principle-item {
+            margin-bottom: 4rem;
+            padding: 3rem;
+            background-color: var(--color-paper-light);
+            border-radius: 12px;
+            border: 1px solid rgba(92, 75, 55, 0.08);
+            box-shadow: var(--shadow-subtle);
+            transition: var(--transition-smooth);
+        }
+        .principle-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-elevated);
+            border-color: rgba(92, 75, 55, 0.15);
+        }
+        .principle-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .principle-icon {
+            font-size: 2.5rem;
+            color: var(--color-accent);
+            min-width: 60px;
+        }
+        .principle-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--color-ink);
+        }
+        .principle-description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--color-ink);
+            padding-left: 4.5rem;
+        }
+        .product-link {
+            text-align: center;
+            margin-top: 6rem;
+            padding: 3rem;
+            background-color: var(--color-paper-light);
+            border-radius: 12px;
+            border: 1px solid rgba(92, 75, 55, 0.08);
+        }
+        .product-link p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: var(--color-meta);
+        }
+
+        /* ========== 5. 完全重构的页脚区域 ========== */
+        .site-footer {
+            padding: 8rem 0 4rem;
+            background-color: var(--color-paper);
+            position: relative;
+            border-top: 1px solid rgba(92, 75, 55, 0.1);
+            overflow: hidden;
+        }
+
+        /* 页脚背景装饰元素 */
+        .site-footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                var(--color-accent-light) 20%, 
+                var(--color-accent-light) 80%, 
+                transparent);
+        }
+
+        /* 页脚主要内容容器 */
+        .footer-main {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        /* 品牌介绍区域 */
+        .footer-brand {
+            max-width: 400px;
+        }
+
+        .footer-brand .brand-logo {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--color-accent);
+            letter-spacing: 0.2em;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .footer-brand p {
+            color: var(--color-meta);
+            line-height: 1.7;
+            margin-bottom: 2rem;
+            font-size: 1.05rem;
+        }
+
+        /* 社交链接 */
+        .social-section h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--color-ink);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--color-paper-light);
+            border: 1px solid rgba(92, 75, 55, 0.12);
+            font-size: 1.1rem;
+            color: var(--color-meta);
+            transition: var(--transition-smooth);
+        }
+
+        .social-links a:hover {
+            color: var(--color-paper-light);
+            background: var(--color-accent);
+            border-color: var(--color-accent);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(92, 75, 55, 0.15);
+        }
+
+        /* 链接列表区域 */
+        .footer-links-section h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--color-ink);
+            margin-bottom: 1.8rem;
+            position: relative;
+            padding-bottom: 0.8rem;
+        }
+
+        .footer-links-section h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--color-accent-light);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 1.2rem;
+        }
+
+        .footer-links a {
+            color: var(--color-meta);
+            font-size: 1rem;
+            position: relative;
+            padding-left: 0;
+            transition: var(--transition-smooth);
+            display: inline-block;
+        }
+
+        .footer-links a::before {
+            content: '→';
+            position: absolute;
+            left: -1.5rem;
+            opacity: 0;
+            transition: all 0.3s ease;
+            color: var(--color-accent);
+        }
+
+        .footer-links a:hover {
+            color: var(--color-accent);
+            padding-left: 1.5rem;
+        }
+
+        .footer-links a:hover::before {
+            opacity: 1;
+            left: 0;
+        }
+
+        /* 版权和底部区域 */
+        .footer-bottom {
+            padding-top: 3rem;
+            border-top: 1px solid rgba(92, 75, 55, 0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            color: var(--color-meta);
+        }
+
+        .copyright p:first-child {
+            margin-bottom: 0.5rem;
+        }
+
+        .copyright p:last-child {
+            font-style: italic;
+            font-size: 0.95rem;
+            color: var(--color-accent-light);
+            line-height: 1.6;
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-legal a {
+            color: var(--color-meta);
+            font-size: 0.9rem;
+            border-bottom: 1px solid transparent;
+            padding-bottom: 2px;
+            transition: var(--transition-smooth);
+        }
+
+        .footer-legal a:hover {
+            color: var(--color-accent);
+            border-color: var(--color-accent);
+        }
+
+        /* 装饰性元素 */
+        .footer-decoration {
+            position: absolute;
+            bottom: 0;
+            right: 5%;
+            font-size: 12rem;
+            color: rgba(92, 75, 55, 0.03);
+            font-weight: 700;
+            line-height: 1;
+            pointer-events: none;
+            user-select: none;
+            z-index: 0;
+            opacity: 0.8;
+        }
+
+        /* ========== 6. 响应式调整 ========== */
+        @media (max-width: 1080px) {
+            .container {
+                width: 92%;
+            }
+            .footer-main {
+                grid-template-columns: 1fr 1fr;
+                gap: 3rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            html { font-size: 16px; }
+            .site-header {
+                top: 1rem;
+                width: 94%;
+                padding: 0.8rem 1.5rem;
+            }
+            .site-header.scrolled {
+                top: 0;
+            }
+            .main-nav {
+                display: none;
+            }
+            .menu-toggle {
+                display: block;
+            }
+            .creative-hero-section {
+                padding: 8rem 0 4rem;
+                min-height: 80vh;
+            }
+            .creative-hero-title {
+                font-size: clamp(2.2rem, 6vw, 3rem);
+                line-height: 1.4;
+                margin-bottom: 1.2rem;
+            }
+            .creative-hero-subtitle {
+                font-size: 1.4rem;
+                line-height: 1.7;
+            }
+            .creative-hero-description {
+                font-size: 1.1rem;
+            }
+            .philosophy-grid {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+            .philosophy-card {
+                padding: 2.5rem 2rem;
+            }
+            .principle-item {
+                padding: 2rem;
+            }
+            .principle-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            .principle-description {
+                padding-left: 0;
+            }
+            .product-link {
+                padding: 2rem;
+            }
+            .mobile-nav-links a {
+                font-size: 1.6rem;
+            }
+            .site-footer {
+                padding: 6rem 0 3rem;
+            }
+            .footer-main {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            .footer-brand {
+                max-width: 100%;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+                gap: 1.5rem;
+            }
+            .footer-legal {
+                justify-content: center;
+            }
+            .footer-decoration {
+                font-size: 8rem;
+                right: 0;
+                bottom: 10%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container { width: 94%; padding: 0 15px; }
+            .creative-hero-title {
+                font-size: 2rem;
+                line-height: 1.5;
+                margin-bottom: 1rem;
+            }
+            .creative-hero-subtitle {
+                font-size: 1.2rem;
+                line-height: 1.8;
+            }
+            .brand {
+                font-size: 1.1rem;
+                letter-spacing: 0.2em;
+            }
+            .philosophy-card {
+                padding: 2rem 1.8rem;
+            }
+            .principle-item {
+                padding: 1.8rem;
+            }
+            .footer-decoration {
+                font-size: 6rem;
+            }
+        }
+        
+        @media (max-height: 500px) and (orientation: landscape) {
+            .mobile-nav-links a {
+                font-size: 1.4rem;
+            }
+            .mobile-nav-links li {
+                margin-bottom: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 1. 液态玻璃导航栏 -->
+    <header class="site-header" id="siteHeader">
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+            <a href="index.html" class="brand">严论</a>
+            
+            <!-- 桌面端导航 -->
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="app.html">客户端</a></li>
+                    <li><a href="forum.html">文学论坛</a></li>
+                    <li><a href="creative.html" class="active">文创</a></li>
+                </ul>
+            </nav>
+
+            <!-- 移动端汉堡按钮 -->
+            <button class="menu-toggle" id="menuToggle" aria-label="打开菜单">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- 2. 移动端全屏导航菜单 -->
+    <div class="mobile-nav-overlay" id="mobileNav">
+        <ul class="mobile-nav-links">
+            <li><a href="index.html">首页</a></li>
+            <li><a href="app.html">严论客户端</a></li>
+            <li><a href="forum.html">文学论坛</a></li>
+            <li><a href="creative.html" class="active">严论文创</a></li>
+        </ul>
+    </div>
+
+    <!-- 3. 主内容 -->
+    <main>
+        <!-- 文创英雄区 -->
+        <section class="creative-hero-section" id="creativeHero">
+            <div class="container creative-hero-content">
+                <h1 class="creative-hero-title">
+                    严论<span class="highlight">文创</span>
+                </h1>
+                <p class="creative-hero-subtitle">
+                    文化底蕴为基，艺术引领设计
+                </p>
+                <p class="creative-hero-description">
+                    严论文创是严论品牌体系下专注文化产品创作的旗舰产品品牌。我们以严肃文学为精神内核，通过精心设计的文创产品，将文学精神物化为日常之器，让思想的回响在合上书本后依然延续。
+                </p>
+                <a href="https://yswxstudy.my.canvasite.cn/wcyl/#%E4%B8%A5%E8%AE%BA%E6%96%87%E5%88%9B-%E7%A7%8D%E5%AD%90%E4%B9%A6%E7%AD%BE" class="creative-entry-btn" target="_blank">
+                    进入种子书签官网 <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </section>
+
+        <!-- 品牌理念区域 -->
+        <section class="philosophy-section" id="philosophy">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">文化为帆，艺术为舟</h2>
+                    <p class="section-subtitle">
+                        我们在兼顾产品文化底蕴的同时，坚持以好的设计打动用户，以此引领带动文创行业产品设计美学。
+                    </p>
+                </div>
+                
+                <div class="philosophy-content">
+                    <p>严论文创的底色是"严肃文学"，这是我们一切创作的精神原点。我们相信，真正的文创产品不应只是表面装饰，而应是文化精神的载体，是思想与美学的物化表达。</p>
+                    
+                    <div class="philosophy-quote">
+                        在一个追求速朽的时代，我们选择缓慢而深长的注视。每一件产品都是对深度思考的致敬，对精神生活的守护。
+                    </div>
+                    
+                    <p>我们的设计哲学植根于三个核心原则：文化深度、艺术表达和可持续性。我们拒绝浮浅的复制和盲目的潮流追随，坚持每一件产品都应有其独特的思想内核和美学价值。</p>
+                </div>
+                
+                <div class="philosophy-grid">
+                    <div class="philosophy-card">
+                        <div class="philosophy-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <h3>文化深度</h3>
+                        <p>以严肃文学为创作源泉，确保每件产品都有深厚的文化底蕴和精神内涵，成为思想的载体而非简单的装饰品。</p>
+                    </div>
+                    
+                    <div class="philosophy-card">
+                        <div class="philosophy-icon">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <h3>艺术引领</h3>
+                        <p>坚持高标准的设计美学，通过创新形式与精湛工艺，让文创产品本身成为艺术品，提升行业设计水平。</p>
+                    </div>
+                    
+                    <div class="philosophy-card">
+                        <div class="philosophy-icon">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <h3>可持续性</h3>
+                        <p>关注产品生命周期，从材料选择到使用体验，都贯彻可持续理念，实现文化价值与环境责任的平衡。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 种子书签产品区域 -->
+        <section class="product-section" id="seedBookmark">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">种子书签</h2>
+                    <p class="section-subtitle">
+                        严论文创对这一精神的物化诠释
+                    </p>
+                </div>
+                
+                <div class="product-content">
+                    <p class="product-intro">
+                        种子书签是严论文创的首款产品，也是我们对<span class="highlight">"严肃文学"</span>精神的物化诠释。它不仅仅是一个书签，更是一种生活哲学的载体，一种对抗浅薄、拥抱深度的宣言。
+                    </p>
+                    
+                    <div class="product-principles">
+                        <div class="principle-item">
+                            <div class="principle-header">
+                                <div class="principle-icon">
+                                    <i class="fas fa-hourglass-half"></i>
+                                </div>
+                                <h3 class="principle-title">深度对抗浅薄</h3>
+                            </div>
+                            <p class="principle-description">
+                                在一个追求即时满足的世界，我们倡导延迟的满足、深度的投入。种植一颗种子所需的时间与关怀，与阅读一本严肃著作所需的心力，同频共振。种子书签提醒我们：真正的价值需要时间的沉淀，深度的思考值得耐心的等待。
+                            </p>
+                        </div>
+                        
+                        <div class="principle-item">
+                            <div class="principle-header">
+                                <div class="principle-icon">
+                                    <i class="fas fa-seedling"></i>
+                                </div>
+                                <h3 class="principle-title">生长隐喻成长</h3>
+                            </div>
+                            <p class="principle-description">
+                                植物的生长不可逆、不可速成，一如思想的成熟与人格的养成。书签成为一面镜子，映照持有者自身的生命状态。每一次翻页，都是思想的积累；每一次浇灌，都是生命的成长。种子书签陪伴读者的不仅是阅读过程，更是精神成长的见证。
+                            </p>
+                        </div>
+                        
+                        <div class="principle-item">
+                            <div class="principle-header">
+                                <div class="principle-icon">
+                                    <i class="fas fa-infinity"></i>
+                                </div>
+                                <h3 class="principle-title">循环诠释永恒</h3>
+                            </div>
+                            <p class="principle-description">
+                                书签从纸浆中来，最终降解回归土壤，滋养新的生命。这构成了一个完美的物质与意义循环，回应了文学中关于永恒、传承与转化的母题。种子书签不仅连接读者与书籍，更连接个体与自然、当下与永恒，实现物质与精神的双重循环。
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="product-link">
+                        <p>探索种子书签的完整故事，了解产品详情与设计理念</p>
+                        <a href="https://yswxstudy.my.canvasite.cn/wcyl/#%E4%B8%A5%E8%AE%BA%E6%96%87%E5%88%9B-%E7%A7%8D%E5%AD%90%E4%B9%A6%E7%AD%BE" class="creative-entry-btn" target="_blank">
+                            访问种子书签官网 <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 7. 重构的页脚 - 第三个独立版块 -->
+    <footer class="site-footer">
+        <div class="footer-decoration">文创</div>
+        <div class="container">
+            <div class="footer-main">
+                <div class="footer-brand">
+                    <a href="index.html" class="brand-logo">严论</a>
+                    <p>
+                        文学是照进现实的一束光
+                    </p>
+                    <div class="social-section">
+                        <h4>关注我们</h4>
+                        <div class="social-links">
+                            <a href="social.html" title="微信公众号"><i class="fab fa-weixin"></i></a>
+                            <a href="social.html" title="微博"><i class="fab fa-weibo"></i></a>
+                            <a href="social.html" title="抖音"><i class="fab fa-tiktok"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-links-section">
+                    <h4>探索</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">首页</a></li>
+                        <li><a href="app.html">严论客户端</a></li>
+                        <li><a href="forum.html">文学论坛</a></li>
+                        <li><a href="creative.html">严论文创</a></li>
+                        <li><a href="#creativeHero">返回顶部</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links-section">
+                    <h4>支持</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://yswxstudy.my.canvasite.cn/wcyl/#%E4%B8%A5%E8%AE%BA%E6%96%87%E5%88%9B-%E7%A7%8D%E5%AD%90%E4%B9%A6%E7%AD%BE" target="_blank">种子书签官网</a></li>
+                        <li><a href="agreement.html" target="_blank">服务协议</a></li>
+                        <li><a href="privacy.html" target="_blank">隐私政策</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="copyright">
+                    <p>© 2023 严肃文学研究小组。保留所有权利。</p>
+                    <p>文学不能改变世界，但文学可以改变人，而人可以改变世界。</p>
+                </div>
+                <div class="footer-legal">
+                    <a href="agreement.html" target="_blank">服务协议</a>
+                    <a href="privacy.html" target="_blank">隐私政策</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 1. 导航栏滚动效果
+        const siteHeader = document.getElementById('siteHeader');
+        const creativeHero = document.getElementById('creativeHero');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 60) {
+                siteHeader.classList.add('scrolled');
+            } else {
+                siteHeader.classList.remove('scrolled');
+            }
+        });
+
+        // 2. 移动端菜单控制
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileNav = document.getElementById('mobileNav');
+        const body = document.body;
+        menuToggle.addEventListener('click', () => {
+            body.classList.toggle('menu-open');
+            const isExpanded = body.classList.contains('menu-open');
+            menuToggle.setAttribute('aria-expanded', isExpanded);
+            menuToggle.setAttribute('aria-label', isExpanded ? '关闭菜单' : '打开菜单');
+        });
+        document.querySelectorAll('.mobile-nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                body.classList.remove('menu-open');
+                menuToggle.setAttribute('aria-expanded', 'false');
+                menuToggle.setAttribute('aria-label', '打开菜单');
+            });
+        });
+
+        // 3. 卡片滚动浮现效果
+        const philosophyCards = document.querySelectorAll('.philosophy-card');
+        const principleItems = document.querySelectorAll('.principle-item');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        });
+        
+        // 为所有卡片添加动画
+        philosophyCards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(40px)';
+            card.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            observer.observe(card);
+        });
+        
+        principleItems.forEach(item => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(40px)';
+            item.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            observer.observe(item);
+        });
+
+        // 4. 为卡片添加交错延迟效果
+        window.addEventListener('load', () => {
+            philosophyCards.forEach((card, index) => {
+                card.style.transitionDelay = `${index * 0.1}s`;
+            });
+            
+            principleItems.forEach((item, index) => {
+                item.style.transitionDelay = `${index * 0.15}s`;
+            });
+        });
+    </script>
+</body>
+</html>
