@@ -467,7 +467,236 @@
             right: 5%;
         }
 
-        /* ========== 3. 产品目录区 - 第三个独立版块 ========== */
+        /* ========== 3. 新产品预告板块 - 严论阅读器 ========== */
+        .reader-preview-section {
+            padding: 8rem 0;
+            background: linear-gradient(135deg, 
+                rgba(92, 75, 55, 0.03) 0%, 
+                rgba(139, 115, 85, 0.08) 100%);
+            position: relative;
+            border-top: 1px solid rgba(92, 75, 55, 0.08);
+            border-bottom: 1px solid rgba(92, 75, 55, 0.08);
+            margin-bottom: 0;
+        }
+
+        .reader-preview-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .reader-text {
+            opacity: 0;
+            transform: translateX(-30px);
+            animation: fadeLeftIn 1s ease 0.3s forwards;
+        }
+
+        @keyframes fadeLeftIn {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .reader-preview-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding: 0.7rem 1.5rem;
+            background: linear-gradient(90deg, 
+                rgba(92, 75, 55, 0.1) 0%,
+                rgba(139, 115, 85, 0.1) 100%);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            color: var(--color-accent);
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .reader-preview-title {
+            font-size: 3.2rem;
+            font-weight: 600;
+            margin-bottom: 1.8rem;
+            color: var(--color-accent);
+            line-height: 1.2;
+        }
+
+        .reader-preview-subtitle {
+            font-size: 1.4rem;
+            font-weight: 300;
+            color: var(--color-accent-light);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .reader-description {
+            font-size: 1.1rem;
+            color: var(--color-meta);
+            margin-bottom: 3rem;
+            line-height: 1.8;
+        }
+
+        .reader-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .reader-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.8rem 1.5rem;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 50px;
+            border: 1px solid rgba(92, 75, 55, 0.1);
+            font-size: 0.95rem;
+            color: var(--color-accent);
+        }
+
+        .reader-feature i {
+            color: var(--color-accent-light);
+        }
+
+        .reader-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.2rem 2.5rem;
+            background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-light) 100%);
+            color: white;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 30px rgba(92, 75, 55, 0.2);
+        }
+
+        .reader-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.7s ease;
+        }
+
+        .reader-link:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(92, 75, 55, 0.3);
+        }
+
+        .reader-link:hover::before {
+            left: 100%;
+        }
+
+        .reader-link:hover i {
+            transform: translateX(8px);
+        }
+
+        .reader-link i {
+            transition: transform 0.4s ease;
+        }
+
+        .reader-visual {
+            opacity: 0;
+            transform: translateX(30px);
+            animation: fadeRightIn 1s ease 0.6s forwards;
+        }
+
+        @keyframes fadeRightIn {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .reader-device-mockup {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 3rem;
+            background: linear-gradient(145deg, #f0f0f0, #ffffff);
+            border-radius: 24px;
+            box-shadow: 
+                0 20px 60px rgba(92, 75, 55, 0.15),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+        }
+
+        .reader-device-mockup::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 5px;
+            background-color: rgba(92, 75, 55, 0.2);
+            border-radius: 3px;
+        }
+
+        .reader-screen {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #2d2d2d 0%, #3a3a3a 100%);
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .reader-screen-content {
+            padding: 2rem;
+            color: #f0f0f0;
+            font-family: 'Noto Serif SC', serif;
+        }
+
+        .reader-screen-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #ffffff;
+        }
+
+        .reader-screen-text {
+            font-size: 1rem;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        .reader-screen-text::first-letter {
+            font-size: 1.5em;
+            font-weight: 600;
+            color: #b8a28a;
+            margin-right: 2px;
+        }
+
+        .reader-controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .reader-control {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+        }
+
+        /* ========== 4. 产品目录区 - 第四个独立版块 ========== */
         .catalog-section {
             padding: 8rem 0;
             /* 增强版块边界：使用不同的背景色和内部阴影 */
@@ -571,7 +800,7 @@
             transform: translateX(4px);
         }
 
-        /* ========== 4. 完全重构的页脚区域 ========== */
+        /* ========== 5. 完全重构的页脚区域 ========== */
         .site-footer {
             padding: 8rem 0 4rem;
             background-color: var(--color-paper);
@@ -778,10 +1007,13 @@
             opacity: 0.8;
         }
 
-        /* ========== 5. 响应式调整 ========== */
+        /* ========== 6. 响应式调整 ========== */
         @media (max-width: 1080px) {
             .container {
                 width: 92%;
+            }
+            .reader-preview-content {
+                gap: 4rem;
             }
             .footer-main {
                 grid-template-columns: 1fr 1fr;
@@ -841,6 +1073,43 @@
             .festival-decoration.right {
                 bottom: 10%;
                 right: 2%;
+            }
+            /* 阅读器预览板块响应式 */
+            .reader-preview-section {
+                padding: 6rem 0;
+            }
+            .reader-preview-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            .reader-visual {
+                display: none; /* 移动端隐藏设备模拟器 */
+            }
+            .reader-preview-title {
+                font-size: 2.5rem;
+                text-align: center;
+            }
+            .reader-preview-subtitle {
+                font-size: 1.2rem;
+                text-align: center;
+            }
+            .reader-description {
+                font-size: 1rem;
+                text-align: center;
+            }
+            .reader-features {
+                justify-content: center;
+                gap: 1rem;
+            }
+            .reader-feature {
+                padding: 0.7rem 1.2rem;
+                font-size: 0.9rem;
+            }
+            .reader-link {
+                display: block;
+                text-align: center;
+                margin: 0 auto;
+                max-width: 300px;
             }
             .catalog-section {
                 padding: 6rem 0;
@@ -903,6 +1172,27 @@
             }
             .festival-decoration {
                 display: none; /* 小屏幕隐藏装饰文字 */
+            }
+            /* 阅读器预览板块响应式 */
+            .reader-preview-title {
+                font-size: 2rem;
+            }
+            .reader-preview-subtitle {
+                font-size: 1.1rem;
+            }
+            .reader-description {
+                font-size: 0.95rem;
+            }
+            .reader-features {
+                flex-direction: column;
+                align-items: center;
+            }
+            .reader-feature {
+                width: auto;
+            }
+            .reader-link {
+                padding: 1rem 2rem;
+                font-size: 1rem;
             }
             .brand {
                 font-size: 1.1rem;
@@ -970,7 +1260,7 @@
                     文学不能改变世界，但文学可以<span class="highlight">改变人</span>，而人可以<span class="highlight">改变世界</span>。
                 </h1>
                 <p class="hero-subtitle">
-                    文脉新生：打造中国严肃文学的数字化“诺亚方舟”
+                    文脉新生：打造中国严肃文学的数字化"诺亚方舟"
                 </p>
                 <div class="chapter-number">Volume I</div>
             </div>
@@ -997,7 +1287,76 @@
             </div>
         </section>
 
-        <!-- 产品目录区 - 第三个独立版块 -->
+        <!-- 新产品预告板块 - 严论阅读器 - 第三个独立版块 -->
+        <section class="reader-preview-section">
+            <div class="container">
+                <div class="reader-preview-content">
+                    <div class="reader-text">
+                        <div class="reader-preview-badge">
+                            <i class="fas fa-book-open"></i>
+                            新品预告
+                        </div>
+                        <h2 class="reader-preview-title">严论阅读器</h2>
+                        <p class="reader-preview-subtitle">专为深度阅读设计的沉浸式应用</p>
+                        <p class="reader-description">
+                            欢迎使用严论阅读器，这是一款专为深度阅读设计的应用，采用护眼配色方案，提供丰富的个性化设置，为您带来沉浸式的阅读体验。我们精心设计了符合人体工学的界面布局，优化了文字排版与阅读节奏，让每一次阅读都成为思想的深度旅行。
+                        </p>
+                        
+                        <div class="reader-features">
+                            <div class="reader-feature">
+                                <i class="fas fa-eye"></i>
+                                <span>护眼模式</span>
+                            </div>
+                            <div class="reader-feature">
+                                <i class="fas fa-sliders-h"></i>
+                                <span>个性化设置</span>
+                            </div>
+                            <div class="reader-feature">
+                                <i class="fas fa-book-reader"></i>
+                                <span>沉浸体验</span>
+                            </div>
+                            <div class="reader-feature">
+                                <i class="fas fa-palette"></i>
+                                <span>多主题配色</span>
+                            </div>
+                        </div>
+                        
+                        <a href="ylydq.html" class="reader-link">
+                            了解产品详情 <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="reader-visual">
+                        <div class="reader-device-mockup">
+                            <div class="reader-screen">
+                                <div class="reader-screen-content">
+                                    <h3 class="reader-screen-title">严论阅读器</h3>
+                                    <p class="reader-screen-text">
+                                        在这数字碎片化的时代，我们重新定义深度阅读。严论阅读器不仅仅是一个应用，它是思想的容器，是文字的圣殿。我们相信，真正的阅读需要专注、需要沉浸、需要与文本的深度对话。
+                                    </p>
+                                    <div class="reader-controls">
+                                        <div class="reader-control">
+                                            <i class="fas fa-font"></i>
+                                            <span>字体调节</span>
+                                        </div>
+                                        <div class="reader-control">
+                                            <i class="fas fa-sun"></i>
+                                            <span>亮度控制</span>
+                                        </div>
+                                        <div class="reader-control">
+                                            <i class="fas fa-bookmark"></i>
+                                            <span>书签功能</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 产品目录区 - 第四个独立版块 -->
         <section class="catalog-section">
             <div class="container">
                 <span class="section-label">核心构成</span>
@@ -1037,7 +1396,7 @@
         </section>
     </main>
 
-    <!-- 4. 重构的页脚 - 第四个独立版块 -->
+    <!-- 4. 重构的页脚 - 第五个独立版块 -->
     <footer class="site-footer">
         <div class="footer-decoration">严论</div>
         <div class="container">
@@ -1063,6 +1422,7 @@
                         <li><a href="app.html">严论客户端</a></li>
                         <li><a href="forum.html">文学论坛</a></li>
                         <li><a href="creative.html">严论文创</a></li>
+                        <li><a href="ylydq.html">严论阅读器</a></li>
                         <li><a href="https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzYzMzAyMDcwMg==&action=getalbum&album_id=4224274281255108623&scene=126#wechat_redirect">每周书评</a></li>
                         <li><a href="about.html">关于我们</a></li>
                     </ul>
