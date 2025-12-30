@@ -34,9 +34,9 @@
             --transition-smooth: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
             --shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.04);
             --shadow-elevated: 0 10px 40px rgba(0, 0, 0, 0.06);
-            --festival-red: #c62828;
-            --festival-gold: #ffd700;
-            --festival-bg: rgba(198, 40, 40, 0.05);
+            --festival-red: #8b0000; /* 深红色主色调 */
+            --festival-gold: #ffd700; /* 金黄色文字 */
+            --festival-bg: rgba(139, 0, 0, 0.08);
         }
         * {
             margin: 0;
@@ -313,14 +313,14 @@
             opacity: 0.5;
         }
 
-        /* ========== 元旦限时板块 ========== */
+        /* ========== 元旦限时融合板块 ========== */
         .festival-section {
             display: none; /* 默认隐藏 */
             padding: 6rem 0;
             background: linear-gradient(135deg, var(--festival-bg) 0%, rgba(255, 215, 0, 0.05) 100%);
             position: relative;
-            border-top: 1px solid rgba(198, 40, 40, 0.1);
-            border-bottom: 1px solid rgba(198, 40, 40, 0.1);
+            border-top: 1px solid rgba(139, 0, 0, 0.1);
+            border-bottom: 1px solid rgba(139, 0, 0, 0.1);
             margin-bottom: 0;
         }
 
@@ -340,34 +340,46 @@
             }
         }
 
-        .festival-badge {
-            display: inline-flex;
+        .festival-decoration {
+            position: absolute;
+            font-size: 8rem;
+            color: rgba(139, 0, 0, 0.05);
+            font-weight: 700;
+            line-height: 1;
+            pointer-events: none;
+            user-select: none;
+            z-index: 0;
+        }
+
+        .festival-decoration.left {
+            top: 20%;
+            left: 5%;
+        }
+
+        .festival-decoration.right {
+            bottom: 20%;
+            right: 5%;
+        }
+
+        .festival-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
             align-items: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            padding: 0.7rem 1.5rem;
-            background: linear-gradient(90deg, 
-                rgba(198, 40, 40, 0.1) 0%,
-                rgba(255, 215, 0, 0.1) 100%);
-            border-radius: 50px;
-            font-size: 0.85rem;
-            color: var(--festival-red);
-            font-weight: 600;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
         }
 
         .festival-content {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
             padding: 3.5rem;
             background-color: var(--color-paper-light);
             border-radius: 20px;
-            border: 2px solid rgba(198, 40, 40, 0.15);
-            box-shadow: 0 8px 40px rgba(198, 40, 40, 0.1);
+            border: 2px solid rgba(139, 0, 0, 0.15);
+            box-shadow: 0 8px 40px rgba(139, 0, 0, 0.1);
             position: relative;
             overflow: hidden;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .festival-content::before {
@@ -379,6 +391,23 @@
             height: 200%;
             background: radial-gradient(circle, rgba(255, 215, 0, 0.05) 0%, transparent 70%);
             z-index: 0;
+        }
+
+        .festival-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding: 0.7rem 1.5rem;
+            background: linear-gradient(90deg, 
+                rgba(139, 0, 0, 0.1) 0%,
+                rgba(255, 215, 0, 0.1) 100%);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            color: var(--festival-red);
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
         }
 
         .festival-title {
@@ -401,41 +430,44 @@
             line-height: 1.7;
         }
 
+        .festival-description {
+            font-size: 1.1rem;
+            color: var(--color-meta);
+            margin-bottom: 3rem;
+            line-height: 1.7;
+            position: relative;
+            z-index: 1;
+        }
+
+        .festival-buttons {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+
         .festival-link {
             display: inline-flex;
             align-items: center;
             gap: 1rem;
             padding: 1.2rem 2.5rem;
-            background: linear-gradient(135deg, var(--festival-red) 0%, #b71c1c 100%);
-            color: white;
+            background: linear-gradient(135deg, var(--festival-red) 0%, #660000 100%);
+            color: var(--festival-gold);
             border-radius: 12px;
             font-weight: 600;
             font-size: 1.1rem;
             position: relative;
-            z-index: 1;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(198, 40, 40, 0.3);
-        }
-
-        .festival-link::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.7s ease;
+            box-shadow: 0 10px 30px rgba(139, 0, 0, 0.3);
+            border: 1px solid rgba(255, 215, 0, 0.2);
         }
 
         .festival-link:hover {
             transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 15px 40px rgba(198, 40, 40, 0.4);
-        }
-
-        .festival-link:hover::before {
-            left: 100%;
+            box-shadow: 0 15px 40px rgba(139, 0, 0, 0.4);
+            color: var(--festival-gold);
         }
 
         .festival-link i {
@@ -446,25 +478,95 @@
             transform: translateX(8px);
         }
 
-        .festival-decoration {
-            position: absolute;
-            font-size: 8rem;
-            color: rgba(198, 40, 40, 0.05);
+        .festival-link.live {
+            background: linear-gradient(135deg, #8a2387 0%, #c62828 50%, #f27121 100%);
+            box-shadow: 0 10px 30px rgba(138, 35, 135, 0.3);
+        }
+
+        .festival-link.live:hover {
+            box-shadow: 0 15px 40px rgba(138, 35, 135, 0.4);
+        }
+
+        /* 倒计时部分 */
+        .festival-countdown {
+            text-align: center;
+        }
+
+        .countdown-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            color: var(--festival-red);
+            line-height: 1.2;
+            position: relative;
+            z-index: 1;
+        }
+
+        .countdown-subtitle {
+            font-size: 1.2rem;
+            font-weight: 300;
+            color: var(--color-meta);
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 1;
+            line-height: 1.7;
+        }
+
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 3.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .timer-unit {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 100px;
+            padding: 1.5rem 1rem;
+            background: var(--glass-bg-light);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 16px;
+            border: 1px solid rgba(139, 0, 0, 0.1);
+            box-shadow: 0 8px 25px rgba(139, 0, 0, 0.1);
+            transition: var(--transition-smooth);
+        }
+
+        .timer-unit:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(139, 0, 0, 0.2);
+        }
+
+        .timer-unit span:first-child {
+            font-size: 3.2rem;
             font-weight: 700;
+            font-variant-numeric: tabular-nums;
+            background: linear-gradient(90deg, var(--festival-red), #c62828);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
             line-height: 1;
-            pointer-events: none;
-            user-select: none;
-            z-index: 0;
+            margin-bottom: 0.5rem;
         }
 
-        .festival-decoration.left {
-            top: 20%;
-            left: 5%;
+        .unit-label {
+            font-size: 1rem;
+            color: var(--color-meta);
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
         }
 
-        .festival-decoration.right {
-            bottom: 20%;
-            right: 5%;
+        .timer-separator {
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: var(--festival-red);
+            margin-bottom: 1.5rem;
         }
 
         /* ========== 3. 新产品预告板块 - 严论阅读器 ========== */
@@ -1007,10 +1109,97 @@
             opacity: 0.8;
         }
 
+        /* ========== 悬浮按钮样式 ========== */
+        .floating-button {
+            position: fixed;
+            bottom: 2.5rem;
+            right: 2.5rem;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--festival-red) 0%, #c62828 100%);
+            color: var(--festival-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 999;
+            box-shadow: 0 10px 30px rgba(139, 0, 0, 0.3);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            overflow: hidden;
+            border: 2px solid rgba(255, 215, 0, 0.2);
+        }
+
+        .floating-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.2), transparent);
+            transition: left 0.7s ease;
+        }
+
+        .floating-button:hover {
+            transform: translateY(-8px) scale(1.1);
+            box-shadow: 0 15px 40px rgba(139, 0, 0, 0.4);
+        }
+
+        .floating-button:hover::before {
+            left: 100%;
+        }
+
+        .floating-button:hover .floating-button-content {
+            transform: scale(1.05);
+        }
+
+        .floating-button-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            transition: transform 0.3s ease;
+            z-index: 1;
+        }
+
+        .floating-button i {
+            font-size: 1.8rem;
+        }
+
+        .floating-text {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            opacity: 0.9;
+        }
+
+        /* 悬浮按钮的脉冲动画 */
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(139, 0, 0, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(139, 0, 0, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(139, 0, 0, 0);
+            }
+        }
+
+        .floating-button {
+            animation: pulse 2.5s infinite;
+        }
+
         /* ========== 6. 响应式调整 ========== */
         @media (max-width: 1080px) {
             .container {
                 width: 92%;
+            }
+            .festival-container {
+                gap: 2rem;
             }
             .reader-preview-content {
                 gap: 4rem;
@@ -1054,6 +1243,10 @@
             .festival-section {
                 padding: 4rem 0;
             }
+            .festival-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
             .festival-content {
                 padding: 2.5rem 1.5rem;
             }
@@ -1062,6 +1255,36 @@
             }
             .festival-subtitle {
                 font-size: 1.2rem;
+            }
+            .festival-description {
+                font-size: 1rem;
+            }
+            .festival-buttons {
+                flex-direction: column;
+            }
+            .festival-link {
+                justify-content: center;
+            }
+            .countdown-title {
+                font-size: 2rem;
+            }
+            .countdown-subtitle {
+                font-size: 1.1rem;
+            }
+            .countdown-timer {
+                gap: 0.8rem;
+                flex-wrap: wrap;
+            }
+            .timer-unit {
+                min-width: 80px;
+                padding: 1.2rem 0.5rem;
+            }
+            .timer-unit span:first-child {
+                font-size: 2.5rem;
+            }
+            .timer-separator {
+                font-size: 1.8rem;
+                margin-bottom: 1rem;
             }
             .festival-decoration {
                 font-size: 5rem;
@@ -1147,6 +1370,18 @@
                 right: 0;
                 bottom: 10%;
             }
+            .floating-button {
+                width: 60px;
+                height: 60px;
+                bottom: 1.5rem;
+                right: 1.5rem;
+            }
+            .floating-button i {
+                font-size: 1.5rem;
+            }
+            .floating-text {
+                font-size: 0.6rem;
+            }
         }
         
         @media (max-width: 480px) {
@@ -1161,17 +1396,40 @@
                 line-height: 1.8; /* 小屏幕增加行高 */
             }
             .festival-title {
-                font-size: 1.8rem;
+                font-size: 1.9rem;
             }
             .festival-subtitle {
                 font-size: 1.1rem;
+            }
+            .festival-description {
+                font-size: 0.95rem;
             }
             .festival-link {
                 padding: 1rem 2rem;
                 font-size: 1rem;
             }
+            .countdown-title {
+                font-size: 1.8rem;
+            }
+            .countdown-subtitle {
+                font-size: 1.1rem;
+            }
+            .timer-unit {
+                min-width: 70px;
+                padding: 1rem 0.3rem;
+            }
+            .timer-unit span:first-child {
+                font-size: 2rem;
+            }
+            .unit-label {
+                font-size: 0.85rem;
+            }
+            .timer-separator {
+                font-size: 1.5rem;
+                margin-bottom: 0.8rem;
+            }
             .festival-decoration {
-                display: none; /* 小屏幕隐藏装饰文字 */
+                display: none;
             }
             /* 阅读器预览板块响应式 */
             .reader-preview-title {
@@ -1203,6 +1461,30 @@
             }
             .footer-decoration {
                 font-size: 6rem;
+            }
+            .floating-button {
+                width: 55px;
+                height: 55px;
+                bottom: 1rem;
+                right: 1rem;
+            }
+            .floating-button i {
+                font-size: 1.3rem;
+            }
+            .floating-text {
+                font-size: 0.55rem;
+            }
+        }
+        
+        @media (max-width: 360px) {
+            .countdown-timer {
+                gap: 0.5rem;
+            }
+            .timer-unit {
+                min-width: 65px;
+            }
+            .timer-unit span:first-child {
+                font-size: 1.8rem;
             }
         }
         
@@ -1266,23 +1548,76 @@
             </div>
         </section>
 
-        <!-- 元旦限时板块 - 第二个独立版块（仅在指定日期显示） -->
+        <!-- 元旦限时融合板块 - 第二个独立版块（仅在指定日期显示） -->
         <section class="festival-section" id="festivalSection">
             <div class="festival-decoration left">元</div>
             <div class="festival-decoration right">旦</div>
             <div class="container">
-                <div class="festival-content">
-                    <div class="festival-badge">
-                        <i class="fas fa-calendar-star"></i>
-                        元旦限定 · 限时开启
+                <div class="festival-container">
+                    <!-- 左侧：元旦文学之旅 -->
+                    <div class="festival-content">
+                        <div class="festival-badge">
+                            <i class="fas fa-calendar-star"></i>
+                            元旦限定 · 文学之旅
+                        </div>
+                        <h2 class="festival-title">文学新章，启于元始</h2>
+                        <p class="festival-subtitle">
+                            2026元旦特辑，探索新年第一缕文学之光。严论与您共迎新年，开启文学新篇章。
+                        </p>
+                        <p class="festival-description">
+                            在元旦这个特殊的日子里，我们精心准备了丰富的文学内容，包括名家作品赏析、新年创作分享、读者互动交流等。让我们一同在文字中迎接新的一年，感受文学的力量。
+                        </p>
+                        <div class="festival-buttons">
+                            <a href="https://yuandan.yswxstudy.top/yuandan.html" target="_blank" class="festival-link">
+                                进入元旦主会场 <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
                     </div>
-                    <h2 class="festival-title">文学新章，启于元始</h2>
-                    <p class="festival-subtitle">
-                        2026元旦特辑，探索新年第一缕文学之光。严论与您共迎新年，开启文学新篇章。
-                    </p>
-                    <a href="https://yuandan.yswxstudy.top/yuandan.html" target="_blank" class="festival-link">
-                        开启元旦文学之旅 <i class="fas fa-arrow-right"></i>
-                    </a>
+                    
+                    <!-- 右侧：跨年倒计时直播 -->
+                    <div class="festival-content">
+                        <div class="festival-badge">
+                            <i class="fas fa-broadcast-tower"></i>
+                            跨年夜 · 倒计时直播
+                        </div>
+                        <h2 class="festival-title">2025-2026 跨年夜直播</h2>
+                        <p class="festival-subtitle">
+                            与严论读者一同迎接新年，文学与时间的对话。倒计时直播现场，名家朗诵、读者分享、新年祈愿。
+                        </p>
+                        
+                        <div class="festival-countdown">
+                            <div class="countdown-title">跨年倒计时</div>
+                            <p class="countdown-subtitle">距离2026年还有</p>
+                            
+                            <div class="countdown-timer">
+                                <div class="timer-unit">
+                                    <span id="days">00</span>
+                                    <span class="unit-label">天</span>
+                                </div>
+                                <div class="timer-separator">:</div>
+                                <div class="timer-unit">
+                                    <span id="hours">00</span>
+                                    <span class="unit-label">时</span>
+                                </div>
+                                <div class="timer-separator">:</div>
+                                <div class="timer-unit">
+                                    <span id="minutes">00</span>
+                                    <span class="unit-label">分</span>
+                                </div>
+                                <div class="timer-separator">:</div>
+                                <div class="timer-unit">
+                                    <span id="seconds">00</span>
+                                    <span class="unit-label">秒</span>
+                                </div>
+                            </div>
+                            
+                            <div class="festival-buttons">
+                                <a href="https://ydxcdjs.yswxstudy.top/" target="_blank" class="festival-link live">
+                                    <i class="fas fa-play-circle"></i> 进入直播现场 <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1452,6 +1787,14 @@
         </div>
     </footer>
 
+    <!-- 悬浮按钮 -->
+    <div class="floating-button" id="floatingButton">
+        <div class="floating-button-content">
+            <i class="fas fa-broadcast-tower"></i>
+            <span class="floating-text">跨年直播</span>
+        </div>
+    </div>
+
     <script>
         // 1. 导航栏滚动效果
         const siteHeader = document.getElementById('siteHeader');
@@ -1520,6 +1863,7 @@
             // 检查当前日期是否在指定范围内
             if (today >= startDate && today <= endDate) {
                 festivalSection.classList.add('active');
+                startCountdownTimer(); // 启动倒计时
                 console.log('元旦限时板块已显示');
             } else {
                 festivalSection.classList.remove('active');
@@ -1527,8 +1871,71 @@
             }
         }
         
-        // 页面加载时检查日期
-        document.addEventListener('DOMContentLoaded', checkFestivalDate);
+        // 6. 倒计时功能
+        function startCountdownTimer() {
+            // 设置目标时间：2026年1月1日 00:00:00
+            const targetDate = new Date('2026-01-01T00:00:00').getTime();
+            
+            function updateCountdown() {
+                const now = new Date().getTime();
+                const timeLeft = targetDate - now;
+                
+                // 如果时间已过，停止倒计时
+                if (timeLeft < 0) {
+                    document.getElementById('days').textContent = '00';
+                    document.getElementById('hours').textContent = '00';
+                    document.getElementById('minutes').textContent = '00';
+                    document.getElementById('seconds').textContent = '00';
+                    return;
+                }
+                
+                // 计算天、时、分、秒
+                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+                
+                // 更新显示
+                document.getElementById('days').textContent = days.toString().padStart(2, '0');
+                document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+                document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+                document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+            }
+            
+            // 立即更新一次，然后每秒更新
+            updateCountdown();
+            const countdownInterval = setInterval(updateCountdown, 1000);
+            
+            // 清理倒计时函数
+            window.countdownInterval = countdownInterval;
+        }
+        
+        // 7. 悬浮按钮功能
+        function setupFloatingButton() {
+            const floatingButton = document.getElementById('floatingButton');
+            if (!floatingButton) return;
+            
+            // 点击跳转到直播页面
+            floatingButton.addEventListener('click', function() {
+                window.open('https://ydxcdjs.yswxstudy.top/', '_blank');
+            });
+            
+            // 检查是否在活动期间，如果不在则隐藏悬浮按钮
+            const today = new Date();
+            const startDate = new Date('2025-12-23');
+            const endDate = new Date('2026-01-03');
+            endDate.setHours(23, 59, 59, 999);
+            
+            if (today < startDate || today > endDate) {
+                floatingButton.style.display = 'none';
+            }
+        }
+        
+        // 页面加载时初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            checkFestivalDate();
+            setupFloatingButton();
+        });
     </script>
 </body>
 </html>
