@@ -3,17 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>严论官网</title>
+    <title>发展规划 - 严论博客平台2026-2027整体规划</title>
     
     <!-- ========== 网站图标设置 ========== -->
-    <!-- 主要favicon -->
     <link rel="icon" href="icon.jpg" type="image/jpeg">
     <link rel="shortcut icon" href="media/icon.jpg" type="image/jpeg">
-    
-    <!-- Apple设备专用图标 -->
     <link rel="apple-touch-icon" href="icon.jpg">
-    
-    <!-- 站点主题颜色 -->
     <meta name="theme-color" content="#5c4b37">
     
     <!-- 其他head内容 -->
@@ -233,14 +228,13 @@
             width: 70%;
         }
 
-        /* ========== 2. 英雄区 - 作为第一个独立版块 ========== */
-        .hero-section {
-            min-height: 100vh;
+        /* ========== 2. 规划文档展示区 ========== */
+        .plan-hero-section {
+            min-height: 60vh;
             position: relative;
             display: flex;
             align-items: center;
-            padding: 10rem 0 6rem;
-            /* 增强版块边界：使用一个非常微妙的顶部渐变和底部边框 */
+            padding: 12rem 0 6rem;
             background: linear-gradient(to bottom, 
                 rgba(248, 245, 240, 0.7) 0%,
                 rgba(248, 245, 240, 0.9) 30%,
@@ -248,7 +242,7 @@
             border-bottom: 1px solid rgba(92, 75, 55, 0.08);
             margin-bottom: 0;
         }
-        .hero-content {
+        .plan-hero-content {
             position: relative;
             z-index: 2;
             opacity: 0;
@@ -261,151 +255,162 @@
                 transform: translateY(0);
             }
         }
-        .hero-title {
-            font-size: clamp(2.8rem, 8vw, 6rem);
+        .plan-title {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
             font-weight: 300;
-            line-height: 1.3; /* 增加行高，使行间距更大 */
-            margin-bottom: 3.5rem; /* 增加下边距，与副标题的间距更大 */
-            max-width: 22ch; /* 稍微增加最大宽度 */
-            letter-spacing: 0.01em; /* 稍微增加字母间距 */
+            line-height: 1.3;
+            margin-bottom: 2rem;
+            max-width: 30ch;
+            letter-spacing: 0.01em;
         }
-        .hero-title .highlight {
-            font-weight: 600;
+        .plan-subtitle {
+            font-size: 1.5rem;
+            font-weight: 400;
             color: var(--color-accent);
-            position: relative;
-            display: inline-block;
+            margin-bottom: 3rem;
+            max-width: 50ch;
+            line-height: 1.7;
         }
-        .hero-title .highlight::after {
-            content: '';
-            position: absolute;
-            bottom: -0.12em;
-            left: 0;
-            width: 100%;
-            height: 0.35em;
-            background-color: rgba(92, 75, 55, 0.15);
-            z-index: -1;
-            transition: height 0.5s ease;
-        }
-        .hero-title .highlight:hover::after {
-            height: 0.5em;
-        }
-        .hero-subtitle {
-            font-size: 1.3rem;
-            font-weight: 300;
+        .plan-meta {
+            display: flex;
+            gap: 3rem;
+            margin-bottom: 3rem;
             color: var(--color-meta);
-            max-width: 42ch;
-            margin-bottom: 3.5rem;
-            opacity: 0.9;
-            line-height: 1.9; /* 增加副标题的行高 */
+            font-size: 0.95rem;
+            letter-spacing: 0.05em;
         }
-        .chapter-number {
-            position: absolute;
-            bottom: 2rem;
-            right: 0;
-            font-size: 0.8rem;
-            letter-spacing: 0.3em;
-            color: var(--color-meta);
-            transform: rotate(-90deg) translateX(100%);
-            transform-origin: right top;
-            opacity: 0.5;
+        .plan-date {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .plan-author {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        /* ========== 3. 新产品预告板块 - 严论阅读器 - 第二个独立版块 ========== */
-        .reader-preview-section {
-            padding: 8rem 0;
+        /* 文档内容区域 */
+        .document-section {
+            padding: 6rem 0 8rem;
+            background-color: var(--color-paper-light);
+        }
+        .document-container {
+            background-color: var(--color-paper-light);
+            padding: 4rem 3rem;
+            border-radius: 16px;
+            border: 1px solid rgba(92, 75, 55, 0.08);
+            box-shadow: var(--shadow-subtle);
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .document-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, 
+                var(--color-accent) 0%, 
+                var(--color-accent-light) 50%, 
+                var(--color-accent) 100%);
+            border-radius: 16px 16px 0 0;
+        }
+        .document-title {
+            font-size: 2.8rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 3.5rem;
+            color: var(--color-accent);
+            position: relative;
+            padding-bottom: 2rem;
+        }
+        .document-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background-color: var(--color-accent-light);
+            border-radius: 2px;
+        }
+        .document-content {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            color: var(--color-ink);
+        }
+        .document-content p {
+            margin-bottom: 1.8rem;
+        }
+        .document-content h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--color-accent);
+            margin: 3.5rem 0 1.5rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid rgba(92, 75, 55, 0.1);
+        }
+        .document-content h2:first-of-type {
+            margin-top: 0;
+        }
+        .document-content ol {
+            margin-left: 2.5rem;
+            margin-bottom: 2rem;
+        }
+        .document-content li {
+            margin-bottom: 1.2rem;
+            position: relative;
+        }
+        .document-content li::marker {
+            color: var(--color-accent-light);
+            font-weight: 600;
+        }
+        .document-content strong {
+            color: var(--color-accent);
+            font-weight: 600;
+        }
+        .document-signature {
+            text-align: right;
+            margin-top: 5rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(92, 75, 55, 0.1);
+            font-style: italic;
+            color: var(--color-meta);
+        }
+        .document-signature p {
+            margin-bottom: 0.5rem;
+        }
+
+        /* 下载按钮区域 */
+        .download-section {
+            padding: 3rem 0;
             background: linear-gradient(135deg, 
                 rgba(92, 75, 55, 0.03) 0%, 
                 rgba(139, 115, 85, 0.08) 100%);
-            position: relative;
+            text-align: center;
             border-top: 1px solid rgba(92, 75, 55, 0.08);
-            border-bottom: 1px solid rgba(92, 75, 55, 0.08);
-            margin-bottom: 0;
         }
-
-        .reader-preview-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 5rem;
-            align-items: center;
+        .download-container {
+            max-width: 600px;
+            margin: 0 auto;
         }
-
-        .reader-text {
-            opacity: 0;
-            transform: translateX(-30px);
-            animation: fadeLeftIn 1s ease 0.3s forwards;
-        }
-
-        @keyframes fadeLeftIn {
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .reader-preview-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            padding: 0.7rem 1.5rem;
-            background: linear-gradient(90deg, 
-                rgba(92, 75, 55, 0.1) 0%,
-                rgba(139, 115, 85, 0.1) 100%);
-            border-radius: 50px;
-            font-size: 0.85rem;
-            color: var(--color-accent);
+        .download-title {
+            font-size: 1.8rem;
             font-weight: 600;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-        }
-
-        .reader-preview-title {
-            font-size: 3.2rem;
-            font-weight: 600;
-            margin-bottom: 1.8rem;
             color: var(--color-accent);
-            line-height: 1.2;
+            margin-bottom: 1.5rem;
         }
-
-        .reader-preview-subtitle {
-            font-size: 1.4rem;
-            font-weight: 300;
-            color: var(--color-accent-light);
-            margin-bottom: 2rem;
+        .download-desc {
+            color: var(--color-meta);
+            margin-bottom: 2.5rem;
+            font-size: 1.1rem;
             line-height: 1.7;
         }
-
-        .reader-description {
-            font-size: 1.1rem;
-            color: var(--color-meta);
-            margin-bottom: 3rem;
-            line-height: 1.8;
-        }
-
-        .reader-features {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-            margin-bottom: 3rem;
-        }
-
-        .reader-feature {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            padding: 0.8rem 1.5rem;
-            background-color: rgba(255, 255, 255, 0.8);
-            border-radius: 50px;
-            border: 1px solid rgba(92, 75, 55, 0.1);
-            font-size: 0.95rem;
-            color: var(--color-accent);
-        }
-
-        .reader-feature i {
-            color: var(--color-accent-light);
-        }
-
-        .reader-link {
+        .download-btn {
             display: inline-flex;
             align-items: center;
             gap: 1rem;
@@ -419,9 +424,9 @@
             overflow: hidden;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             box-shadow: 0 10px 30px rgba(92, 75, 55, 0.2);
+            margin-bottom: 1.5rem;
         }
-
-        .reader-link::before {
+        .download-btn::before {
             content: '';
             position: absolute;
             top: 0;
@@ -431,219 +436,26 @@
             background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
             transition: left 0.7s ease;
         }
-
-        .reader-link:hover {
+        .download-btn:hover {
             transform: translateY(-5px) scale(1.05);
             box-shadow: 0 15px 40px rgba(92, 75, 55, 0.3);
         }
-
-        .reader-link:hover::before {
+        .download-btn:hover::before {
             left: 100%;
         }
-
-        .reader-link:hover i {
-            transform: translateX(8px);
+        .download-btn:hover i {
+            transform: translateY(3px);
         }
-
-        .reader-link i {
+        .download-btn i {
             transition: transform 0.4s ease;
         }
-
-        .reader-visual {
-            opacity: 0;
-            transform: translateX(30px);
-            animation: fadeRightIn 1s ease 0.6s forwards;
-        }
-
-        @keyframes fadeRightIn {
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .reader-device-mockup {
-            position: relative;
-            width: 100%;
-            max-width: 500px;
-            margin: 0 auto;
-            padding: 3rem;
-            background: linear-gradient(145deg, #f0f0f0, #ffffff);
-            border-radius: 24px;
-            box-shadow: 
-                0 20px 60px rgba(92, 75, 55, 0.15),
-                inset 0 0 0 1px rgba(255, 255, 255, 0.8);
-        }
-
-        .reader-device-mockup::before {
-            content: '';
-            position: absolute;
-            top: 15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 40px;
-            height: 5px;
-            background-color: rgba(92, 75, 55, 0.2);
-            border-radius: 3px;
-        }
-
-        .reader-screen {
-            width: 100%;
-            height: 300px;
-            background: linear-gradient(135deg, #2d2d2d 0%, #3a3a3a 100%);
-            border-radius: 12px;
-            overflow: hidden;
-            position: relative;
-            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .reader-screen-content {
-            padding: 2rem;
-            color: #f0f0f0;
-            font-family: 'Noto Serif SC', serif;
-        }
-
-        .reader-screen-title {
-            font-size: 1.8rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: #ffffff;
-        }
-
-        .reader-screen-text {
-            font-size: 1rem;
-            line-height: 1.6;
-            opacity: 0.9;
-        }
-
-        .reader-screen-text::first-letter {
-            font-size: 1.5em;
-            font-weight: 600;
-            color: #b8a28a;
-            margin-right: 2px;
-        }
-
-        .reader-controls {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 2rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .reader-control {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: rgba(255, 255, 255, 0.8);
+        .download-note {
             font-size: 0.9rem;
+            color: var(--color-meta);
+            font-style: italic;
         }
 
-        /* ========== 4. 产品目录区 - 第三个独立版块 ========== */
-        .catalog-section {
-            padding: 8rem 0;
-            /* 增强版块边界：使用不同的背景色和内部阴影 */
-            background-color: var(--color-paper-dark);
-            position: relative;
-            border-top: 1px solid rgba(92, 75, 55, 0.05);
-            border-bottom: 1px solid rgba(92, 75, 55, 0.05);
-            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8),
-                        inset 0 -1px 0 rgba(255, 255, 255, 0.8);
-        }
-        .section-label {
-            font-size: 0.85rem;
-            letter-spacing: 0.3em;
-            text-transform: uppercase;
-            color: var(--color-meta);
-            margin-bottom: 4rem;
-            display: block;
-            opacity: 0;
-            transform: translateY(10px);
-            animation: fadeUpIn 0.8s ease 0.8s forwards;
-        }
-        .catalog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 3rem;
-        }
-        .catalog-item {
-            counter-increment: catalog;
-            opacity: 0;
-            transform: translateY(40px);
-            transition: var(--transition-smooth);
-            padding: 3rem 2.5rem;
-            border-radius: 12px;
-            background-color: var(--color-paper-light);
-            border: 1px solid rgba(92, 75, 55, 0.08);
-            box-shadow: var(--shadow-subtle);
-            position: relative;
-            overflow: hidden;
-        }
-        /* 添加一个微妙的角标装饰 */
-        .catalog-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, transparent 50%, rgba(92, 75, 55, 0.03) 50%);
-            border-radius: 0 12px 0 0;
-        }
-        .catalog-item.in-view {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .catalog-item:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-elevated);
-            border-color: rgba(92, 75, 55, 0.15);
-        }
-        .item-number {
-            font-size: 0.9rem;
-            color: var(--color-accent-light);
-            margin-bottom: 1.8rem;
-            display: block;
-            font-variant-numeric: tabular-nums;
-            font-weight: 600;
-            letter-spacing: 1px;
-        }
-        .catalog-item h3 {
-            font-size: 1.8rem;
-            font-weight: 600;
-            margin-bottom: 1.2rem;
-            line-height: 1.3;
-            color: var(--color-ink);
-        }
-        .catalog-item p {
-            color: var(--color-meta);
-            margin-bottom: 2.2rem;
-            font-size: 1.05rem;
-            line-height: 1.8; /* 增加段落行高 */
-        }
-        .catalog-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.8rem;
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: var(--color-accent);
-            border-bottom: var(--border-width) solid transparent;
-            padding-bottom: 0.3rem;
-        }
-        .catalog-link:hover {
-            border-color: currentColor;
-            gap: 1.2rem;
-        }
-        .catalog-link i {
-            font-size: 0.8em;
-            transition: transform 0.4s ease;
-        }
-        .catalog-link:hover i {
-            transform: translateX(4px);
-        }
-
-        /* ========== 5. 完全重构的页脚区域 - 第四个独立版块 ========== */
+        /* ========== 3. 重构的页脚区域 ========== */
         .site-footer {
             padding: 8rem 0 4rem;
             background-color: var(--color-paper);
@@ -651,8 +463,6 @@
             border-top: 1px solid rgba(92, 75, 55, 0.1);
             overflow: hidden;
         }
-
-        /* 页脚背景装饰元素 */
         .site-footer::before {
             content: '';
             position: absolute;
@@ -666,20 +476,15 @@
                 var(--color-accent-light) 80%, 
                 transparent);
         }
-
-        /* 页脚主要内容容器 */
         .footer-main {
             display: grid;
             grid-template-columns: 1.5fr 1fr 1fr;
             gap: 4rem;
             margin-bottom: 4rem;
         }
-
-        /* 品牌介绍区域 */
         .footer-brand {
             max-width: 400px;
         }
-
         .footer-brand .brand-logo {
             font-size: 2.2rem;
             font-weight: 700;
@@ -688,15 +493,12 @@
             margin-bottom: 1.5rem;
             display: block;
         }
-
         .footer-brand p {
             color: var(--color-meta);
             line-height: 1.7;
             margin-bottom: 2rem;
             font-size: 1.05rem;
         }
-
-        /* 社交链接 */
         .social-section h4 {
             font-size: 0.95rem;
             font-weight: 600;
@@ -705,13 +507,11 @@
             letter-spacing: 0.1em;
             text-transform: uppercase;
         }
-
         .social-links {
             display: flex;
             gap: 1rem;
             flex-wrap: wrap;
         }
-
         .social-links a {
             display: inline-flex;
             align-items: center;
@@ -725,7 +525,6 @@
             color: var(--color-meta);
             transition: var(--transition-smooth);
         }
-
         .social-links a:hover {
             color: var(--color-paper-light);
             background: var(--color-accent);
@@ -733,8 +532,6 @@
             transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(92, 75, 55, 0.15);
         }
-
-        /* 链接列表区域 */
         .footer-links-section h4 {
             font-size: 1.1rem;
             font-weight: 600;
@@ -743,7 +540,6 @@
             position: relative;
             padding-bottom: 0.8rem;
         }
-
         .footer-links-section h4::after {
             content: '';
             position: absolute;
@@ -753,15 +549,12 @@
             height: 2px;
             background-color: var(--color-accent-light);
         }
-
         .footer-links {
             list-style: none;
         }
-
         .footer-links li {
             margin-bottom: 1.2rem;
         }
-
         .footer-links a {
             color: var(--color-meta);
             font-size: 1rem;
@@ -770,7 +563,6 @@
             transition: var(--transition-smooth);
             display: inline-block;
         }
-
         .footer-links a::before {
             content: '→';
             position: absolute;
@@ -779,18 +571,14 @@
             transition: all 0.3s ease;
             color: var(--color-accent);
         }
-
         .footer-links a:hover {
             color: var(--color-accent);
             padding-left: 1.5rem;
         }
-
         .footer-links a:hover::before {
             opacity: 1;
             left: 0;
         }
-
-        /* 版权和底部区域 */
         .footer-bottom {
             padding-top: 3rem;
             border-top: 1px solid rgba(92, 75, 55, 0.08);
@@ -800,28 +588,23 @@
             flex-wrap: wrap;
             gap: 2rem;
         }
-
         .copyright {
             font-size: 0.9rem;
             color: var(--color-meta);
         }
-
         .copyright p:first-child {
             margin-bottom: 0.5rem;
         }
-
         .copyright p:last-child {
             font-style: italic;
             font-size: 0.95rem;
             color: var(--color-accent-light);
-            line-height: 1.6; /* 增加版权信息行高 */
+            line-height: 1.6;
         }
-
         .footer-legal {
             display: flex;
             gap: 2rem;
         }
-
         .footer-legal a {
             color: var(--color-meta);
             font-size: 0.9rem;
@@ -829,13 +612,10 @@
             padding-bottom: 2px;
             transition: var(--transition-smooth);
         }
-
         .footer-legal a:hover {
             color: var(--color-accent);
             border-color: var(--color-accent);
         }
-
-        /* 装饰性元素 */
         .footer-decoration {
             position: absolute;
             bottom: 0;
@@ -850,13 +630,13 @@
             opacity: 0.8;
         }
 
-        /* ========== 6. 响应式调整 ========== */
+        /* ========== 4. 响应式调整 ========== */
         @media (max-width: 1080px) {
             .container {
                 width: 92%;
             }
-            .reader-preview-content {
-                gap: 4rem;
+            .document-container {
+                padding: 3.5rem 2.5rem;
             }
             .footer-main {
                 grid-template-columns: 1fr 1fr;
@@ -880,65 +660,35 @@
             .menu-toggle {
                 display: block;
             }
-            .hero-section {
+            .plan-hero-section {
                 padding: 8rem 0 4rem;
             }
-            .hero-title {
-                font-size: clamp(2.4rem, 7vw, 3.5rem);
-                line-height: 1.4; /* 移动端增加行高 */
-                margin-bottom: 2.5rem; /* 移动端增加下边距 */
-                letter-spacing: 0.005em; /* 移动端稍微调整字母间距 */
+            .plan-title {
+                font-size: clamp(2.2rem, 6vw, 3.5rem);
+                line-height: 1.4;
+                margin-bottom: 1.8rem;
             }
-            .hero-subtitle {
-                font-size: 1.1rem;
-                line-height: 1.7; /* 移动端副标题行高 */
+            .plan-subtitle {
+                font-size: 1.3rem;
+                line-height: 1.6;
             }
-            /* 阅读器预览板块响应式 */
-            .reader-preview-section {
-                padding: 6rem 0;
-            }
-            .reader-preview-content {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-            .reader-visual {
-                display: none; /* 移动端隐藏设备模拟器 */
-            }
-            .reader-preview-title {
-                font-size: 2.5rem;
-                text-align: center;
-            }
-            .reader-preview-subtitle {
-                font-size: 1.2rem;
-                text-align: center;
-            }
-            .reader-description {
-                font-size: 1rem;
-                text-align: center;
-            }
-            .reader-features {
-                justify-content: center;
+            .plan-meta {
+                flex-direction: column;
                 gap: 1rem;
             }
-            .reader-feature {
-                padding: 0.7rem 1.2rem;
-                font-size: 0.9rem;
+            .document-section {
+                padding: 4rem 0 6rem;
             }
-            .reader-link {
-                display: block;
-                text-align: center;
-                margin: 0 auto;
-                max-width: 300px;
-            }
-            .catalog-section {
-                padding: 6rem 0;
-            }
-            .catalog-grid {
-                grid-template-columns: 1fr;
-                gap: 2.5rem;
-            }
-            .catalog-item {
+            .document-container {
                 padding: 2.5rem 2rem;
+            }
+            .document-title {
+                font-size: 2.2rem;
+                margin-bottom: 2.5rem;
+            }
+            .document-content h2 {
+                font-size: 1.6rem;
+                margin: 2.5rem 0 1.2rem;
             }
             .mobile-nav-links a {
                 font-size: 1.6rem;
@@ -970,42 +720,25 @@
         
         @media (max-width: 480px) {
             .container { width: 94%; padding: 0 15px; }
-            .hero-title {
-                font-size: 2.4rem;
-                line-height: 1.5; /* 小屏幕进一步增加行高 */
-                margin-bottom: 2.2rem;
-            }
-            .hero-subtitle {
-                font-size: 1.1rem;
-                line-height: 1.8; /* 小屏幕增加行高 */
-            }
-            /* 阅读器预览板块响应式 */
-            .reader-preview-title {
+            .plan-title {
                 font-size: 2rem;
+                line-height: 1.5;
             }
-            .reader-preview-subtitle {
+            .plan-subtitle {
                 font-size: 1.1rem;
             }
-            .reader-description {
-                font-size: 0.95rem;
+            .document-container {
+                padding: 2rem 1.5rem;
             }
-            .reader-features {
-                flex-direction: column;
-                align-items: center;
+            .document-title {
+                font-size: 1.8rem;
             }
-            .reader-feature {
-                width: auto;
-            }
-            .reader-link {
-                padding: 1rem 2rem;
+            .document-content {
                 font-size: 1rem;
             }
             .brand {
                 font-size: 1.1rem;
                 letter-spacing: 0.2em;
-            }
-            .catalog-item {
-                padding: 2rem 1.8rem;
             }
             .footer-decoration {
                 font-size: 6rem;
@@ -1031,7 +764,7 @@
             <!-- 桌面端导航 -->
             <nav class="main-nav">
                 <ul>
-                    <li><a href="index.html" class="active">首页</a></li>
+                    <li><a href="index.html">首页</a></li>
                     <li><a href="app.html">客户端</a></li>
                     <li><a href="forum.html">文学论坛</a></li>
                     <li><a href="creative.html">文创</a></li>
@@ -1050,7 +783,7 @@
     <!-- 2. 移动端全屏导航菜单 -->
     <div class="mobile-nav-overlay" id="mobileNav">
         <ul class="mobile-nav-links">
-            <li><a href="index.html" class="active">首页</a></li>
+            <li><a href="index.html">首页</a></li>
             <li><a href="app.html">严论客户端</a></li>
             <li><a href="forum.html">文学论坛</a></li>
             <li><a href="creative.html">严论文创</a></li>
@@ -1059,129 +792,72 @@
 
     <!-- 3. 主内容 -->
     <main>
-        <!-- 英雄区 - 第一个独立版块 -->
-        <section class="hero-section" id="pageHero">
-            <div class="container hero-content">
-                <h1 class="hero-title">
-                    文学不能改变世界，但文学可以<span class="highlight">改变人</span>，而人可以<span class="highlight">改变世界</span>。
-                </h1>
-                <p class="hero-subtitle">
-                    文脉新生：打造中国严肃文学的数字化"诺亚方舟"
-                </p>
-                <div class="chapter-number">文脉新生</div>
+        <!-- 规划文档英雄区 -->
+        <section class="plan-hero-section" id="planHero">
+            <div class="container plan-hero-content">
+                <h1 class="plan-title">严论博客平台2026-2027年整体规划发展纲要</h1>
+                <p class="plan-subtitle">深入推进严肃文学研究与传播，构建高质量文学内容生态</p>
+                <div class="plan-meta">
+                    <div class="plan-date">
+                        <i class="far fa-calendar-alt"></i>
+                        <span>发布日期：2026年1月</span>
+                    </div>
+                    <div class="plan-author">
+                        <i class="far fa-user"></i>
+                        <span>发布机构：严肃文学研究小组</span>
+                    </div>
+                </div>
+                <div class="chapter-number">发展规划纲要</div>
             </div>
         </section>
 
-        <!-- 新产品预告板块 - 严论阅读器 - 第二个独立版块 -->
-        <section class="reader-preview-section">
-            <div class="container">
-                <div class="reader-preview-content">
-                    <div class="reader-text">
-                        <div class="reader-preview-badge">
-                            <i class="fas fa-book-open"></i>
-                            新品预告
-                        </div>
-                        <h2 class="reader-preview-title">严论阅读器</h2>
-                        <p class="reader-preview-subtitle">专为深度阅读设计的沉浸式应用</p>
-                        <p class="reader-description">
-                            欢迎使用严论阅读器，这是一款专为深度阅读设计的应用，采用护眼配色方案，提供丰富的个性化设置，为您带来沉浸式的阅读体验。我们精心设计了符合人体工学的界面布局，优化了文字排版与阅读节奏，让每一次阅读都成为思想的深度旅行。
-                        </p>
-                        
-                        <div class="reader-features">
-                            <div class="reader-feature">
-                                <i class="fas fa-eye"></i>
-                                <span>护眼模式</span>
-                            </div>
-                            <div class="reader-feature">
-                                <i class="fas fa-sliders-h"></i>
-                                <span>个性化设置</span>
-                            </div>
-                            <div class="reader-feature">
-                                <i class="fas fa-book-reader"></i>
-                                <span>沉浸体验</span>
-                            </div>
-                            <div class="reader-feature">
-                                <i class="fas fa-palette"></i>
-                                <span>多主题配色</span>
-                            </div>
-                        </div>
-                        
-                        <a href="ylydq.html" class="reader-link">
-                            了解产品详情 <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                    
-                    <div class="reader-visual">
-                        <div class="reader-device-mockup">
-                            <div class="reader-screen">
-                                <div class="reader-screen-content">
-                                    <h3 class="reader-screen-title">严论阅读器</h3>
-                                    <p class="reader-screen-text">
-                                        在这数字碎片化的时代，我们重新定义深度阅读。严论阅读器不仅仅是一个应用，它是思想的容器，是文字的圣殿。我们相信，真正的阅读需要专注、需要沉浸、需要与文本的深度对话。
-                                    </p>
-                                    <div class="reader-controls">
-                                        <div class="reader-control">
-                                            <i class="fas fa-font"></i>
-                                            <span>字体调节</span>
-                                        </div>
-                                        <div class="reader-control">
-                                            <i class="fas fa-sun"></i>
-                                            <span>亮度控制</span>
-                                        </div>
-                                        <div class="reader-control">
-                                            <i class="fas fa-bookmark"></i>
-                                            <span>书签功能</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+        <!-- 规划文档展示区 -->
+        <section class="document-section">
+            <div class="document-container">
+                <h1 class="document-title">关于严论博客平台2026-2027年整体规划发展纲要</h1>
+                
+                <div class="document-content">
+                    <p>为深入推进严肃文学研究与传播，构建高质量文学内容生态，持续提升"严论"品牌影响力与凝聚力，现正式发布严论博客平台2026-2027年度整体发展规划。本规划旨在进一步夯实平台基础、拓展创作者生态、深化产品协同，推动严肃文学在数字时代的传承、创新与对话。</p>
+
+                    <h2>一、平台功能升级与身份体系构建</h2>
+                    <p>为更好地服务广大严肃文学研究者、创作者及爱好者，严论博客平台将于2026年第一季度完成系统性升级。预计2026年2月下旬，新版平台正式上线，全面支持创作者注册登录及内容发布功能。此次升级将同步建立"严论用户统一身份标识"系统，实现用户身份的统一认证与管理，为创作者提供更便捷的内容创作、发布与互动环境，强化平台社交属性与社区归属感。</p>
+
+                    <h2>二、产品生态融合与体系化建设</h2>
+                    <p>严论博客将积极推进与严论旗下其他产品线的深度融合，推动内容、数据与服务层面的互联互通。通过技术打通与运营协同，构建覆盖文学研究、内容出版、学术交流、数字阅读的一体化产品生态，为用户提供连贯、深度、立体的严肃文学服务体验，实现从单一平台向生态体系的战略升级。</p>
+
+                    <h2>三、创作者扶持与独家作者发展计划</h2>
+                    <p>2026年，严论博客将启动"严肃文学创作者征集计划"，重点扶持具有学术深度、思想性与文学价值的优质创作者。平台将设立专项扶持机制，通过流量倾斜、创作资助、评奖推荐、出版合作等方式，助力优秀创作者成长。同时，我们将着力发展"严论独家作者"体系，与一批具有代表性、影响力、长期深耕严肃文学领域的作者建立深度合作关系，共同打造具有品牌标识度的原创内容矩阵。</p>
+
+                    <h2>四、外部联络与用户代表机制建设</h2>
+                    <p>为广泛吸纳社会意见、增强平台公共性与参与度，严论博客将于2026年建立"外部专家联络计划"与"用户代表计划"。前者将邀请文学界、学术界、评论界人士组成顾问团队，参与内容评议、方向指导与活动策划；后者将定期从活跃用户中推选代表，参与平台建设讨论、功能测试与运营反馈，形成常态化、制度化的用户参与机制，推动平台共建共治。</p>
+
+                    <h2>五、展望2027：深化内容品质，拓展文学公共空间</h2>
+                    <p>在2026年基础上，2027年严论博客将进一步聚焦内容品质提升、国际文学交流、经典数字化传承等领域，探索严肃文学与新媒体形态的有机结合，持续打造具有思想深度与文化温度的文学公共平台。我们期待与所有严肃文学同道携手，共同推动华语严肃文学的研究、创作与传播，在时代变迁中守护文学的精神价值与审美尊严。</p>
+
+                    <div class="document-signature">
+                        <p>特此公告。</p>
+                        <p>严肃文学研究小组</p>
+                        <p>2026年1月</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 产品目录区 - 第三个独立版块 -->
-        <section class="catalog-section">
-            <div class="container">
-                <span class="section-label">核心构成</span>
-                <div class="catalog-grid">
-                    <article class="catalog-item">
-                        <span class="item-number">01</span>
-                        <h3>严论客户端</h3>
-                        <p>
-                            严论客户端是一个集深度导读、沉浸式体验和社群共创于一体的严肃文学数字化平台。我们致力于降低严肃文学的认知门槛，为拒绝浮浅的阅读者提供纯净的阅读环境、精准的内容推荐和深度的文本解读，让每一次阅读都成为向思想深处的掘进。
-                        </p>
-                        <a href="app.html" class="catalog-link">
-                            探索此项目 <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </article>
-                    <article class="catalog-item">
-                        <span class="item-number">02</span>
-                        <h3>严肃文学交流论坛</h3>
-                        <p>
-                            深度严肃文学内容平台，设有名著解读、创作征集、作家专栏和读者书评四大核心板块，为严肃文学爱好者提供高质量的阅读与创作空间。
-                        </p>
-                        <a href="forum.html" class="catalog-link">
-                            进入论坛 <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </article>
-                    <article class="catalog-item">
-                        <span class="item-number">03</span>
-                        <h3>严论文创</h3>
-                        <p>
-                            严论文创是严论品牌体系下专注文化产品创作的旗舰产品品牌。我们以严肃文学为精神内核，通过精心设计的文创产品，将文学精神物化为日常之器，让思想的回响在合上书本后依然延续。
-                        </p>
-                        <a href="creative.html" class="catalog-link">
-                            发现文创 <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </article>
-                </div>
+        <!-- 下载区域 -->
+        <section class="download-section">
+            <div class="container download-container">
+                <h2 class="download-title">获取完整规划文档</h2>
+                <p class="download-desc">您可以下载本文档的完整版本，包含详细的实施计划、时间表和技术规格说明。</p>
+                <a href="https://1815012422.v.123pan.cn/1815012422/%E4%B8%A5%E8%AE%BA%E5%AE%98%E7%BD%91/%E5%85%B3%E4%BA%8E%E4%B8%A5%E8%AE%BA%E5%8D%9A%E5%AE%A2%E5%B9%B3%E5%8F%B02026-2027%E5%B9%B4%E6%95%B4%E4%BD%93%E8%A7%84%E5%88%92%E5%8F%91%E5%B1%95%E7%BA%B2%E8%A6%81.docx">
+                    <i class="fas fa-download"></i>
+                    下载本文件
+                </a>
+                <p class="download-note">文件大小：约 14.44 KB | 格式：docx</p>
             </div>
         </section>
     </main>
 
-    <!-- 4. 重构的页脚 - 第四个独立版块 -->
+    <!-- 4. 重构的页脚 -->
     <footer class="site-footer">
         <div class="footer-decoration">严论</div>
         <div class="container">
@@ -1216,7 +892,7 @@
                 <div class="footer-links-section">
                     <h4>支持</h4>
                     <ul class="footer-links">
-                        <li><a href="#pageHero">返回顶部</a></li>
+                        <li><a href="#planHero">返回顶部</a></li>
                         <li><a href="agreement.html" target="_blank">服务协议</a></li>
                         <li><a href="privacy.html" target="_blank">隐私政策</a></li>
                         <li><a href="partner.html" target="_blank">合作伙伴</a></li>
@@ -1226,7 +902,7 @@
             
             <div class="footer-bottom">
                 <div class="copyright">
-                    <p>© 2025-2026 严肃文学研究小组。保留所有权利。</p>
+                    <p>© 2026 严肃文学研究小组。保留所有权利。</p>
                     <p>文学不能改变世界，但文学可以改变人，而人可以改变世界。</p>
                 </div>
                 <div class="footer-legal">
@@ -1240,7 +916,7 @@
     <script>
         // 1. 导航栏滚动效果
         const siteHeader = document.getElementById('siteHeader');
-        const pageHero = document.getElementById('pageHero');
+        const planHero = document.getElementById('planHero');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 60) {
                 siteHeader.classList.add('scrolled');
@@ -1267,27 +943,67 @@
             });
         });
 
-        // 3. 产品卡片滚动浮现效果
-        const catalogItems = document.querySelectorAll('.catalog-item');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('in-view');
-                }
-            });
-        }, {
-            threshold: 0.15,
-            rootMargin: '0px 0px -50px 0px'
-        });
-        catalogItems.forEach(item => {
-            observer.observe(item);
-        });
+        // 3. 文档下载功能
+        function downloadDocument() {
+            // 创建一个虚拟的下载链接
+            const element = document.createElement('a');
+            
+            // 获取文档内容
+            const docContent = document.querySelector('.document-content').innerHTML;
+            
+            // 创建完整的HTML文档
+            const fullDoc = `
+            <!DOCTYPE html>
+            <html lang="zh-CN">
+            <head>
+                <meta charset="UTF-8">
+                <title>严论博客平台2026-2027年整体规划发展纲要</title>
+                <style>
+                    body { 
+                        font-family: 'Noto Serif SC', serif; 
+                        line-height: 1.8; 
+                        color: #1a1a1a; 
+                        max-width: 800px; 
+                        margin: 0 auto; 
+                        padding: 2rem;
+                    }
+                    h1 { color: #5c4b37; text-align: center; margin-bottom: 2rem; }
+                    h2 { color: #5c4b37; margin-top: 2.5rem; padding-bottom: 0.5rem; border-bottom: 1px solid #eee; }
+                    p { margin-bottom: 1.5rem; }
+                    .signature { text-align: right; margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #eee; font-style: italic; }
+                </style>
+            </head>
+            <body>
+                <h1>关于严论博客平台2026-2027年整体规划发展纲要</h1>
+                ${docContent}
+            </body>
+            </html>
+            `;
+            
+            // 创建Blob对象
+            const blob = new Blob([fullDoc], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            
+            // 设置下载属性
+            element.setAttribute('href', url);
+            element.setAttribute('download', '严论博客平台2026-2027整体规划发展纲要.html');
+            
+            // 触发下载
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+            
+            // 清理URL对象
+            setTimeout(() => URL.revokeObjectURL(url), 100);
+            
+            // 显示提示信息
+            alert('文档下载已开始！文件名为：严论博客平台2026-2027整体规划发展纲要.html');
+        }
 
-        // 4. 为卡片添加交错延迟效果
+        // 4. 页面加载动画
         window.addEventListener('load', () => {
-            catalogItems.forEach((item, index) => {
-                item.style.transitionDelay = `${index * 0.1}s`;
-            });
+            // 确保内容区已经显示
+            document.querySelector('.plan-hero-content').style.animationPlayState = 'running';
         });
     </script>
 </body>

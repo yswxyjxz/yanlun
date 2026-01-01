@@ -51,6 +51,78 @@
             margin: 0 auto;
         }
 
+        /* ========== 0. 顶部公告栏 ========== */
+        .announcement-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(90deg, var(--color-accent) 0%, var(--color-accent-light) 100%);
+            color: var(--color-paper-light);
+            padding: 0.8rem 0;
+            z-index: 2000;
+            transform: translateY(0);
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 2px 10px rgba(92, 75, 55, 0.2);
+        }
+        
+        .announcement-bar.hidden {
+            transform: translateY(-100%);
+        }
+        
+        .announcement-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .announcement-text {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 0.95rem;
+        }
+        
+        .announcement-text i {
+            font-size: 1.1rem;
+        }
+        
+        .announcement-link {
+            color: var(--color-paper-light);
+            text-decoration: underline;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+        }
+        
+        .announcement-link:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+            text-decoration: none;
+        }
+        
+        .close-announcement {
+            background: transparent;
+            border: none;
+            color: var(--color-paper-light);
+            font-size: 1.2rem;
+            cursor: pointer;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease;
+        }
+        
+        .close-announcement:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+
         /* ========== 1. 液态玻璃导航栏 ========== */
         .site-header {
             position: fixed;
@@ -72,6 +144,12 @@
             align-items: center;
             transition: var(--transition-smooth);
         }
+        
+        /* 当公告栏显示时，调整导航栏位置 */
+        body.announcement-visible .site-header {
+            top: 4rem;
+        }
+        
         .site-header.scrolled {
             top: 0.8rem;
             width: 100%;
@@ -82,6 +160,12 @@
             background: rgba(248, 245, 240, 0.92);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
         }
+        
+        /* 当公告栏显示且滚动时，调整导航栏位置 */
+        body.announcement-visible .site-header.scrolled {
+            top: 0.8rem;
+        }
+        
         .brand {
             font-weight: 400;
             font-size: 1.3rem;
@@ -235,6 +319,12 @@
             border-bottom: 1px solid rgba(92, 75, 55, 0.08);
             margin-bottom: 0;
         }
+        
+        /* 当公告栏显示时，调整英雄区域顶部内边距 */
+        body.announcement-visible .blog-hero-section {
+            padding-top: 14rem;
+        }
+        
         .blog-hero-content {
             position: relative;
             z-index: 2;
@@ -859,6 +949,9 @@
             .container {
                 width: 92%;
             }
+            .announcement-content {
+                width: 92%;
+            }
             .footer-main {
                 grid-template-columns: 1fr 1fr;
                 gap: 3rem;
@@ -867,6 +960,39 @@
         
         @media (max-width: 768px) {
             html { font-size: 16px; }
+            .announcement-bar {
+                padding: 0.7rem 0;
+            }
+            
+            .announcement-text {
+                font-size: 0.85rem;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 0.5rem;
+            }
+            
+            .announcement-text i {
+                font-size: 1rem;
+            }
+            
+            .close-announcement {
+                width: 28px;
+                height: 28px;
+                font-size: 1.1rem;
+                position: absolute;
+                right: 1rem;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+            
+            body.announcement-visible .site-header {
+                top: 3.5rem;
+            }
+            
+            body.announcement-visible .blog-hero-section {
+                padding-top: 12rem;
+            }
+            
             .site-header {
                 top: 1rem;
                 width: 94%;
@@ -965,6 +1091,12 @@
         
         @media (max-width: 480px) {
             .container { width: 94%; padding: 0 15px; }
+            .announcement-text {
+                font-size: 0.8rem;
+                text-align: center;
+                padding-right: 40px;
+            }
+            
             .blog-hero-title {
                 font-size: 2rem;
                 line-height: 1.5;
@@ -1007,6 +1139,20 @@
     </style>
 </head>
 <body>
+    <!-- 0. 顶部公告栏 -->
+    <div class="announcement-bar" id="announcementBar">
+        <div class="announcement-content">
+            <div class="announcement-text">
+                <i class="fas fa-bullhorn"></i>
+                <span>严论博客平台2026-2027年整体规划发展纲要已发布！</span>
+                <a href="blog-20260101.html" class="announcement-link">点击查看完整规划</a>
+            </div>
+            <button class="close-announcement" id="closeAnnouncement" aria-label="关闭公告">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
+
     <!-- 1. 液态玻璃导航栏 -->
     <header class="site-header" id="siteHeader">
         <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
@@ -1370,6 +1516,35 @@
     </footer>
 
     <script>
+        // 0. 公告栏控制
+        const announcementBar = document.getElementById('announcementBar');
+        const closeAnnouncement = document.getElementById('closeAnnouncement');
+        const body = document.body;
+        
+        // 检查是否已经关闭过公告栏
+        const announcementClosed = localStorage.getItem('announcementClosed');
+        
+        if (!announcementClosed) {
+            // 显示公告栏并添加相应类名到body
+            announcementBar.classList.remove('hidden');
+            body.classList.add('announcement-visible');
+        }
+        
+        // 关闭公告栏事件
+        closeAnnouncement.addEventListener('click', () => {
+            announcementBar.classList.add('hidden');
+            body.classList.remove('announcement-visible');
+            localStorage.setItem('announcementClosed', 'true');
+        });
+        
+        // 公告栏点击事件（除了关闭按钮）
+        announcementBar.addEventListener('click', (e) => {
+            if (!e.target.closest('.close-announcement')) {
+                // 点击公告栏内容时，跳转到规划页面
+                window.location.href = 'blog-20260101.html';
+            }
+        });
+
         // 1. 导航栏滚动效果
         const siteHeader = document.getElementById('siteHeader');
         const blogHero = document.getElementById('blogHero');
@@ -1384,7 +1559,6 @@
         // 2. 移动端菜单控制
         const menuToggle = document.getElementById('menuToggle');
         const mobileNav = document.getElementById('mobileNav');
-        const body = document.body;
         menuToggle.addEventListener('click', () => {
             body.classList.toggle('menu-open');
             const isExpanded = body.classList.contains('menu-open');

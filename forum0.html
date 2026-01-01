@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>关于我们｜严论官网</title>
+    <title>严论博客｜严论官网</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -221,8 +221,8 @@
             width: 70%;
         }
 
-        /* ========== 2. 关于我们英雄区 ========== */
-        .about-hero-section {
+        /* ========== 2. 博客英雄区 ========== */
+        .blog-hero-section {
             min-height: 80vh;
             position: relative;
             display: flex;
@@ -235,7 +235,7 @@
             border-bottom: 1px solid rgba(92, 75, 55, 0.08);
             margin-bottom: 0;
         }
-        .about-hero-content {
+        .blog-hero-content {
             position: relative;
             z-index: 2;
             opacity: 0;
@@ -251,20 +251,20 @@
                 transform: translateY(0);
             }
         }
-        .about-hero-title {
+        .blog-hero-title {
             font-size: clamp(2.5rem, 7vw, 4rem);
             font-weight: 600;
             line-height: 1.3;
             margin-bottom: 1.5rem;
             color: var(--color-ink);
         }
-        .about-hero-title .highlight {
+        .blog-hero-title .highlight {
             font-weight: 600;
             color: var(--color-accent);
             position: relative;
             display: inline-block;
         }
-        .about-hero-title .highlight::after {
+        .blog-hero-title .highlight::after {
             content: '';
             position: absolute;
             bottom: -0.12em;
@@ -275,10 +275,10 @@
             z-index: -1;
             transition: height 0.5s ease;
         }
-        .about-hero-title .highlight:hover::after {
+        .blog-hero-title .highlight:hover::after {
             height: 0.5em;
         }
-        .about-hero-subtitle {
+        .blog-hero-subtitle {
             font-size: 1.5rem;
             font-weight: 300;
             color: var(--color-meta);
@@ -287,16 +287,99 @@
             opacity: 0.9;
             line-height: 1.8;
         }
-        .about-hero-description {
-            font-size: 1.2rem;
+        .platform-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-bottom: 4rem;
+            flex-wrap: wrap;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--color-accent);
+            margin-bottom: 0.5rem;
+        }
+        .stat-label {
+            font-size: 0.95rem;
             color: var(--color-meta);
-            max-width: 80ch;
-            margin: 0 auto 4rem;
-            line-height: 1.8;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        
+        /* 英雄区域按钮容器 */
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .blog-entry-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.2rem 2.5rem;
+            background-color: var(--color-accent);
+            color: var(--color-paper-light);
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition-smooth);
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .blog-entry-btn:hover {
+            background-color: var(--color-accent-light);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(92, 75, 55, 0.2);
+            gap: 1.5rem;
+        }
+        .blog-entry-btn i {
+            font-size: 1.2rem;
+            transition: transform 0.4s ease;
+        }
+        .blog-entry-btn:hover i {
+            transform: translateX(5px);
+        }
+        
+        /* 客户端下载按钮 */
+        .client-download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.2rem 2.5rem;
+            background-color: transparent;
+            color: var(--color-accent);
+            border: 2px solid var(--color-accent);
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition-smooth);
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .client-download-btn:hover {
+            background-color: var(--color-accent);
+            color: var(--color-paper-light);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(92, 75, 55, 0.2);
+            gap: 1.5rem;
+        }
+        .client-download-btn i {
+            font-size: 1.2rem;
+            transition: transform 0.4s ease;
+        }
+        .client-download-btn:hover i {
+            transform: translateY(3px);
         }
 
-        /* ========== 3. 使命愿景区域 ========== */
-        .mission-section {
+        /* ========== 3. 核心板块介绍 ========== */
+        .sections-section {
             padding: 8rem 0;
             background-color: var(--color-paper-light);
             position: relative;
@@ -318,13 +401,13 @@
             margin: 0 auto;
             line-height: 1.7;
         }
-        .mission-grid {
+        .sections-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 3rem;
             margin-bottom: 6rem;
         }
-        .mission-card {
+        .section-card {
             background-color: var(--color-paper-light);
             border-radius: 16px;
             padding: 3.5rem 2.5rem;
@@ -335,7 +418,7 @@
             position: relative;
             overflow: hidden;
         }
-        .mission-card::before {
+        .section-card::before {
             content: '';
             position: absolute;
             top: 0;
@@ -345,149 +428,223 @@
             background: linear-gradient(90deg, var(--color-accent), var(--color-accent-light));
             opacity: 0.8;
         }
-        .mission-card:hover {
+        .section-card:hover {
             transform: translateY(-8px);
             box-shadow: var(--shadow-elevated);
             border-color: rgba(92, 75, 55, 0.2);
         }
-        .mission-icon {
+        .section-icon {
             font-size: 3.5rem;
             margin-bottom: 2rem;
             color: var(--color-accent);
         }
-        .mission-card h3 {
+        .section-card h3 {
             font-size: 1.8rem;
             font-weight: 600;
             margin-bottom: 1.5rem;
             color: var(--color-ink);
         }
-        .mission-description {
+        .section-description {
             font-size: 1.05rem;
             color: var(--color-meta);
             margin-bottom: 2.5rem;
             line-height: 1.7;
         }
-        .mission-content {
-            max-width: 800px;
-            margin: 0 auto;
-            font-size: 1.1rem;
-            line-height: 1.9;
-            color: var(--color-ink);
-            text-align: center;
+        .section-features {
+            text-align: left;
+            margin-top: 2rem;
         }
-        .mission-content p {
-            margin-bottom: 2rem;
+        .section-features h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--color-accent);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
-        .mission-quote {
-            border-left: 4px solid var(--color-accent);
-            padding-left: 2rem;
-            margin: 3rem auto;
-            font-style: italic;
+        .feature-list {
+            list-style: none;
+        }
+        .feature-list li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
             color: var(--color-meta);
-            font-size: 1.3rem;
-            line-height: 1.8;
-            font-weight: 300;
-            max-width: 600px;
+            font-size: 0.95rem;
+        }
+        .feature-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--color-accent);
+            font-weight: bold;
         }
 
-        /* ========== 4. 项目背景区域 ========== */
-        .background-section {
+        /* ========== 4. 客户端下载区域 ========== */
+        .download-section {
             padding: 8rem 0;
             background-color: var(--color-paper-dark);
-            position: relative;
             border-top: 1px solid rgba(92, 75, 55, 0.05);
             border-bottom: 1px solid rgba(92, 75, 55, 0.05);
         }
-        .background-content {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        .background-intro {
-            font-size: 1.3rem;
-            line-height: 1.9;
-            color: var(--color-ink);
-            margin-bottom: 4rem;
-            text-align: center;
-        }
-        .challenge-grid {
+        
+        .download-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
-            margin-top: 5rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 900px;
+            margin: 0 auto 4rem;
         }
-        .challenge-item {
+        
+        .download-card {
             background-color: var(--color-paper-light);
             border-radius: 12px;
-            padding: 3rem;
+            padding: 2.5rem 2rem;
+            border: 1px solid rgba(92, 75, 55, 0.1);
+            box-shadow: var(--shadow-subtle);
+            transition: var(--transition-smooth);
+            text-align: center;
+        }
+        
+        .download-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-elevated);
+            border-color: rgba(92, 75, 55, 0.2);
+        }
+        
+        .download-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .download-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--color-ink);
+        }
+        
+        .download-card p {
+            color: var(--color-meta);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+        
+        .download-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+        
+        .download-btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background-color: var(--color-accent);
+            color: var(--color-paper-light);
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition-smooth);
+            border: none;
+            cursor: pointer;
+        }
+        
+        .download-btn:hover {
+            background-color: var(--color-accent-light);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(92, 75, 55, 0.2);
+        }
+        
+        .download-btn-alt {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background-color: transparent;
+            color: var(--color-accent);
+            border: 1px solid var(--color-accent);
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition-smooth);
+        }
+        
+        .download-btn-alt:hover {
+            background-color: var(--color-accent);
+            color: var(--color-paper-light);
+        }
+        
+        .download-note {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            color: var(--color-meta);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            padding: 2rem;
+            background-color: var(--color-paper-light);
+            border-radius: 12px;
+            border-left: 4px solid var(--color-accent-light);
+        }
+        
+        .download-note a {
+            color: var(--color-accent);
+            text-decoration: underline;
+        }
+        
+        .download-note a:hover {
+            color: var(--color-accent-light);
+        }
+
+        /* ========== 5. 平台特色区域 ========== */
+        .features-section {
+            padding: 8rem 0;
+            background-color: var(--color-paper-light);
+            position: relative;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3.5rem;
+        }
+        .feature-card {
+            background-color: var(--color-paper-light);
+            border-radius: 16px;
+            padding: 3rem 2.5rem;
             border: 1px solid rgba(92, 75, 55, 0.08);
             box-shadow: var(--shadow-subtle);
             transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
         }
-        .challenge-item:hover {
+        .feature-card:hover {
             transform: translateY(-5px);
             box-shadow: var(--shadow-elevated);
             border-color: rgba(92, 75, 55, 0.15);
         }
-        .challenge-header {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, transparent 50%, rgba(92, 75, 55, 0.03) 50%);
+            border-radius: 0 16px 0 0;
         }
-        .challenge-icon {
-            font-size: 2.5rem;
+        .feature-icon {
+            font-size: 2.8rem;
             color: var(--color-accent);
-            min-width: 60px;
+            margin-bottom: 1.8rem;
         }
-        .challenge-title {
-            font-size: 1.8rem;
+        .feature-title {
+            font-size: 1.6rem;
             font-weight: 600;
+            margin-bottom: 1.2rem;
             color: var(--color-ink);
         }
-        .challenge-description {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: var(--color-ink);
-        }
-
-        /* ========== 5. 联系我们区域 ========== */
-        .contact-section {
-            padding: 8rem 0;
-            background-color: var(--color-paper-light);
-            position: relative;
-        }
-        .contact-content {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        .contact-methods {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            margin-top: 4rem;
-            flex-wrap: wrap;
-        }
-        .contact-method {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1rem;
-            padding: 2rem;
-            min-width: 200px;
-        }
-        .contact-icon {
-            font-size: 2.5rem;
-            color: var(--color-accent);
-        }
-        .contact-method h4 {
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: var(--color-ink);
-        }
-        .contact-method p {
+        .feature-description {
             color: var(--color-meta);
-            line-height: 1.6;
+            line-height: 1.8;
+            font-size: 1.05rem;
         }
 
         /* ========== 6. 完全重构的页脚区域 ========== */
@@ -724,37 +881,59 @@
             .menu-toggle {
                 display: block;
             }
-            .about-hero-section {
+            .blog-hero-section {
                 padding: 8rem 0 4rem;
                 min-height: 70vh;
             }
-            .about-hero-title {
+            .blog-hero-title {
                 font-size: clamp(2.2rem, 6vw, 3rem);
                 line-height: 1.4;
                 margin-bottom: 1.2rem;
             }
-            .about-hero-subtitle {
+            .blog-hero-subtitle {
                 font-size: 1.2rem;
                 line-height: 1.7;
             }
-            .mission-grid {
+            .platform-stats {
+                gap: 2rem;
+            }
+            .stat-number {
+                font-size: 2rem;
+            }
+            .hero-buttons {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            .blog-entry-btn, .client-download-btn {
+                width: 100%;
+                max-width: 300px;
+                margin: 0 auto;
+            }
+            .sections-grid {
                 grid-template-columns: 1fr;
                 gap: 2.5rem;
             }
-            .mission-card {
+            .section-card {
                 padding: 2.5rem 2rem;
             }
-            .challenge-grid {
+            .download-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+            }
+            .download-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            .download-btn, .download-btn-alt {
+                width: 100%;
+                max-width: 200px;
+            }
+            .features-grid {
                 grid-template-columns: 1fr;
                 gap: 2.5rem;
             }
-            .challenge-item {
-                padding: 2rem;
-            }
-            .contact-methods {
-                flex-direction: column;
-                align-items: center;
-                gap: 2rem;
+            .feature-card {
+                padding: 2.5rem 2rem;
             }
             .mobile-nav-links a {
                 font-size: 1.6rem;
@@ -786,12 +965,12 @@
         
         @media (max-width: 480px) {
             .container { width: 94%; padding: 0 15px; }
-            .about-hero-title {
+            .blog-hero-title {
                 font-size: 2rem;
                 line-height: 1.5;
                 margin-bottom: 1rem;
             }
-            .about-hero-subtitle {
+            .blog-hero-subtitle {
                 font-size: 1.1rem;
                 line-height: 1.8;
             }
@@ -799,11 +978,18 @@
                 font-size: 1.1rem;
                 letter-spacing: 0.2em;
             }
-            .mission-card {
+            .blog-entry-btn, .client-download-btn {
+                padding: 1rem 2rem;
+                font-size: 1rem;
+            }
+            .section-card {
                 padding: 2rem 1.8rem;
             }
-            .challenge-item {
-                padding: 1.8rem;
+            .download-card {
+                padding: 2rem 1.5rem;
+            }
+            .feature-card {
+                padding: 2rem 1.8rem;
             }
             .footer-decoration {
                 font-size: 6rem;
@@ -831,7 +1017,7 @@
                 <ul>
                     <li><a href="index.html">首页</a></li>
                     <li><a href="app.html">客户端</a></li>
-                    <li><a href="forum.html">文学论坛</a></li>
+                    <li><a href="forum.html" class="active">文学论坛</a></li>
                     <li><a href="creative.html">文创</a></li>
                 </ul>
             </nav>
@@ -850,182 +1036,286 @@
         <ul class="mobile-nav-links">
             <li><a href="index.html">首页</a></li>
             <li><a href="app.html">严论客户端</a></li>
-            <li><a href="forum.html">文学论坛</a></li>
+            <li><a href="forum.html" class="active">文学论坛</a></li>
             <li><a href="creative.html">严论文创</a></li>
         </ul>
     </div>
 
     <!-- 3. 主内容 -->
     <main>
-        <!-- 关于我们英雄区 -->
-        <section class="about-hero-section" id="aboutHero">
-            <div class="container about-hero-content">
-                <h1 class="about-hero-title">
-                    关于<span class="highlight">我们</span>
+        <!-- 博客英雄区 -->
+        <section class="blog-hero-section" id="blogHero">
+            <div class="container blog-hero-content">
+                <h1 class="blog-hero-title">
+                    严论<span class="highlight">博客</span>
                 </h1>
-                <p class="about-hero-subtitle">
-                    一个围绕严肃文学构建的数字生态系统
+                <p class="blog-hero-subtitle">
+                    深度严肃文学内容平台，设有名著解读、创作征集、作家专栏和读者书评四大核心板块，为严肃文学爱好者提供高质量的阅读与创作空间。
                 </p>
-                <p class="about-hero-description">
-                    严论是一个严肃文学复兴计划。我们通过数字工具、社区与实体物件，为拒绝浮浅的阅读者与写作者，构筑一个可以沉思、切磋与生长的精神系统。
-                </p>
-            </div>
-        </section>
-
-        <!-- 使命愿景区域 -->
-        <section class="mission-section" id="mission">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">使命与愿景</h2>
-                    <p class="section-subtitle">
-                        在速朽的时代，我们致力于构建缓慢而深长的精神空间
-                    </p>
-                </div>
                 
-                <div class="mission-grid">
-                    <div class="mission-card">
-                        <div class="mission-icon">
-                            <i class="fas fa-book"></i>
-                        </div>
-                        <h3>我们的使命</h3>
-                        <p class="mission-description">
-                            通过数字工具和社群建设，降低严肃文学的认知门槛，让更多人能够接触、理解和热爱严肃文学，构建深度阅读的文化生态。
-                        </p>
+                <div class="platform-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">6000+</div>
+                        <div class="stat-label">累计访问量</div>
                     </div>
-                    
-                    <div class="mission-card">
-                        <div class="mission-icon">
-                            <i class="fas fa-eye"></i>
-                        </div>
-                        <h3>我们的愿景</h3>
-                        <p class="mission-description">
-                            成为严肃文学数字化传播的引领者，构建一个连接作者、读者和出版社的良性文学生态，推动严肃文学在数字时代的复兴。
-                        </p>
+                    <div class="stat-item">
+                        <div class="stat-number">4</div>
+                        <div class="stat-label">核心板块</div>
                     </div>
-                    
-                    <div class="mission-card">
-                        <div class="mission-icon">
-                            <i class="fas fa-handshake"></i>
-                        </div>
-                        <h3>我们的价值观</h3>
-                        <p class="mission-description">
-                            深度、真诚、开放、共创。我们相信严肃的交流是滋养创作的最好土壤，深度内容需要与之匹配的优质体验。
-                        </p>
+                    <div class="stat-item">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">签约作者</div>
                     </div>
                 </div>
                 
-                <div class="mission-content">
-                    <p>严论诞生于对数字时代阅读现状的深刻反思。我们观察到，严肃文学面临着"读不懂"、"没时间"、"找不到"的三重困境，而数字媒体的碎片化特性加剧了这一趋势。</p>
-                    
-                    <div class="mission-quote">
-                        "文学不能改变世界，但文学可以改变人，而人可以改变世界。"
-                    </div>
-                    
-                    <p>我们相信，深度阅读和严肃思考是滋养个体精神成长、构建社会文化根基的重要力量。严论致力于通过技术赋能、社群构建和产品创新，为严肃文学创造新的可能性。</p>
+                <!-- 新增：两个按钮并排 -->
+                <div class="hero-buttons">
+                    <a href="https://www.yswxstudy.top/" class="blog-entry-btn" target="_blank">
+                        进入严论博客 <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="#downloads" class="client-download-btn">
+                        客户端下载 <i class="fas fa-download"></i>
+                    </a>
                 </div>
             </div>
         </section>
 
-        <!-- 项目背景区域 -->
-        <section class="background-section" id="background">
+        <!-- 核心板块介绍 -->
+        <section class="sections-section" id="sections">
             <div class="container">
                 <div class="section-header">
-                    <h2 class="section-title">项目背景</h2>
+                    <h2 class="section-title">四大核心板块</h2>
                     <p class="section-subtitle">
-                        我们为何开始这个旅程
+                        严论博客围绕严肃文学的核心需求，精心设计了四大板块，为读者和作者提供全方位的文学体验。
                     </p>
                 </div>
                 
-                <div class="background-content">
-                    <p class="background-intro">
-                        调研数据显示严肃文学存在高认知门槛：读者面临"读不懂"、"没时间"、"找不到"的困境。与此同时，严肃文学作者缺乏有效的发表渠道和读者互动，出版社面临受众萎缩的挑战。
-                    </p>
+                <div class="sections-grid">
+                    <div class="section-card">
+                        <div class="section-icon">
+                            <i class="fas fa-book-open"></i>
+                        </div>
+                        <h3>名著解读</h3>
+                        <p class="section-description">
+                            深度解析经典文学作品，提供背景知识、主题分析和阅读指导，帮助读者理解复杂文本，降低严肃文学的认知门槛。
+                        </p>
+                        <div class="section-features">
+                            <h4>主要特色</h4>
+                            <ul class="feature-list">
+                                <li>经典作品深度导读</li>
+                                <li>作者与时代背景分析</li>
+                                <li>关键概念与主题解读</li>
+                                <li>阅读方法与技巧分享</li>
+                            </ul>
+                        </div>
+                    </div>
                     
-                    <div class="challenge-grid">
-                        <div class="challenge-item">
-                            <div class="challenge-header">
-                                <div class="challenge-icon">
-                                    <i class="fas fa-user-graduate"></i>
-                                </div>
-                                <h3 class="challenge-title">读者困境</h3>
-                            </div>
-                            <p class="challenge-description">
-                                严肃文学作品往往语言复杂、思想深邃，普通读者缺乏必要的背景知识和解读工具。同时，快节奏生活导致深度阅读时间减少，缺乏有效的阅读引导和社群支持。
-                            </p>
+                    <div class="section-card">
+                        <div class="section-icon">
+                            <i class="fas fa-pen-nib"></i>
                         </div>
-                        
-                        <div class="challenge-item">
-                            <div class="challenge-header">
-                                <div class="challenge-icon">
-                                    <i class="fas fa-pen-fancy"></i>
-                                </div>
-                                <h3 class="challenge-title">作者困境</h3>
-                            </div>
-                            <p class="challenge-description">
-                                严肃文学作者面临发表渠道有限、版税收入低、读者互动少的困境。缺乏有效的创作激励和反馈机制，许多优秀作品难以被读者发现和欣赏。
-                            </p>
+                        <h3>创作征集</h3>
+                        <p class="section-description">
+                            面向写作者的作品征集平台，提供创作指导、编辑反馈和发表机会，鼓励严肃文学创作，发掘优秀文学新人。
+                        </p>
+                        <div class="section-features">
+                            <h4>主要特色</h4>
+                            <ul class="feature-list">
+                                <li>定期主题创作征集</li>
+                                <li>专业编辑审稿反馈</li>
+                                <li>优秀作品发表机会</li>
+                                <li>创作经验交流分享</li>
+                            </ul>
                         </div>
-                        
-                        <div class="challenge-item">
-                            <div class="challenge-header">
-                                <div class="challenge-icon">
-                                    <i class="fas fa-building"></i>
-                                </div>
-                                <h3 class="challenge-title">出版困境</h3>
-                            </div>
-                            <p class="challenge-description">
-                                传统出版社在数字转型过程中面临挑战，严肃文学作品受众减少，市场推广困难。需要新的传播方式和商业模式来支持严肃文学的出版与传播。
-                            </p>
+                    </div>
+                    
+                    <div class="section-card">
+                        <div class="section-icon">
+                            <i class="fas fa-user-edit"></i>
+                        </div>
+                        <h3>作家专栏</h3>
+                        <p class="section-description">
+                            特邀作家和文学研究者开设专栏，分享创作心得、文学研究和行业观察，建立作者与读者的深度对话桥梁。
+                        </p>
+                        <div class="section-features">
+                            <h4>主要特色</h4>
+                            <ul class="feature-list">
+                                <li>知名作家特邀专栏</li>
+                                <li>创作过程深度揭秘</li>
+                                <li>文学研究前沿分享</li>
+                                <li>读者作者直接互动</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="section-card">
+                        <div class="section-icon">
+                            <i class="fas fa-comment-alt"></i>
+                        </div>
+                        <h3>读者书评</h3>
+                        <p class="section-description">
+                            读者分享阅读感受和评论的空间，鼓励深度思考与真诚表达，构建读者之间的交流网络，丰富作品的多维度解读。
+                        </p>
+                        <div class="section-features">
+                            <h4>主要特色</h4>
+                            <ul class="feature-list">
+                                <li>读者原创书评分享</li>
+                                <li>作品多角度解读</li>
+                                <li>阅读社群交流互动</li>
+                                <li>优秀书评推荐展示</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 联系我们区域 -->
-        <section class="contact-section" id="contact">
+        <!-- 客户端下载区域 -->
+        <section class="download-section" id="downloads">
             <div class="container">
                 <div class="section-header">
-                    <h2 class="section-title">联系我们</h2>
+                    <h2 class="section-title">客户端下载</h2>
                     <p class="section-subtitle">
-                        我们期待与您交流与合作
+                        除了直接访问网站，你也可以下载严论博客客户端，获得更好的阅读和创作体验。支持 Windows、macOS 和 Linux 系统。
                     </p>
                 </div>
                 
-                <div class="contact-content">
-                    <p>如果您对严肃文学复兴计划感兴趣，希望参与我们的项目，或是有任何合作意向，欢迎通过以下方式与我们联系。</p>
+                <div class="download-grid">
+                    <!-- Windows 下载项 -->
+                    <div class="download-card">
+                        <div class="download-icon" style="color: #0078d7;">
+                            <i class="fab fa-windows"></i>
+                        </div>
+                        <h3>Windows</h3>
+                        <p>支持 Windows 10/11 (64位)</p>
+                        <div class="download-buttons">
+                            <a href="https://1815012422.v.123pan.cn/1815012422/%E4%B8%A5%E8%AE%BA%E5%AE%98%E7%BD%91/yswxstudy-win-x64-1.0.0.zip" class="download-btn">
+                                下载 64位版
+                            </a>
+                            <a href="https://1815012422.v.123pan.cn/1815012422/%E4%B8%A5%E8%AE%BA%E5%AE%98%E7%BD%91/yswxstudy-win-arm64-1.0.0.zip" class="download-btn-alt">
+                                ARM64版
+                            </a>
+                        </div>
+                    </div>
                     
-                    <div class="contact-methods">
-                        <div class="contact-method">
-                            <div class="contact-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <h4>邮件联系</h4>
-                            <p>yswxyjxz@163.com</p>
+                    <!-- macOS 下载项 -->
+                    <div class="download-card">
+                        <div class="download-icon" style="color: #000000;">
+                            <i class="fab fa-apple"></i>
                         </div>
-                        
-                        <div class="contact-method">
-                            <div class="contact-icon">
-                                <i class="fas fa-comments"></i>
-                            </div>
-                            <h4>论坛交流</h4>
-                            <p>访问严论博客参与讨论</p>
+                        <h3>macOS</h3>
+                        <p>支持 Apple Silicon (M系列芯片)</p>
+                        <a href="https://1815012422.v.123pan.cn/1815012422/%E4%B8%A5%E8%AE%BA%E5%AE%98%E7%BD%91/yswxstudy-macos-aarch64-1.0.0.zip" class="download-btn">
+                            下载 macOS 版
+                        </a>
+                    </div>
+                    
+                    <!-- Linux 下载项 -->
+                    <div class="download-card">
+                        <div class="download-icon" style="color: #fcc624;">
+                            <i class="fab fa-linux"></i>
                         </div>
-                        
-                        <div class="contact-method">
-                            <div class="contact-icon">
-                                <i class="fas fa-handshake"></i>
-                            </div>
-                            <h4>合作咨询</h4>
-                            <p>商务合作与投稿事宜</p>
+                        <h3>Linux</h3>
+                        <p>支持 Debian/Ubuntu 及通用 Linux 发行版</p>
+                        <div class="download-buttons">
+                            <a href="https://1815012422.v.123pan.cn/1815012422/%E4%B8%A5%E8%AE%BA%E5%AE%98%E7%BD%91/yswxstudy-linux-amd64-1.0.0.zip" class="download-btn">
+                                .deb 包
+                            </a>
+                            <a href="https://1815012422.v.123pan.cn/1815012422/%E4%B8%A5%E8%AE%BA%E5%AE%98%E7%BD%91/yswxstudy-linux-amd64-1.0.0%281%29.zip" class="download-btn-alt">
+                                AppImage
+                            </a>
                         </div>
+                    </div>
+                </div>
+                
+                <div class="download-note">
+                    <p style="margin-bottom: 1rem;"><i class="fas fa-info-circle" style="color: var(--color-accent); margin-right: 0.5rem;"></i> 
+                        <strong>下载说明：</strong>Windows ARM64 版适用于使用 ARM 架构处理器的 Windows 设备（如 Surface Pro X）。macOS 版适用于 Apple Silicon (M1/M2/M3) 芯片的 Mac。Linux .deb 包适用于 Debian/Ubuntu 等基于 Debian 的系统，AppImage 适用于大多数 Linux 发行版。
+                    </p>
+                    <p>
+                        <i class="fas fa-desktop" style="color: var(--color-accent); margin-right: 0.5rem;"></i> 
+                        你也可以 <a href="https://www.yswxstudy.top/" target="_blank">直接访问严论博客网站</a>，无需下载安装即可使用全部功能。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 平台特色区域 -->
+        <section class="features-section" id="features">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">平台特色</h2>
+                    <p class="section-subtitle">
+                        严论博客致力于构建一个专注于严肃文学的高质量内容平台，为读者和作者提供独特的价值体验。
+                    </p>
+                </div>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-gem"></i>
+                        </div>
+                        <h3 class="feature-title">内容质量优先</h3>
+                        <p class="feature-description">
+                            所有内容都经过严格筛选和编辑审核，确保文学价值和思想深度。我们拒绝流量导向的内容策略，坚持质量优先的原则。
+                        </p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3 class="feature-title">社群互动交流</h3>
+                        <p class="feature-description">
+                            构建作者、读者、研究者之间的深度对话平台。每篇文章都设有讨论区，鼓励理性、深入的文学交流与思想碰撞。
+                        </p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-seedling"></i>
+                        </div>
+                        <h3 class="feature-title">新人培育计划</h3>
+                        <p class="feature-description">
+                            通过创作征集和编辑指导，发掘和培育文学新人。为有潜力的写作者提供发表平台和专业支持，助力严肃文学创作生态。
+                        </p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-layer-group"></i>
+                        </div>
+                        <h3 class="feature-title">系统性知识建构</h3>
+                        <p class="feature-description">
+                            内容按主题和作品系统组织，形成完整的知识结构。读者可以按图索骥，建立对严肃文学的系统性理解。
+                        </p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-balance-scale"></i>
+                        </div>
+                        <h3 class="feature-title">平衡专业与普及</h3>
+                        <p class="feature-description">
+                            在保持专业深度的同时，注重内容的可读性和普及性。通过导读、解读等形式，让严肃文学更接近普通读者。
+                        </p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-infinity"></i>
+                        </div>
+                        <h3 class="feature-title">可持续内容生态</h3>
+                        <p class="feature-description">
+                            建立从内容创作、编辑审核到读者反馈的完整生态链。确保平台内容的持续更新和质量稳定，形成良性循环。
+                        </p>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- 6. 重构的页脚 - 第三个独立版块 -->
+    <!-- 7. 重构的页脚 -->
     <footer class="site-footer">
         <div class="footer-decoration">严论</div>
         <div class="container">
@@ -1050,15 +1340,16 @@
                     <ul class="footer-links">
                         <li><a href="index.html">首页</a></li>
                         <li><a href="app.html">严论客户端</a></li>
-                        <li><a href="forum.html">文学论坛</a></li>
+                        <li><a href="forum.html">严论博客</a></li>
                         <li><a href="creative.html">严论文创</a></li>
-                        <li><a href="#aboutHero">返回顶部</a></li>
+                        <li><a href="#blogHero">返回顶部</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-links-section">
                     <h4>支持</h4>
                     <ul class="footer-links">
+                        <li><a href="https://www.yswxstudy.top/" target="_blank">进入博客</a></li>
                         <li><a href="agreement.html" target="_blank">服务协议</a></li>
                         <li><a href="privacy.html" target="_blank">隐私政策</a></li>
                     </ul>
@@ -1071,7 +1362,7 @@
                     <p>文学不能改变世界，但文学可以改变人，而人可以改变世界。</p>
                 </div>
                 <div class="footer-legal">
-                    <a href="agreement.html" target="_blank">服务协议</a>
+                    <a href="" target="_blank">服务协议</a>
                     <a href="privacy.html" target="_blank">隐私政策</a>
                 </div>
             </div>
@@ -1081,7 +1372,7 @@
     <script>
         // 1. 导航栏滚动效果
         const siteHeader = document.getElementById('siteHeader');
-        const aboutHero = document.getElementById('aboutHero');
+        const blogHero = document.getElementById('blogHero');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 60) {
                 siteHeader.classList.add('scrolled');
@@ -1108,9 +1399,23 @@
             });
         });
 
-        // 3. 卡片滚动浮现效果
-        const missionCards = document.querySelectorAll('.mission-card');
-        const challengeItems = document.querySelectorAll('.challenge-item');
+        // 3. 平滑滚动到下载区域
+        document.querySelector('.client-download-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            }
+        });
+
+        // 4. 卡片滚动浮现效果
+        const sectionCards = document.querySelectorAll('.section-card');
+        const featureCards = document.querySelectorAll('.feature-card');
+        const downloadCards = document.querySelectorAll('.download-card');
         
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -1125,28 +1430,39 @@
         });
         
         // 为所有卡片添加动画
-        missionCards.forEach(card => {
+        sectionCards.forEach(card => {
             card.style.opacity = '0';
             card.style.transform = 'translateY(40px)';
             card.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
             observer.observe(card);
         });
         
-        challengeItems.forEach(item => {
-            item.style.opacity = '0';
-            item.style.transform = 'translateY(40px)';
-            item.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-            observer.observe(item);
+        downloadCards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(40px)';
+            card.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            observer.observe(card);
+        });
+        
+        featureCards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(40px)';
+            card.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            observer.observe(card);
         });
 
-        // 4. 为卡片添加交错延迟效果
+        // 5. 为卡片添加交错延迟效果
         window.addEventListener('load', () => {
-            missionCards.forEach((card, index) => {
+            sectionCards.forEach((card, index) => {
                 card.style.transitionDelay = `${index * 0.1}s`;
             });
             
-            challengeItems.forEach((item, index) => {
-                item.style.transitionDelay = `${index * 0.15}s`;
+            downloadCards.forEach((card, index) => {
+                card.style.transitionDelay = `${index * 0.1}s`;
+            });
+            
+            featureCards.forEach((card, index) => {
+                card.style.transitionDelay = `${index * 0.15}s`;
             });
         });
     </script>
