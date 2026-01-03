@@ -450,63 +450,7 @@
             font-size: 1.05rem;
         }
 
-        /* ========== 5. 开源区域 ========== */
-        .opensource-section {
-            padding: 8rem 0;
-            background-color: var(--color-paper-light);
-            position: relative;
-        }
-        .opensource-content {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        .opensource-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1.2rem 2.5rem;
-            background: linear-gradient(90deg, 
-                rgba(92, 75, 55, 0.1) 0%,
-                rgba(139, 115, 85, 0.1) 100%);
-            border-radius: 50px;
-            font-size: 1.1rem;
-            color: var(--color-accent);
-            font-weight: 600;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            margin-bottom: 2.5rem;
-            transition: var(--transition-smooth);
-        }
-        .opensource-badge:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(92, 75, 55, 0.15);
-        }
-        .opensource-description {
-            font-size: 1.2rem;
-            color: var(--color-meta);
-            line-height: 1.9;
-            margin-bottom: 3rem;
-        }
-        .github-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1.2rem 2.5rem;
-            background-color: var(--color-accent);
-            color: var(--color-paper-light);
-            border-radius: 12px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            transition: var(--transition-smooth);
-        }
-        .github-button:hover {
-            background-color: var(--color-accent-light);
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(92, 75, 55, 0.2);
-        }
-
-        /* ========== 6. 完全重构的页脚区域 ========== */
+        /* ========== 5. 完全重构的页脚区域 ========== */
         .site-footer {
             padding: 8rem 0 4rem;
             background-color: var(--color-paper);
@@ -713,7 +657,7 @@
             opacity: 0.8;
         }
 
-        /* ========== 7. 响应式调整 ========== */
+        /* ========== 6. 响应式调整 ========== */
         @media (max-width: 1080px) {
             .container {
                 width: 92%;
@@ -767,9 +711,6 @@
             .feature-card {
                 padding: 2.5rem 2rem;
             }
-            .opensource-section {
-                padding: 6rem 0;
-            }
             .mobile-nav-links a {
                 font-size: 1.6rem;
             }
@@ -819,17 +760,6 @@
             .feature-card {
                 padding: 2rem 1.8rem;
             }
-            .opensource-badge {
-                font-size: 0.9rem;
-                padding: 1rem 2rem;
-            }
-            .opensource-description {
-                font-size: 1.1rem;
-            }
-            .github-button {
-                padding: 1rem 2rem;
-                font-size: 1rem;
-            }
             .footer-decoration {
                 font-size: 6rem;
             }
@@ -856,9 +786,10 @@
                 <ul>
                     <li><a href="index.html">首页</a></li>
                     <li><a href="app.html">客户端</a></li>
-                    <li><a href="ylydq.html" class="active">阅读器</a></li>
+                    
                     <li><a href="forum.html">文学论坛</a></li>
                     <li><a href="creative.html">文创</a></li>
+                    <li><a href="ylydq.html" class="active">严论阅读器</a></li>
                 </ul>
             </nav>
 
@@ -875,10 +806,10 @@
     <div class="mobile-nav-overlay" id="mobileNav">
         <ul class="mobile-nav-links">
             <li><a href="index.html">首页</a></li>
-            <li><a href="app.html">客户端</a></li>
-            <li><a href="ylydq.html" class="active">阅读器</a></li>
+            <li><a href="app.html">严论客户端</a></li>
             <li><a href="forum.html">文学论坛</a></li>
             <li><a href="creative.html">严论文创</a></li>
+            <li><a href="ylydq.html" class="active">严论阅读器</a></li>
         </ul>
     </div>
 
@@ -905,7 +836,7 @@
                 <div class="section-header">
                     <h2 class="section-title">使用方式</h2>
                     <p class="section-subtitle">
-                        严论阅读器提供在线使用和客户端两种方式，满足您在不同场景下的阅读需求。
+                        严论阅读器提供在线使用和客户端两种方式，满足您在不同场景下的阅读需求。选择适合您的使用方式，开启深度阅读之旅。
                     </p>
                 </div>
                 
@@ -918,9 +849,9 @@
                         <p class="usage-description">
                             无需下载安装，直接在浏览器中使用严论阅读器。支持主流现代浏览器，随时随地开始阅读，自动同步您的阅读设置和书签。
                         </p>
-                        <a href="https://ylydq.yswxstudy.top" target="_blank" class="coming-soon-badge">
-                            <i class="fas fa-external-link-alt"></i> 立即使用
-                        </a>
+                        <div class="coming-soon-badge">
+                            <i class="fas fa-clock"></i> 即将上线
+                        </div>
                     </div>
                     
                     <div class="usage-card">
@@ -931,14 +862,14 @@
                         <p class="usage-description">
                             专为移动设备优化的客户端应用，提供更流畅的阅读体验和离线阅读功能。支持Android和iOS系统，随时随地享受深度阅读。
                         </p>
-                        <a href="https://www.123865.com/s/5rReVv-HoRkv" target="_blank" class="coming-soon-badge">
-                            <i class="fas fa-download"></i> 下载APP
-                        </a>
+                        <div class="coming-soon-badge">
+                            <i class="fas fa-clock"></i> 即将上架
+                        </div>
                     </div>
                 </div>
                 
                 <div class="usage-note">
-                    <p><strong>注意：</strong> Android客户端已上线，iOS及鸿蒙系统暂不支持。在线版本可在所有现代浏览器中使用。</p>
+                    <p><strong>预告说明：</strong> 严论阅读器目前正在积极开发中，我们致力于为您提供最佳的深度阅读体验。请关注我们的官方公告，获取最新的产品上线信息。</p>
                 </div>
             </div>
         </section>
@@ -954,73 +885,71 @@
                 </div>
                 
                 <div class="features-grid">
-                    <!-- 多格式支持 -->
                     <div class="feature-card">
                         <div class="feature-icon">
-                            <i class="fas fa-book-open"></i>
+                            <i class="fas fa-file-alt"></i>
                         </div>
-                        <h3 class="feature-title">📖 多格式支持</h3>
+                        <h3 class="feature-title">多格式支持</h3>
                         <p class="feature-description">
-                            文本格式: TXT, Markdown (.md)<br>
-                            办公文档: DOCX, DOC, RTF<br>
-                            电子书格式: PDF, EPUB<br>
-                            智能解析: 自动提取标题、章节结构
+                            支持上传和阅读TXT、Markdown等常见文本格式文件。智能识别文件编码，确保各种来源的文本文件都能正确显示。
                         </p>
                     </div>
                     
-                    <!-- 个性化阅读 -->
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3 class="feature-title">智能解析</h3>
+                        <p class="feature-description">
+                            自动识别文件结构，智能提取标题和章节信息。支持目录自动生成，让长篇文档的阅读和导航更加便捷。
+                        </p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-bookmark"></i>
+                        </div>
+                        <h3 class="feature-title">书签管理</h3>
+                        <p class="feature-description">
+                            轻松添加、删除和跳转到书签位置。支持多级书签分类管理，帮助您快速定位重要内容，提升阅读效率。
+                        </p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3 class="feature-title">阅读跟踪</h3>
+                        <p class="feature-description">
+                            详细记录您的阅读进度和时间统计。可视化阅读报告，帮助您了解自己的阅读习惯和进步情况。
+                        </p>
+                    </div>
+                    
                     <div class="feature-card">
                         <div class="feature-icon">
                             <i class="fas fa-palette"></i>
                         </div>
-                        <h3 class="feature-title">🎨 个性化阅读</h3>
+                        <h3 class="feature-title">个性化设置</h3>
                         <p class="feature-description">
-                            多种主题: 经典米黄、羊皮纸、浅色纸张、夜间模式<br>
-                            字体定制: 衬线/无衬线字体、宋体、楷体、Arial<br>
-                            布局调整: 字号、行高、间距自由调节<br>
-                            阅读模式: 垂直滚动、横向翻页、沉浸式全屏
+                            提供多种主题配色、字体样式和大小调节选项。护眼模式、夜间模式等多种阅读场景预设，满足不同环境和偏好需求。
                         </p>
                     </div>
                     
-                    <!-- 高级功能 -->
                     <div class="feature-card">
                         <div class="feature-icon">
-                            <i class="fas fa-tools"></i>
+                            <i class="fas fa-database"></i>
                         </div>
-                        <h3 class="feature-title">🔧 高级功能</h3>
+                        <h3 class="feature-title">数据持久化</h3>
                         <p class="feature-description">
-                            语音朗读: 支持中英文文本朗读<br>
-                            文本翻译: 多语言翻译支持<br>
-                            高亮标记: 多种颜色高亮，标记重点内容<br>
-                            笔记系统: 每本书独立的笔记记录<br>
-                            书签管理: 快速添加、跳转到书签位置<br>
-                            目录导航: 自动生成文档目录
+                            自动保存阅读设置、书签和阅读进度到本地存储。支持数据备份和恢复，确保您的阅读数据安全可靠。
                         </p>
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 开源区域 -->
-        <section class="opensource-section" id="opensource">
-            <div class="container">
-                <div class="opensource-content">
-                    <a href="https://github.com/yswxyjxz/ydq" target="_blank" class="opensource-badge">
-                        <i class="fab fa-github"></i> 开源项目
-                    </a>
-                    <h2 class="section-title">完全开源，自由定制</h2>
-                    <p class="opensource-description">
-                        严论阅读器已在GitHub上完全开源，遵循MIT许可证。我们相信开源的力量，欢迎开发者参与贡献，共同打造更优秀的阅读工具。您可以自由查看、修改和分发源代码，或根据需要进行二次开发。
-                    </p>
-                    <a href="https://github.com/yswxyjxz/ydq" target="_blank" class="github-button">
-                        <i class="fab fa-github"></i> 访问GitHub仓库
-                    </a>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- 4. 重构的页脚 -->
+    <!-- 4. 重构的页脚 - 第三个独立版块 -->
     <footer class="site-footer">
         <div class="footer-decoration">严论</div>
         <div class="container">
@@ -1036,7 +965,6 @@
                             <a href="social.html" title="微信公众号"><i class="fab fa-weixin"></i></a>
                             <a href="social.html" title="微博"><i class="fab fa-weibo"></i></a>
                             <a href="social.html" title="抖音"><i class="fab fa-tiktok"></i></a>
-                            <a href="https://github.com/yswxyjxz/ydq" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
                         </div>
                     </div>
                 </div>
@@ -1049,6 +977,7 @@
                         <li><a href="forum.html">文学论坛</a></li>
                         <li><a href="creative.html">严论文创</a></li>
                         <li><a href="ylydq.html">严论阅读器</a></li>
+                        <li><a href="about.html">关于我们</a></li>
                     </ul>
                 </div>
                 
@@ -1108,7 +1037,6 @@
         // 3. 功能卡片滚动浮现效果
         const featureCards = document.querySelectorAll('.feature-card');
         const usageCards = document.querySelectorAll('.usage-card');
-        const opensourceElements = document.querySelectorAll('.opensource-badge, .github-button');
         
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -1137,14 +1065,6 @@
             observer.observe(card);
         });
 
-        // 为开源元素添加动画
-        opensourceElements.forEach(element => {
-            element.style.opacity = '0';
-            element.style.transform = 'translateY(20px)';
-            element.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-            observer.observe(element);
-        });
-
         // 4. 为卡片添加交错延迟效果
         window.addEventListener('load', () => {
             featureCards.forEach((card, index) => {
@@ -1153,10 +1073,6 @@
             
             usageCards.forEach((card, index) => {
                 card.style.transitionDelay = `${index * 0.15}s`;
-            });
-            
-            opensourceElements.forEach((element, index) => {
-                element.style.transitionDelay = `${index * 0.2}s`;
             });
         });
     </script>
