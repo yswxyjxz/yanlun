@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>严肃文学研究小组及严论品牌形象使用规范及说明文件</title>
+    
+    <!-- ========== 网站图标设置 ========== -->
+    <link rel="icon" href="icon.jpg" type="image/jpeg">
+    <link rel="shortcut icon" href="media/icon.jpg" type="image/jpeg">
+    <link rel="apple-touch-icon" href="icon.jpg">
+    <meta name="theme-color" content="#5c4b37">
+    
+    <!-- 其他head内容 -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --color-ink: #1a1a1a;
+            --color-paper: #f8f5f0;
+            --color-paper-light: #fefcf8;
+            --color-paper-dark: #f0ece3;
+            --color-accent: #5c4b37;
+            --color-accent-light: #8b7355;
+            --color-meta: #7a7a7a;
+            --border-width: 1.2px;
+            --glass-bg-light: rgba(248, 245, 240, 0.85);
+            --glass-border-light: rgba(92, 75, 55, 0.1);
+            --transition-smooth: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            --shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.04);
+            --shadow-elevated: 0 10px 40px rgba(0, 0, 0, 0.06);
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            font-size: 18px;
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Noto Serif SC', serif;
+            font-weight: 400;
+            line-height: 1.8;
+            color: var(--color-ink);
+            background-color: var(--color-paper);
+            overflow-x: hidden;
+        }
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: var(--transition-smooth);
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ========== 1. 液态玻璃导航栏 ========== */
+        .site-header {
+            position: fixed;
+            top: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 92%;
+            max-width: 1160px;
+            z-index: 1000;
+            padding: 0.9rem 1.8rem;
+            background: var(--glass-bg-light);
+            backdrop-filter: blur(12px) saturate(180%);
+            -webkit-backdrop-filter: blur(12px) saturate(180%);
+            border: 1px solid var(--glass-border-light);
+            border-radius: 14px;
+            box-shadow: var(--shadow-subtle);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition-smooth);
+        }
+        .site-header.scrolled {
+            top: 0.8rem;
+            width: 100%;
+            max-width: 100%;
+            border-radius: 0;
+            border-left: none;
+            border-right: none;
+            background: rgba(248, 245, 240, 0.92);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+        .brand {
+            font-weight: 400;
+            font-size: 1.3rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--color-accent);
+            z-index: 1001;
+        }
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.8rem;
+        }
+        .main-nav a {
+            font-size: 0.92rem;
+            font-weight: 400;
+            letter-spacing: 0.08em;
+            color: var(--color-ink);
+            position: relative;
+            padding: 0.4rem 0;
+        }
+        .main-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--color-accent);
+            transition: width 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .main-nav a:hover::after,
+        .main-nav a.active::after {
+            width: 100%;
+        }
+        .main-nav a:hover {
+            color: var(--color-accent);
+        }
+
+        /* 移动端汉堡按钮 */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            width: 30px;
+            height: 20px;
+            position: relative;
+            z-index: 1001;
+            padding: 0;
+        }
+        .menu-toggle span {
+            display: block;
+            position: absolute;
+            height: 2px;
+            width: 100%;
+            background: var(--color-accent);
+            border-radius: 1px;
+            left: 0;
+            transition: var(--transition-smooth);
+        }
+        .menu-toggle span:nth-child(1) { top: 0; }
+        .menu-toggle span:nth-child(2) { top: 9px; }
+        .menu-toggle span:nth-child(3) { top: 18px; }
+        body.menu-open .menu-toggle span:nth-child(1) {
+            top: 9px;
+            transform: rotate(45deg);
+        }
+        body.menu-open .menu-toggle span:nth-child(2) {
+            opacity: 0;
+            width: 0;
+        }
+        body.menu-open .menu-toggle span:nth-child(3) {
+            top: 9px;
+            transform: rotate(-45deg);
+        }
+
+        /* 移动端全屏导航菜单 */
+        .mobile-nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: var(--color-paper-light);
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        body.menu-open .mobile-nav-overlay {
+            opacity: 1;
+            visibility: visible;
+        }
+        .mobile-nav-links {
+            list-style: none;
+            text-align: center;
+        }
+        .mobile-nav-links li {
+            margin-bottom: 2.5rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        body.menu-open .mobile-nav-links li {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        body.menu-open .mobile-nav-links li:nth-child(1) { transition-delay: 0.1s; }
+        body.menu-open .mobile-nav-links li:nth-child(2) { transition-delay: 0.2s; }
+        body.menu-open .mobile-nav-links li:nth-child(3) { transition-delay: 0.3s; }
+        body.menu-open .mobile-nav-links li:nth-child(4) { transition-delay: 0.4s; }
+        .mobile-nav-links a {
+            font-size: 1.8rem;
+            font-weight: 300;
+            color: var(--color-ink);
+            letter-spacing: 0.15em;
+            padding: 0.5rem 1.5rem;
+            display: inline-block;
+            position: relative;
+        }
+        .mobile-nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 15%;
+            width: 0;
+            height: 1px;
+            background-color: var(--color-accent);
+            transition: width 0.5s ease;
+        }
+        .mobile-nav-links a:hover::after,
+        .mobile-nav-links a.active::after {
+            width: 70%;
+        }
+
+        /* ========== 2. 规划文档展示区 ========== */
+        .plan-hero-section {
+            min-height: 60vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding: 12rem 0 6rem;
+            background: linear-gradient(to bottom, 
+                rgba(248, 245, 240, 0.7) 0%,
+                rgba(248, 245, 240, 0.9) 30%,
+                var(--color-paper-light) 100%);
+            border-bottom: 1px solid rgba(92, 75, 55, 0.08);
+            margin-bottom: 0;
+        }
+        .plan-hero-content {
+            position: relative;
+            z-index: 2;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUpIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+        }
+        @keyframes fadeUpIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .plan-title {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 300;
+            line-height: 1.3;
+            margin-bottom: 2rem;
+            max-width: 30ch;
+            letter-spacing: 0.01em;
+        }
+        .plan-subtitle {
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--color-accent);
+            margin-bottom: 3rem;
+            max-width: 50ch;
+            line-height: 1.7;
+        }
+        .plan-meta {
+            display: flex;
+            gap: 3rem;
+            margin-bottom: 3rem;
+            color: var(--color-meta);
+            font-size: 0.95rem;
+            letter-spacing: 0.05em;
+        }
+        .plan-date {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .plan-author {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* 文档内容区域 */
+        .document-section {
+            padding: 6rem 0 8rem;
+            background-color: var(--color-paper-light);
+        }
+        .document-container {
+            background-color: var(--color-paper-light);
+            padding: 4rem 3rem;
+            border-radius: 16px;
+            border: 1px solid rgba(92, 75, 55, 0.08);
+            box-shadow: var(--shadow-subtle);
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .document-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, 
+                var(--color-accent) 0%, 
+                var(--color-accent-light) 50%, 
+                var(--color-accent) 100%);
+            border-radius: 16px 16px 0 0;
+        }
+        .document-title {
+            font-size: 2.8rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 3.5rem;
+            color: var(--color-accent);
+            position: relative;
+            padding-bottom: 2rem;
+        }
+        .document-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background-color: var(--color-accent-light);
+            border-radius: 2px;
+        }
+        .document-content {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            color: var(--color-ink);
+        }
+        .document-content p {
+            margin-bottom: 1.8rem;
+        }
+        .document-content h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--color-accent);
+            margin: 3.5rem 0 1.5rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid rgba(92, 75, 55, 0.1);
+        }
+        .document-content h2:first-of-type {
+            margin-top: 0;
+        }
+        .document-content ol {
+            margin-left: 2.5rem;
+            margin-bottom: 2rem;
+        }
+        .document-content li {
+            margin-bottom: 1.2rem;
+            position: relative;
+        }
+        .document-content li::marker {
+            color: var(--color-accent-light);
+            font-weight: 600;
+        }
+        .document-content strong {
+            color: var(--color-accent);
+            font-weight: 600;
+        }
+        .document-signature {
+            text-align: right;
+            margin-top: 5rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(92, 75, 55, 0.1);
+            font-style: italic;
+            color: var(--color-meta);
+        }
+        .document-signature p {
+            margin-bottom: 0.5rem;
+        }
+
+        /* 下载按钮区域 */
+        .download-section {
+            padding: 3rem 0;
+            background: linear-gradient(135deg, 
+                rgba(92, 75, 55, 0.03) 0%, 
+                rgba(139, 115, 85, 0.08) 100%);
+            text-align: center;
+            border-top: 1px solid rgba(92, 75, 55, 0.08);
+        }
+        .download-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .download-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--color-accent);
+            margin-bottom: 1.5rem;
+        }
+        .download-desc {
+            color: var(--color-meta);
+            margin-bottom: 2.5rem;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.2rem 2.5rem;
+            background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-light) 100%);
+            color: white;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 30px rgba(92, 75, 55, 0.2);
+            margin-bottom: 1.5rem;
+        }
+        .download-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.7s ease;
+        }
+        .download-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(92, 75, 55, 0.3);
+        }
+        .download-btn:hover::before {
+            left: 100%;
+        }
+        .download-btn:hover i {
+            transform: translateY(3px);
+        }
+        .download-btn i {
+            transition: transform 0.4s ease;
+        }
+        .download-note {
+            font-size: 0.9rem;
+            color: var(--color-meta);
+            font-style: italic;
+        }
+
+        /* ========== 3. 重构的页脚区域 ========== */
+        .site-footer {
+            padding: 8rem 0 4rem;
+            background-color: var(--color-paper);
+            position: relative;
+            border-top: 1px solid rgba(92, 75, 55, 0.1);
+            overflow: hidden;
+        }
+        .site-footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                var(--color-accent-light) 20%, 
+                var(--color-accent-light) 80%, 
+                transparent);
+        }
+        .footer-main {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+        .footer-brand {
+            max-width: 400px;
+        }
+        .footer-brand .brand-logo {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--color-accent);
+            letter-spacing: 0.2em;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+        .footer-brand p {
+            color: var(--color-meta);
+            line-height: 1.7;
+            margin-bottom: 2rem;
+            font-size: 1.05rem;
+        }
+        .social-section h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--color-ink);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--color-paper-light);
+            border: 1px solid rgba(92, 75, 55, 0.12);
+            font-size: 1.1rem;
+            color: var(--color-meta);
+            transition: var(--transition-smooth);
+        }
+        .social-links a:hover {
+            color: var(--color-paper-light);
+            background: var(--color-accent);
+            border-color: var(--color-accent);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(92, 75, 55, 0.15);
+        }
+        .footer-links-section h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--color-ink);
+            margin-bottom: 1.8rem;
+            position: relative;
+            padding-bottom: 0.8rem;
+        }
+        .footer-links-section h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--color-accent-light);
+        }
+        .footer-links {
+            list-style: none;
+        }
+        .footer-links li {
+            margin-bottom: 1.2rem;
+        }
+        .footer-links a {
+            color: var(--color-meta);
+            font-size: 1rem;
+            position: relative;
+            padding-left: 0;
+            transition: var(--transition-smooth);
+            display: inline-block;
+        }
+        .footer-links a::before {
+            content: '→';
+            position: absolute;
+            left: -1.5rem;
+            opacity: 0;
+            transition: all 0.3s ease;
+            color: var(--color-accent);
+        }
+        .footer-links a:hover {
+            color: var(--color-accent);
+            padding-left: 1.5rem;
+        }
+        .footer-links a:hover::before {
+            opacity: 1;
+            left: 0;
+        }
+        .footer-bottom {
+            padding-top: 3rem;
+            border-top: 1px solid rgba(92, 75, 55, 0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        .copyright {
+            font-size: 0.9rem;
+            color: var(--color-meta);
+        }
+        .copyright p:first-child {
+            margin-bottom: 0.5rem;
+        }
+        .copyright p:last-child {
+            font-style: italic;
+            font-size: 0.95rem;
+            color: var(--color-accent-light);
+            line-height: 1.6;
+        }
+        .footer-legal {
+            display: flex;
+            gap: 2rem;
+        }
+        .footer-legal a {
+            color: var(--color-meta);
+            font-size: 0.9rem;
+            border-bottom: 1px solid transparent;
+            padding-bottom: 2px;
+            transition: var(--transition-smooth);
+        }
+        .footer-legal a:hover {
+            color: var(--color-accent);
+            border-color: var(--color-accent);
+        }
+        .footer-decoration {
+            position: absolute;
+            bottom: 0;
+            right: 5%;
+            font-size: 12rem;
+            color: rgba(92, 75, 55, 0.03);
+            font-weight: 700;
+            line-height: 1;
+            pointer-events: none;
+            user-select: none;
+            z-index: 0;
+            opacity: 0.8;
+        }
+
+        /* ========== 4. 响应式调整 ========== */
+        @media (max-width: 1080px) {
+            .container {
+                width: 92%;
+            }
+            .document-container {
+                padding: 3.5rem 2.5rem;
+            }
+            .footer-main {
+                grid-template-columns: 1fr 1fr;
+                gap: 3rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            html { font-size: 16px; }
+            .site-header {
+                top: 1rem;
+                width: 94%;
+                padding: 0.8rem 1.5rem;
+            }
+            .site-header.scrolled {
+                top: 0;
+            }
+            .main-nav {
+                display: none;
+            }
+            .menu-toggle {
+                display: block;
+            }
+            .plan-hero-section {
+                padding: 8rem 0 4rem;
+            }
+            .plan-title {
+                font-size: clamp(2.2rem, 6vw, 3.5rem);
+                line-height: 1.4;
+                margin-bottom: 1.8rem;
+            }
+            .plan-subtitle {
+                font-size: 1.3rem;
+                line-height: 1.6;
+            }
+            .plan-meta {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .document-section {
+                padding: 4rem 0 6rem;
+            }
+            .document-container {
+                padding: 2.5rem 2rem;
+            }
+            .document-title {
+                font-size: 2.2rem;
+                margin-bottom: 2.5rem;
+            }
+            .document-content h2 {
+                font-size: 1.6rem;
+                margin: 2.5rem 0 1.2rem;
+            }
+            .mobile-nav-links a {
+                font-size: 1.6rem;
+            }
+            .site-footer {
+                padding: 6rem 0 3rem;
+            }
+            .footer-main {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            .footer-brand {
+                max-width: 100%;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+                gap: 1.5rem;
+            }
+            .footer-legal {
+                justify-content: center;
+            }
+            .footer-decoration {
+                font-size: 8rem;
+                right: 0;
+                bottom: 10%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container { width: 94%; padding: 0 15px; }
+            .plan-title {
+                font-size: 2rem;
+                line-height: 1.5;
+            }
+            .plan-subtitle {
+                font-size: 1.1rem;
+            }
+            .document-container {
+                padding: 2rem 1.5rem;
+            }
+            .document-title {
+                font-size: 1.8rem;
+            }
+            .document-content {
+                font-size: 1rem;
+            }
+            .brand {
+                font-size: 1.1rem;
+                letter-spacing: 0.2em;
+            }
+            .footer-decoration {
+                font-size: 6rem;
+            }
+        }
+        
+        @media (max-height: 500px) and (orientation: landscape) {
+            .mobile-nav-links a {
+                font-size: 1.4rem;
+            }
+            .mobile-nav-links li {
+                margin-bottom: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 1. 液态玻璃导航栏 -->
+    <header class="site-header" id="siteHeader">
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+            <a href="index.html" class="brand">严论</a>
+            
+            <!-- 桌面端导航 -->
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="app.html">客户端</a></li>
+                    <li><a href="ylydq.html">阅读器</a></li>
+                    <li><a href="forum.html">文学论坛</a></li>
+                    <li><a href="creative.html">文创</a></li>
+                </ul>
+            </nav>
+
+            <!-- 移动端汉堡按钮 -->
+            <button class="menu-toggle" id="menuToggle" aria-label="打开菜单">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- 2. 移动端全屏导航菜单 -->
+    <div class="mobile-nav-overlay" id="mobileNav">
+        <ul class="mobile-nav-links">
+            <li><a href="index.html">首页</a></li>
+            <li><a href="app.html">客户端</a></li>
+            <li><a href="ylydq.html">阅读器</a></li>
+            <li><a href="forum.html">文学论坛</a></li>
+            <li><a href="creative.html">严论文创</a></li>
+        </ul>
+    </div>
+
+    <!-- 3. 主内容 -->
+    <main>
+        <!-- 规划文档英雄区 -->
+        <section class="plan-hero-section" id="planHero">
+            <div class="container plan-hero-content">
+                <h1 class="plan-title">严肃文学研究小组及严论品牌形象使用规范及说明文件</h1>
+                <p class="plan-subtitle">明确“严肃文学研究小组”与“严论”品牌的定位、关系及使用规范，维护品牌形象的统一性与专业性，推动严肃文学数字化转型的可持续发展</p>
+                <div class="plan-meta">
+                    <div class="plan-date">
+                        <i class="far fa-calendar-alt"></i>
+                        <span>发布日期：2026年1月</span>
+                    </div>
+                    <div class="plan-author">
+                        <i class="far fa-user"></i>
+                        <span>发布机构：严肃文学研究小组、严论</span>
+                    </div>
+                </div>
+                <div class="chapter-number">品牌规范性文件</div>
+            </div>
+        </section>
+
+        <!-- 规划文档展示区 -->
+        <section class="document-section">
+            <div class="document-container">
+                <h1 class="document-title">严肃文学研究小组及严论品牌形象使用规范及说明文件</h1>
+                
+                <div class="document-content">
+<h1>严论品牌形象使用规范文件</h1>
+
+<h2>第一章 总则</h2>
+
+<h3>第一条 目的与宗旨</h3>
+<p>为明确“严肃文学研究小组”与“严论”品牌的定位、关系及使用规范，维护品牌形象的统一性与专业性，推动严肃文学数字化转型的可持续发展，特制定本文件。</p>
+
+<h3>第二条 适用范围</h3>
+<p>本规范适用于严肃文学研究小组及其下属机构、合作方，以及在所有公开传播、内容产出、视觉设计、活动宣传中涉及“严肃文学研究小组”与“严论”品牌的相关场景。</p>
+
+<h2>第二章 主体定义与关系</h2>
+
+<h3>第三条 严肃文学研究小组</h3>
+<p>1. 性质：严肃文学研究小组是一个专注于严肃文学研究、评论与学术交流的非营利性学术组织。</p>
+<p>2. 使命：推动严肃文学的理论研究、学术探讨与公众传播，促进文学创作与批评的深度对话。</p>
+<p>3. 核心价值：学术性、思想性、公共性、独立性。</p>
+
+<h3>第四条 严论品牌</h3>
+<p>1. 性质：严肃文学研究小组旗下的数字文学品牌，是其数字化转型的核心载体与传播平台。</p>
+<p>2. 使命：以数字化手段创新严肃文学的呈现、传播与参与方式，拓展文学在当代社会的影响力。</p>
+<p>3. 核心价值：前沿性、开放性、互动性、媒介融合性。</p>
+
+<h3>第五条 两者关系</h3>
+<p>1. 从属关系：严论是严肃文学研究小组的重要组成部分，是其面向数字化时代的品牌延伸与实践平台。</p>
+<p>2. 功能互补：</p>
+<p>- 严肃文学研究小组侧重于学术研究、理论建构与线下交流；</p>
+<p>- 严论侧重于内容数字化、公众传播、跨媒介实验与线上生态构建。</p>
+<p>3. 形象统一：严论的品牌活动与内容产出均代表严肃文学研究小组的学术立场与公共价值，两者需在精神内核上保持高度一致。</p>
+
+<h2>第三章 品牌形象使用规范</h2>
+
+<h3>第六条 命名与标识使用</h3>
+<p>1. 在学术研究、理论出版、学术会议等场景中，优先使用“严肃文学研究小组”名称及标识。</p>
+<p>2. 在数字内容发布、线上活动、新媒体平台、数字产品等场景中，优先使用“严论”品牌名称及视觉体系。</p>
+<p>3. 联合行动中可标注“严肃文学研究小组旗下数字品牌·严论”，以明确关联性。</p>
+
+<h3>第七条 视觉识别规范</h3>
+<p>1. 严肃文学研究小组视觉标识应体现学术感、庄重感；严论品牌视觉标识应体现数字化、现代感。</p>
+<p>2. 严论品牌的所有视觉材料中，可在适当位置标注“源自严肃文学研究小组”或类似说明。</p>
+
+<h3>第八条 语言表达与内容调性</h3>
+<p>1. 严肃文学研究小组的表述需突出学术权威、理论深度、历史视野。</p>
+<p>2. 严论的表述需侧重创新表达、技术融合、公众参与、时代回应。</p>
+<p>3. 所有对外内容均须坚持严肃文学的核心价值观，拒绝娱乐化、肤浅化表述。</p>
+
+<h3>第九条 合作与授权</h3>
+<p>1. 以严肃文学研究小组名义开展的活动、研究项目，如需数字化拓展，可由严论团队协作执行。</p>
+<p>2. 严论品牌对外合作需经严肃文学研究小组品牌管理委员会审核，确保内容符合学术宗旨。</p>
+<p>3. 第三方使用任一品牌名称、标识，均须取得书面授权。</p>
+
+<h2>第四章 附则</h2>
+
+<h3>第十条 修订与解释</h3>
+<p>本规范由严肃文学研究小组负责解释与修订，并将根据品牌发展需要适时更新。</p>
+
+<h3>第十一条 生效日期</h3>
+<p>本规范自发布之日起正式实施。</p>
+
+                    <div class="document-signature">
+                        <p>特此发布。</p>
+                        <p>严肃文学研究小组、严论</p>
+                        <p>2026年1月</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 下载区域 -->
+        <section class="download-section">
+            <div class="container download-container">
+                <h2 class="download-title">获取完整规划文档</h2>
+                <p class="download-desc">您可以下载本文档的完整版本。</p>
+                <a href="https://1815012422.v.123pan.cn/1815012422/%E4%B8%A5%E8%AE%BA%E5%AE%98%E7%BD%91/%E4%B8%A5%E8%82%83%E6%96%87%E5%AD%A6%E7%A0%94%E7%A9%B6%E5%B0%8F%E7%BB%84%E5%8F%8A%E4%B8%A5%E8%AE%BA%E5%93%81%E7%89%8C%E5%BD%A2%E8%B1%A1%E4%BD%BF%E7%94%A8%E8%A7%84%E8%8C%83%E5%8F%8A%E8%AF%B4%E6%98%8E%E6%96%87%E4%BB%B6.pdf">
+                    <i class="fas fa-download"></i>
+                    下载本文件
+                </a>
+                <p class="download-note">文件大小：约 234.73 KB | 格式：pdf</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- 4. 重构的页脚 -->
+    <footer class="site-footer">
+        <div class="footer-decoration">严论</div>
+        <div class="container">
+            <div class="footer-main">
+                <div class="footer-brand">
+                    <a href="index.html" class="brand-logo">严论</a>
+                    <p>
+                        文学是照进现实的一束光
+                    </p>
+                    <div class="social-section">
+                        <h4>关注我们</h4>
+                        <div class="social-links">
+                            <a href="social.html" title="微信公众号"><i class="fab fa-weixin"></i></a>
+                            <a href="social.html" title="微博"><i class="fab fa-weibo"></i></a>
+                            <a href="social.html" title="抖音"><i class="fab fa-tiktok"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-links-section">
+                    <h4>探索</h4>
+                    <ul class="footer-links">
+                        <li><a href="app.html">严论客户端</a></li>
+                        <li><a href="forum.html">文学论坛</a></li>
+                        <li><a href="creative.html">严论文创</a></li>
+                        <li><a href="ylydq.html">严论阅读器</a></li>
+                        <li><a href="https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzYzMzAyMDcwMg==&action=getalbum&album_id=4224274281255108623&scene=126#wechat_redirect">每周书评</a></li>
+                        <li><a href="about.html">关于我们</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links-section">
+                    <h4>支持</h4>
+                    <ul class="footer-links">
+                        <li><a href="#planHero">返回顶部</a></li>
+                        <li><a href="agreement.html" target="_blank">服务协议</a></li>
+                        <li><a href="privacy.html" target="_blank">隐私政策</a></li>
+                        <li><a href="partner.html" target="_blank">合作伙伴</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="copyright">
+                    <p>© 2026 严肃文学研究小组。保留所有权利。</p>
+                    <p>文学不能改变世界，但文学可以改变人，而人可以改变世界。</p>
+                </div>
+                <div class="footer-legal">
+                    <a href="agreement.html" target="_blank">服务协议</a>
+                    <a href="privacy.html" target="_blank">隐私政策</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 1. 导航栏滚动效果
+        const siteHeader = document.getElementById('siteHeader');
+        const planHero = document.getElementById('planHero');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 60) {
+                siteHeader.classList.add('scrolled');
+            } else {
+                siteHeader.classList.remove('scrolled');
+            }
+        });
+
+        // 2. 移动端菜单控制
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileNav = document.getElementById('mobileNav');
+        const body = document.body;
+        menuToggle.addEventListener('click', () => {
+            body.classList.toggle('menu-open');
+            const isExpanded = body.classList.contains('menu-open');
+            menuToggle.setAttribute('aria-expanded', isExpanded);
+            menuToggle.setAttribute('aria-label', isExpanded ? '关闭菜单' : '打开菜单');
+        });
+        document.querySelectorAll('.mobile-nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                body.classList.remove('menu-open');
+                menuToggle.setAttribute('aria-expanded', 'false');
+                menuToggle.setAttribute('aria-label', '打开菜单');
+            });
+        });
+
+        // 3. 文档下载功能
+        function downloadDocument() {
+            // 创建一个虚拟的下载链接
+            const element = document.createElement('a');
+            
+            // 获取文档内容
+            const docContent = document.querySelector('.document-content').innerHTML;
+            
+            // 创建完整的HTML文档
+            const fullDoc = `
+            <!DOCTYPE html>
+            <html lang="zh-CN">
+            <head>
+                <meta charset="UTF-8">
+                <title>严论博客平台2026-2027年整体规划发展纲要</title>
+                <style>
+                    body { 
+                        font-family: 'Noto Serif SC', serif; 
+                        line-height: 1.8; 
+                        color: #1a1a1a; 
+                        max-width: 800px; 
+                        margin: 0 auto; 
+                        padding: 2rem;
+                    }
+                    h1 { color: #5c4b37; text-align: center; margin-bottom: 2rem; }
+                    h2 { color: #5c4b37; margin-top: 2.5rem; padding-bottom: 0.5rem; border-bottom: 1px solid #eee; }
+                    p { margin-bottom: 1.5rem; }
+                    .signature { text-align: right; margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #eee; font-style: italic; }
+                </style>
+            </head>
+            <body>
+                <h1>关于严论博客平台2026-2027年整体规划发展纲要</h1>
+                ${docContent}
+            </body>
+            </html>
+            `;
+            
+            // 创建Blob对象
+            const blob = new Blob([fullDoc], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            
+            // 设置下载属性
+            element.setAttribute('href', url);
+            element.setAttribute('download', '严论博客平台2026-2027整体规划发展纲要.html');
+            
+            // 触发下载
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+            
+            // 清理URL对象
+            setTimeout(() => URL.revokeObjectURL(url), 100);
+            
+            // 显示提示信息
+            alert('文档下载已开始！文件名为：严论博客平台2026-2027整体规划发展纲要.html');
+        }
+
+        // 4. 页面加载动画
+        window.addEventListener('load', () => {
+            // 确保内容区已经显示
+            document.querySelector('.plan-hero-content').style.animationPlayState = 'running';
+        });
+    </script>
+</body>
+</html>
