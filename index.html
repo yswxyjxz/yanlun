@@ -643,7 +643,160 @@
             transform: translateX(4px);
         }
 
-        /* ========== 5. 完全重构的页脚区域 - 第四个独立版块 ========== */
+        /* ========== 5. 文章列表区 - 新增第四个独立版块 ========== */
+        .articles-section {
+            padding: 8rem 0;
+            background-color: var(--color-paper-light);
+            position: relative;
+            border-top: 1px solid rgba(92, 75, 55, 0.08);
+            border-bottom: 1px solid rgba(92, 75, 55, 0.08);
+        }
+
+        .articles-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 4rem;
+        }
+
+        .articles-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--color-accent);
+            line-height: 1.2;
+        }
+
+        .articles-subtitle {
+            font-size: 1.2rem;
+            font-weight: 300;
+            color: var(--color-meta);
+            max-width: 40ch;
+        }
+
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+
+        .article-card {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: var(--transition-smooth);
+            background-color: var(--color-paper-light);
+            border: 1px solid rgba(92, 75, 55, 0.08);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow-subtle);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .article-card.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .article-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-elevated);
+            border-color: rgba(92, 75, 55, 0.15);
+        }
+
+        .article-content {
+            padding: 2.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .article-tag {
+            display: inline-block;
+            padding: 0.5rem 1.2rem;
+            background-color: rgba(92, 75, 55, 0.08);
+            color: var(--color-accent);
+            font-size: 0.8rem;
+            font-weight: 600;
+            border-radius: 50px;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            align-self: flex-start;
+        }
+
+        .article-tag.academic {
+            background-color: rgba(92, 75, 55, 0.1);
+            color: var(--color-accent);
+        }
+
+        .article-tag.brand {
+            background-color: rgba(139, 115, 85, 0.1);
+            color: var(--color-accent-light);
+        }
+
+        .article-tag.plan {
+            background-color: rgba(122, 122, 122, 0.1);
+            color: var(--color-meta);
+        }
+
+        .article-title {
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 1.2rem;
+            line-height: 1.4;
+            color: var(--color-ink);
+        }
+
+        .article-excerpt {
+            color: var(--color-meta);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+            flex-grow: 1;
+        }
+
+        .article-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(92, 75, 55, 0.08);
+        }
+
+        .article-date {
+            font-size: 0.9rem;
+            color: var(--color-meta);
+            font-variant-numeric: tabular-nums;
+        }
+
+        .article-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--color-accent);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            transition: var(--transition-smooth);
+        }
+
+        .article-link:hover {
+            background-color: rgba(92, 75, 55, 0.05);
+            gap: 1.2rem;
+        }
+
+        .article-link i {
+            font-size: 0.8em;
+            transition: transform 0.4s ease;
+        }
+
+        .article-link:hover i {
+            transform: translateX(4px);
+        }
+
+        /* ========== 6. 完全重构的页脚区域 - 第五个独立版块 ========== */
         .site-footer {
             padding: 8rem 0 4rem;
             background-color: var(--color-paper);
@@ -850,7 +1003,7 @@
             opacity: 0.8;
         }
 
-        /* ========== 6. 响应式调整 ========== */
+        /* ========== 7. 响应式调整 ========== */
         @media (max-width: 1080px) {
             .container {
                 width: 92%;
@@ -861,6 +1014,9 @@
             .footer-main {
                 grid-template-columns: 1fr 1fr;
                 gap: 3rem;
+            }
+            .articles-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             }
         }
         
@@ -940,6 +1096,29 @@
             .catalog-item {
                 padding: 2.5rem 2rem;
             }
+            /* 文章区域响应式 */
+            .articles-section {
+                padding: 6rem 0;
+            }
+            .articles-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1.5rem;
+                margin-bottom: 3rem;
+            }
+            .articles-title {
+                font-size: 2rem;
+            }
+            .articles-subtitle {
+                font-size: 1.1rem;
+            }
+            .articles-grid {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+            .article-content {
+                padding: 2rem;
+            }
             .mobile-nav-links a {
                 font-size: 1.6rem;
             }
@@ -1006,6 +1185,19 @@
             }
             .catalog-item {
                 padding: 2rem 1.8rem;
+            }
+            /* 文章区域响应式 */
+            .articles-title {
+                font-size: 1.8rem;
+            }
+            .articles-subtitle {
+                font-size: 1rem;
+            }
+            .article-content {
+                padding: 1.8rem;
+            }
+            .article-title {
+                font-size: 1.4rem;
             }
             .footer-decoration {
                 font-size: 6rem;
@@ -1181,9 +1373,74 @@
                 </div>
             </div>
         </section>
+
+        <!-- 新增：文章列表区 - 第四个独立版块 -->
+        <section class="articles-section">
+            <div class="container">
+                <div class="articles-header">
+                    <div>
+                        <h2 class="articles-title">最新文章</h2>
+                        <p class="articles-subtitle">深度思考与重要公告</p>
+                    </div>
+                </div>
+                
+                <div class="articles-grid">
+                    <!-- 文章1 -->
+                    <article class="article-card">
+                        <div class="article-content">
+                            <span class="article-tag academic">学术性文件</span>
+                            <h3 class="article-title">现代认知冲突中的符号解构</h3>
+                            <p class="article-excerpt">
+                                在全球数字化转型与地缘政治格局重塑的双重背景下，文化领域的意识形态竞争呈现出高度复杂化与隐蔽化的新特征……
+                            </p>
+                            <div class="article-meta">
+                                <span class="article-date">2026年2月7日</span>
+                                <a href="yswxyjxz-20260207.html" class="article-link">
+                                    阅读文章 <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <!-- 文章2 -->
+                    <article class="article-card">
+                        <div class="article-content">
+                            <span class="article-tag brand">品牌规范性文件</span>
+                            <h3 class="article-title">严肃文学研究小组及严论品牌形象使用规范及说明文件</h3>
+                            <p class="article-excerpt">
+                                为明确“严肃文学研究小组”与“严论”品牌的定位、关系及使用规范，维护品牌形象的统一性与专业性，推动严肃文学数字化转型的可持续发展，特制定本文件。
+                            </p>
+                            <div class="article-meta">
+                                <span class="article-date">2026年1月16日</span>
+                                <a href="yl-20260116.html" class="article-link">
+                                    阅读文章 <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <!-- 文章3 -->
+                    <article class="article-card">
+                        <div class="article-content">
+                            <span class="article-tag plan">发展规划纲要</span>
+                            <h3 class="article-title">严论博客平台2026-2027年整体规划发展纲要</h3>
+                            <p class="article-excerpt">
+                                为深入推进严肃文学研究与传播，构建高质量文学内容生态，持续提升"严论"品牌影响力与凝聚力，现正式发布严论博客平台2026-2027年度整体发展规划。本规划旨在进一步夯实平台基础、拓展创作者生态、深化产品协同，推动严肃文学在数字时代的传承、创新与对话。
+                            </p>
+                            <div class="article-meta">
+                                <span class="article-date">2026年1月1日</span>
+                                <a href="blog-20260101.html" class="article-link">
+                                    阅读文章 <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <!-- 4. 重构的页脚 - 第四个独立版块 -->
+    <!-- 4. 重构的页脚 - 第五个独立版块 -->
     <footer class="site-footer">
         <div class="footer-decoration">严论</div>
         <div class="container">
@@ -1289,6 +1546,29 @@
         window.addEventListener('load', () => {
             catalogItems.forEach((item, index) => {
                 item.style.transitionDelay = `${index * 0.1}s`;
+            });
+        });
+
+        // 5. 文章卡片滚动浮现效果
+        const articleCards = document.querySelectorAll('.article-card');
+        const articleObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                }
+            });
+        }, {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        });
+        articleCards.forEach(card => {
+            articleObserver.observe(card);
+        });
+
+        // 6. 为文章卡片添加交错延迟效果
+        window.addEventListener('load', () => {
+            articleCards.forEach((card, index) => {
+                card.style.transitionDelay = `${index * 0.1}s`;
             });
         });
     </script>
